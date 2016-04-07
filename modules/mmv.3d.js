@@ -19,7 +19,7 @@
 	var singleton = false;
 
 	function ThreeD( viewer ) {
-		var dimensions = this.dimensionsFunc(),
+		var dimensions,
 			ambient = new THREE.AmbientLight( 0x999999 ),
 			threed = this;
 
@@ -28,6 +28,8 @@
 		this.viewer = viewer;
 		this.progressBar = viewer.ui.panel.progressBar;
 		this.$container = viewer.ui.canvas.$imageDiv;
+
+		dimensions = this.dimensionsFunc();
 
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 1, 5000 );
