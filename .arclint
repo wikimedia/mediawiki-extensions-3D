@@ -1,0 +1,38 @@
+{
+  "linters": {
+    "jshint": {
+      "type": "jshint",
+      "include": "(\\.js$)",
+      "exclude": "(^modules/three)" 
+   },
+    "jscs": {
+      "type": "jscs",
+      "include": "(\\.js$)",
+      "exclude": "(^modules/three)"
+   },
+    "xml": {
+      "type": "xml",
+      "include": "(\\.xml$)"
+    },
+    "json": {
+      "type": "json",
+      "include": "(\\.json$)"
+    },
+    "lessc": {
+      "type": "lessc",
+      "include": "(\\.less$)"
+    },
+    "csslint": {
+      "type": "csslint",
+      "include": "(\\.css$)"
+    },
+    "composer": {
+      "type": "composer",
+      "include": "(composer.json$)"
+    },
+    "php": {
+      "type": "php",
+      "include": "(\\.php$)"
+    }
+  }
+}

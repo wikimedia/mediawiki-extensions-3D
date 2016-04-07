@@ -1,0 +1,62 @@
+{
+    "name": "3d",
+    "version": "0.0.1",
+    "author": [
+        "Gilles Dubuc"
+    ],
+    "url": "https://www.mediawiki.org/wiki/Extension:3d",
+    "namemsg": "3d",
+    "descriptionmsg": "3d-desc",
+    "license-name": "MIT",
+    "type": "other",
+    "manifest_version": 1,
+    "MessageDirs": {
+        "3d": [
+            "i18n"
+        ]
+    },
+    "Hooks": {
+        "ResourceLoaderTestModules": [
+            "ThreeDHooks::onResourceLoaderTestModules"
+        ]
+    },
+    "ResourceModules": {
+        "ext.3d": {
+            "scripts": [
+                "ext.3d.js"
+            ],
+            "styles": [
+                "ext.3d.css"
+            ],
+            "messages": [],
+            "dependencies": []
+        },
+        "mmv.3d": {
+            "scripts": [
+                "mmv.3d.js",
+                "three/three.js",
+                "three/AMFLoader.js",
+                "three/STLLoader.js",
+                "three/OrbitControls.js"
+            ],
+            "styles": [
+                "mmv.3d.less"
+            ],
+            "dependencies": [
+                "mmv"
+            ]
+        }
+    },
+    "ResourceFileModulePaths": {
+        "localBasePath": "modules",
+        "remoteExtPath": "3d/modules"
+    },
+    "AutoloadClasses": {
+        "ThreeDHooks": "ThreeDHooks.php",
+        "ThreeDHandler": "ThreeDHandler.php"
+    },
+    "MediaHandlers": {
+        "application/x-amf": "ThreeDHandler",
+        "application/sla": "ThreeDHandler"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "Gilles Dubuc"
+        ]
+    },
+    "3d": "The name of the extension",
+    "3d-desc": "{{desc|name=3d|url=https://www.mediawiki.org/wiki/Extension:3d}}"
+}
