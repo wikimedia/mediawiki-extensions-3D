@@ -19,17 +19,19 @@
 	var singleton = false;
 
 	function ThreeD( viewer ) {
-		var dimensions,
-			ambient = new THREE.AmbientLight( 0x999999 ),
-			threed = this;
-
 		THREE.Cache.enabled = true;
 
 		this.viewer = viewer;
 		this.progressBar = viewer.ui.panel.progressBar;
 		this.$container = viewer.ui.canvas.$imageDiv;
+	}
 
-		dimensions = this.dimensionsFunc();
+	TD = ThreeD.prototype;
+
+	TD.createScene = function () {
+		var threed = this,
+			dimensions = this.dimensionsFunc(),
+			ambient = new THREE.AmbientLight( 0x999999 );
 
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 1, 5000 );
@@ -52,24 +54,24 @@
 		$( window ).on( 'resize.3d', $.debounce( 100, $.proxy( function () { threed.onWindowResize(); }, threed ) ) );
 
 		this.animate();
-	}
-
-	TD = ThreeD.prototype;
+	};
 
 	TD.center = function ( object ) {
+		var bbox, bboxWidth, bboxHeight, bboxDepth,
+			camerax, cameray, cameraz;
 		if ( object.type == 'Group' ) {
 			this.center( object.children[ 0 ] );
 		} else if ( object.type == 'Mesh' ) {
 			object.geometry.center();
 			object.geometry.computeBoundingBox();
 
-			var bbox = object.geometry.boundingBox,
-				bboxWidth = bbox.max.x - bbox.min.x,
-				bboxHeight = bbox.max.z - bbox.min.z,
-				bboxDepth = bbox.max.y - bbox.min.y,
-				camerax = -bboxWidth,
-				cameray = -bboxDepth,
-				cameraz = bboxHeight;
+			bbox = object.geometry.boundingBox;
+			bboxWidth = bbox.max.x - bbox.min.x;
+			bboxHeight = bbox.max.z - bbox.min.z;
+			bboxDepth = bbox.max.y - bbox.min.y;
+			camerax = -bboxWidth;
+			cameray = -bboxDepth;
+			cameraz = bboxHeight;
 
 			this.camera.position.set( camerax, cameray, cameraz );
 		}
@@ -79,20 +81,6 @@
 		var material = new THREE.MeshPhongMaterial( { color: 0xaaaaff, shading: THREE.FlatShading } );
 
 		return new THREE.Mesh( geometry, material );
-	};
-
-	TD.clearScene = function () {
-		var i,
-			child;
-
-		for ( i = 0; i < this.scene.children.length; i++ ) {
-			child = this.scene.children[ i ];
-
-			if ( child instanceof THREE.Mesh ) {
-				child.geometry.dispose();
-				this.scene.remove( child );
-			}
-		}
 	};
 
 	TD.loadFile = function ( extension, url ) {
@@ -109,8 +97,6 @@
 
 		request = loader.load( url, function ( data ) {
 			var object = data;
-
-			threed.clearScene();
 
 			if ( extension == 'stl' ) {
 				object = threed.geometryToObject( data );
@@ -217,6 +203,10 @@
 			singleton = new ThreeD( e.viewer );
 		}
 
+		// Clear any state, create objects for render.
+		singleton.createScene();
+
+		// Complete load.
 		singleton.load( extension, e.imageInfo.url );
 	} );
 
