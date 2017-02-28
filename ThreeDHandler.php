@@ -120,7 +120,7 @@ class ThreeDHandler extends ImageHandler {
 	 * @return array
 	 */
 	function getImageSize( $file, $path, $metadata = false ) {
-		return array( 5120, 2880 );
+		return [ 5120, 2880 ];
 	}
 
 	function getThumbType( $ext, $mime, $params = null ) {
