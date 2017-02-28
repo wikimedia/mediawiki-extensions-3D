@@ -1,6 +1,11 @@
 {
   "name": "3d",
   "version": "0.0.1",
+  "private": true,
+  "description": "Build tools for the 3D MediaWiki extension.",
+  "scripts": {
+    "test": "grunt test"
+  },
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",

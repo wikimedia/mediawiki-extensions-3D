@@ -145,7 +145,7 @@
 		this.camera.updateProjectionMatrix();
 		this.renderer.setSize( dimensions.width, dimensions.height );
 		this.render( this.renderer, this.scene, this.camera );
-	}
+	};
 
 	TD.load = function ( extension, url ) {
 		var threed = this;
