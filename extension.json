@@ -21,17 +21,11 @@
             "i18n"
         ]
     },
-    "Hooks": {
-        "ResourceLoaderTestModules": [
-            "ThreeDHooks::onResourceLoaderTestModules"
-        ]
-    },
     "ResourceModules": {
         "mmv.3d": {
             "scripts": [
                 "mmv.3d.js",
                 "three/three.js",
-                "three/AMFLoader.js",
                 "three/STLLoader.js",
                 "three/OrbitControls.js"
             ],
@@ -48,11 +42,13 @@
         "remoteExtPath": "3d/modules"
     },
     "AutoloadClasses": {
-        "ThreeDHooks": "ThreeDHooks.php",
         "ThreeDHandler": "ThreeDHandler.php"
     },
     "MediaHandlers": {
         "application/x-amf": "ThreeDHandler",
         "application/sla": "ThreeDHandler"
+    },
+    "config": {
+        "Max3d2pngMemory": "10000000"
     }
 }

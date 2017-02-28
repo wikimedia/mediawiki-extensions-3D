@@ -41,7 +41,7 @@ class ThreeDHandler extends ImageHandler {
 			return false;
 		}
 
-		# Don't make an image bigger than wgMaxSVGSize on the smaller side
+		// Don't make an image bigger than wgMaxSVGSize on the smaller side
 		if ( $params['physicalWidth'] <= $params['physicalHeight'] ) {
 			if ( $params['physicalWidth'] > $wgSVGMaxSize ) {
 				$srcWidth = $image->getWidth();
@@ -71,7 +71,7 @@ class ThreeDHandler extends ImageHandler {
 	 */
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		// @codingStandardsIgnoreStart
-		global $wg3dProcessor, $wg3dProcessEnviron;
+		global $wg3dProcessor, $wg3dProcessEnviron, $wgMax3d2pngMemory;
 		// @codingStandardsIgnoreEnd
 
 		// Impose an aspect ratio
@@ -81,12 +81,12 @@ class ThreeDHandler extends ImageHandler {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 
+		$width = $params['width'];
+		$height = $params['height'];
+
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
 			return $this->doThumbError( $width, $height, 'thumbnail_dest_directory' );
 		}
-
-		$width = $params['width'];
-		$height = $params['height'];
 
 		$srcPath = $image->getLocalRefPath();
 
@@ -100,10 +100,12 @@ class ThreeDHandler extends ImageHandler {
 		wfProfileIn( 'ThreeDHandler' );
 		wfDebug( __METHOD__ . ": $cmd\n" );
 		$retval = '';
-		$err = wfShellExecWithStderr( $cmd, $retval, $wg3dProcessEnviron, [ 'memory' => '10000000' ] );
+		$err = wfShellExecWithStderr(
+			$cmd, $retval, $wg3dProcessEnviron, [ 'memory' => $wgMax3d2pngMemory ]
+		);
 		wfProfileOut( 'ThreeDHandler' );
 
-		if ( $retval != 0 || $removed ) {
+		if ( $retval != 0 ) {
 			wfDebugLog( 'thumbnail',
 				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
 				wfHostname(), $retval, trim( $err ), $cmd ) );

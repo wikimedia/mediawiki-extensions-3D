@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Gilles Dubuc"
-        ]
-    },
-    "3d": "3d",
-    "3d-desc": "Provides support for 3d file formats"
+	"@metadata": {
+		"authors": [
+			"Gilles Dubuc"
+		]
+	},
+	"3d": "3d",
+	"3d-desc": "Provides support for 3d file formats"
 }

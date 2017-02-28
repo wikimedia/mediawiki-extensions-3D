@@ -1,18 +1,18 @@
 /*
- * This file is part of the MediaWiki extension MultimediaViewer.
+ * This file is part of the MediaWiki extension 3D.
  *
- * MultimediaViewer is free software: you can redistribute it and/or modify
+ * The 3D extension is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
- * MultimediaViewer is distributed in the hope that it will be useful,
+ * The 3D extension is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MultimediaViewer.  If not, see <http://www.gnu.org/licenses/>.
+ * along with The 3D extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
 ( function ( mw, $ ) {
@@ -59,9 +59,9 @@
 	TD.center = function ( object ) {
 		var bbox, bboxWidth, bboxHeight, bboxDepth,
 			camerax, cameray, cameraz;
-		if ( object.type == 'Group' ) {
+		if ( object.type === 'Group' ) {
 			this.center( object.children[ 0 ] );
-		} else if ( object.type == 'Mesh' ) {
+		} else if ( object.type === 'Mesh' ) {
 			object.geometry.center();
 			object.geometry.computeBoundingBox();
 
@@ -89,16 +89,14 @@
 			request,
 			loader;
 
-		if ( extension == 'stl' ) {
+		if ( extension === 'stl' ) {
 			loader = new THREE.STLLoader( this.manager );
-		} else if ( extension == 'amf' ) {
-			loader = new THREE.AMFLoader( this.manager );
 		}
 
 		request = loader.load( url, function ( data ) {
 			var object = data;
 
-			if ( extension == 'stl' ) {
+			if ( extension === 'stl' ) {
 				object = threed.geometryToObject( data );
 			}
 
@@ -195,7 +193,7 @@
 		var extension = e.image.filePageTitle.ext;
 
 		// Ignore events from formats that we don't care about
-		if ( $.inArray( extension, [ 'amf', 'stl' ] ) == -1 ) {
+		if ( $.inArray( extension, [ 'amf', 'stl' ] ) === -1 ) {
 			return;
 		}
 
