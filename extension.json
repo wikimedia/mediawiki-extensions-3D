@@ -27,16 +27,6 @@
         ]
     },
     "ResourceModules": {
-        "ext.3d": {
-            "scripts": [
-                "ext.3d.js"
-            ],
-            "styles": [
-                "ext.3d.css"
-            ],
-            "messages": [],
-            "dependencies": []
-        },
         "mmv.3d": {
             "scripts": [
                 "mmv.3d.js",
