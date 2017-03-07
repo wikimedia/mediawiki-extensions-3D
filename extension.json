@@ -1,54 +1,54 @@
 {
-    "name": "3d",
-    "version": "0.0.1",
-    "author": [
-        "Gilles Dubuc"
-    ],
-    "url": "https://www.mediawiki.org/wiki/Extension:3d",
-    "namemsg": "3d",
-    "descriptionmsg": "3d-desc",
-    "license-name": "MIT",
-    "requires": {
-      "MediaWiki": ">= 1.29.0",
-      "extensions": {
-        "MultimediaViewer": "*"
-      }
-    },
-    "type": "other",
-    "manifest_version": 1,
-    "MessagesDirs": {
-        "3d": [
-            "i18n"
-        ]
-    },
-    "ResourceModules": {
-        "mmv.3d": {
-            "scripts": [
-                "mmv.3d.js",
-                "three/three.js",
-                "three/STLLoader.js",
-                "three/OrbitControls.js"
-            ],
-            "styles": [
-                "mmv.3d.less"
-            ],
-            "dependencies": [
-                "mmv"
-            ]
-        }
-    },
-    "ResourceFileModulePaths": {
-        "localBasePath": "modules",
-        "remoteExtPath": "3d/modules"
-    },
-    "AutoloadClasses": {
-        "ThreeDHandler": "ThreeDHandler.php"
-    },
-    "MediaHandlers": {
-        "application/x-amf": "ThreeDHandler",
-        "application/sla": "ThreeDHandler"
-    },
-    "config": {
-        "Max3d2pngMemory": "10000000"
-    }
+	"name": "3d",
+	"version": "0.0.1",
+	"author": [
+		"Gilles Dubuc"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:3d",
+	"namemsg": "3d",
+	"descriptionmsg": "3d-desc",
+	"license-name": "MIT",
+	"requires": {
+	  "MediaWiki": ">= 1.29.0",
+	  "extensions": {
+		"MultimediaViewer": "*"
+	  }
+	},
+	"type": "other",
+	"manifest_version": 1,
+	"MessagesDirs": {
+		"3d": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"mmv.3d": {
+			"scripts": [
+				"mmv.3d.js",
+				"three/three.js",
+				"three/STLLoader.js",
+				"three/OrbitControls.js"
+			],
+			"styles": [
+				"mmv.3d.less"
+			],
+			"dependencies": [
+				"mmv"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "3d/modules"
+	},
+	"AutoloadClasses": {
+		"ThreeDHandler": "ThreeDHandler.php"
+	},
+	"MediaHandlers": {
+		"application/x-amf": "ThreeDHandler",
+		"application/sla": "ThreeDHandler"
+	},
+	"config": {
+		"Max3d2pngMemory": "10000000"
+	}
 }
