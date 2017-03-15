@@ -111,7 +111,7 @@
 		} );
 
 		deferred.fail( function () {
-			if ( request && request.readyState != 4 ) {
+			if ( request && request.readyState !== 4 ) {
 				request.abort();
 			}
 		} );
@@ -168,7 +168,7 @@
 			threed.render( threed.renderer, threed.scene, threed.camera );
 		} ).progress( function ( progress ) {
 			threed.progressBar.animateTo( progress );
-		} ).fail( function ( error ) {
+		} ).fail( function ( /* error */ ) {
 			threed.progressBar.hide();
 			delete this.promise;
 		} );
