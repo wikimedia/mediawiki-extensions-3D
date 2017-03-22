@@ -9,10 +9,10 @@
 	"descriptionmsg": "3d-desc",
 	"license-name": "MIT",
 	"requires": {
-	  "MediaWiki": ">= 1.29.0",
-	  "extensions": {
-		"MultimediaViewer": "*"
-	  }
+		"MediaWiki": ">= 1.29.0",
+		"extensions": {
+			"MultimediaViewer": "*"
+		}
 	},
 	"type": "other",
 	"manifest_version": 1,
