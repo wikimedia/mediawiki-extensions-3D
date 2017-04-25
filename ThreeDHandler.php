@@ -90,12 +90,13 @@ class ThreeDHandler extends ImageHandler {
 
 		$srcPath = $image->getLocalRefPath();
 
-		$cmd = wfEscapeShellArg(
-			$wg3dProcessor,
+		// $wg3dProcessor can be string (e.g. '/path/to/3d2png.js') or array
+		// (e.g. ['xvfb-run', '-a', '-s', '-ac -screen 0 1280x1024x24', '/path/to/3d2png.js'])
+		$cmd = wfEscapeShellArg( array_merge( (array) $wg3dProcessor, [
 			$srcPath,
 			sprintf( '%dx%d', $width, $height ),
 			$dstPath
-		);
+		] ) );
 
 		wfProfileIn( 'ThreeDHandler' );
 		wfDebug( __METHOD__ . ": $cmd\n" );
