@@ -7,7 +7,7 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:3d",
 	"namemsg": "3d",
 	"descriptionmsg": "3d-desc",
-	"license-name": "MIT",
+	"license-name": "GPL-2.0+",
 	"requires": {
 		"MediaWiki": ">= 1.29.0",
 		"extensions": {
