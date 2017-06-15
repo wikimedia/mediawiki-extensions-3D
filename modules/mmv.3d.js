@@ -193,7 +193,7 @@
 		var extension = e.image.filePageTitle.ext;
 
 		// Ignore events from formats that we don't care about
-		if ( $.inArray( extension, [ 'amf', 'stl' ] ) === -1 ) {
+		if ( extension !== 'stl' ) {
 			return;
 		}
 
