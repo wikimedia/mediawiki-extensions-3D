@@ -161,7 +161,7 @@
 
 		this.promise.then( function () {
 			var dimensions = threed.dimensionsFunc();
-			delete this.promise;
+			delete threed.promise;
 
 			threed.progressBar.hide();
 			threed.renderer.setSize( dimensions.width, dimensions.height );
@@ -171,7 +171,7 @@
 			threed.progressBar.animateTo( progress );
 		} ).fail( function ( /* error */ ) {
 			threed.progressBar.hide();
-			delete this.promise;
+			delete threed.promise;
 		} );
 	};
 
