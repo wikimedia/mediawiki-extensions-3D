@@ -121,7 +121,6 @@
 	};
 
 	TD.render = function () {
-		this.camera.lookAt( this.scene.position );
 		this.renderer.render( this.scene, this.camera );
 	};
 
@@ -166,6 +165,7 @@
 			threed.progressBar.hide();
 			threed.renderer.setSize( dimensions.width, dimensions.height );
 			threed.$container.html( threed.renderer.domElement );
+			threed.camera.lookAt( threed.scene.position );
 			threed.render( threed.renderer, threed.scene, threed.camera );
 		} ).progress( function ( progress ) {
 			threed.progressBar.animateTo( progress );
