@@ -45,7 +45,6 @@
 		"ThreeDHandler": "ThreeDHandler.php"
 	},
 	"MediaHandlers": {
-		"application/x-amf": "ThreeDHandler",
 		"application/sla": "ThreeDHandler"
 	},
 	"config": {
