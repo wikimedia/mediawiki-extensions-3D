@@ -5,5 +5,6 @@
 		]
 	},
 	"3d": "The name of the extension",
-	"3d-desc": "{{desc|name=3d|url=https://www.mediawiki.org/wiki/Extension:3d}}"
+	"3d-desc": "{{desc|name=3d|url=https://www.mediawiki.org/wiki/Extension:3d}}",
+	"3d-badge-text": "Text for the badge shown in the top left corner of images to identify 3D files"
 }

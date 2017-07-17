@@ -22,6 +22,17 @@
 		]
 	},
 	"ResourceModules": {
+		"ext.3d": {
+			"scripts": [
+				"ext.3d.js"
+			],
+			"styles": [
+				"ext.3d.less"
+			],
+			"messages": [
+				"3d-badge-text"
+			]
+		},
 		"mmv.3d": {
 			"scripts": [
 				"mmv.3d.js",
@@ -33,7 +44,8 @@
 				"mmv.3d.less"
 			],
 			"dependencies": [
-				"mmv"
+				"mmv",
+				"ext.3d"
 			]
 		}
 	},
@@ -41,7 +53,13 @@
 		"localBasePath": "modules",
 		"remoteExtPath": "3d/modules"
 	},
+	"Hooks": {
+		"BeforePageDisplay": [
+			"MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay"
+		]
+	},
 	"AutoloadClasses": {
+		"MediaWiki\\Extensions\\ThreeD\\Hooks": "Hooks.php",
 		"MediaWiki\\Extensions\\ThreeD\\ThreeDHandler": "ThreeDHandler.php"
 	},
 	"MediaHandlers": {
