@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\ThreeD;
+
 /**
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,25 +20,25 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-class ThreeDHandler extends ImageHandler {
+class ThreeDHandler extends \ImageHandler {
 	/**
 	 * @param $file
 	 * @return bool
 	 */
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return true;
 	}
 
-	function isVectorized( $file ) {
+	public function isVectorized( $file ) {
 		return true;
 	}
 
 	/**
-	 * @param File $image
+	 * @param \File $image
 	 * @param array $params
 	 * @return bool
 	 */
-	function normaliseParams( $image, &$params ) {
+	public function normaliseParams( $image, &$params ) {
 		global $wgSVGMaxSize;
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
@@ -47,13 +50,13 @@ class ThreeDHandler extends ImageHandler {
 				$srcWidth = $image->getWidth();
 				$srcHeight = $image->getHeight();
 				$params['physicalWidth'] = $wgSVGMaxSize;
-				$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $wgSVGMaxSize );
+				$params['physicalHeight'] = \File::scaleHeight( $srcWidth, $srcHeight, $wgSVGMaxSize );
 			}
 		} else {
 			if ( $params['physicalHeight'] > $wgSVGMaxSize ) {
 				$srcWidth = $image->getWidth();
 				$srcHeight = $image->getHeight();
-				$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $wgSVGMaxSize );
+				$params['physicalWidth'] = \File::scaleHeight( $srcHeight, $srcWidth, $wgSVGMaxSize );
 				$params['physicalHeight'] = $wgSVGMaxSize;
 			}
 		}
@@ -62,14 +65,14 @@ class ThreeDHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param $dstPath string
-	 * @param $dstUrl string
-	 * @param $params array
-	 * @param $flags int
-	 * @return MediaTransformError|MediaTransformOutput|ThumbnailImage|TransformParameterError
+	 * @param \File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
+	 * @param int $flags
+	 * @return \MediaTransformError|\MediaTransformOutput|\ThumbnailImage|\TransformParameterError
 	 */
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		// @codingStandardsIgnoreStart
 		global $wg3dProcessor, $wg3dProcessEnviron, $wgMax3d2pngMemory;
 		// @codingStandardsIgnoreEnd
@@ -78,7 +81,7 @@ class ThreeDHandler extends ImageHandler {
 		$params['height'] = round( $params['width'] / ( 640 / 480 ) );
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
+			return new \ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 
 		$width = $params['width'];
@@ -110,23 +113,23 @@ class ThreeDHandler extends ImageHandler {
 			wfDebugLog( 'thumbnail',
 				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
 				wfHostname(), $retval, trim( $err ), $cmd ) );
-			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
+			return new \MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
-			return new ThumbnailImage( $image, $dstUrl, $width, $height, $dstPath );
+			return new \ThumbnailImage( $image, $dstUrl, $width, $height, $dstPath );
 		}
 	}
 
 	/**
-	 * @param File $file
+	 * @param \File $file
 	 * @param string $path Unused
 	 * @param bool|array $metadata
 	 * @return array
 	 */
-	function getImageSize( $file, $path, $metadata = false ) {
+	public function getImageSize( $file, $path, $metadata = false ) {
 		return [ 5120, 2880 ];
 	}
 
-	function getThumbType( $ext, $mime, $params = null ) {
+	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
 }

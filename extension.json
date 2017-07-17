@@ -42,10 +42,10 @@
 		"remoteExtPath": "3d/modules"
 	},
 	"AutoloadClasses": {
-		"ThreeDHandler": "ThreeDHandler.php"
+		"MediaWiki\\Extensions\\ThreeD\\ThreeDHandler": "ThreeDHandler.php"
 	},
 	"MediaHandlers": {
-		"application/sla": "ThreeDHandler"
+		"application/sla": "MediaWiki\\Extensions\\ThreeD\\ThreeDHandler"
 	},
 	"config": {
 		"Max3d2pngMemory": "10000000"
