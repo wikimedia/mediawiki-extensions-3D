@@ -28,6 +28,15 @@ class Hooks {
 	public static function onBeforePageDisplay( &$out, &$skin ) {
 		$out->addModules( [ 'ext.3d' ] );
 
+		$article = new \ImagePage( $out->getTitle() );
+		if (
+			class_exists( 'MultimediaViewerHooks' ) &&
+			$out->getTitle()->inNamespace( NS_FILE ) &&
+			$article->getFile()->getExtension() === 'stl'
+		) {
+			$out->addModules( [ 'mmv.3d.head' ] );
+		}
+
 		return true;
 	}
 }

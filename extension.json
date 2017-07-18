@@ -47,6 +47,22 @@
 				"mmv",
 				"ext.3d"
 			]
+		},
+		"mmv.3d.head": {
+			"scripts": [
+				"mmv.3d.head.js"
+			],
+			"styles": [
+				"mmv.3d.head.less"
+			],
+			"messages": [
+				"view",
+				"download"
+			],
+			"dependencies": [
+				"ext.3d",
+				"oojs-ui"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
