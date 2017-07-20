@@ -31,7 +31,11 @@
 	TD.createScene = function () {
 		var threed = this,
 			dimensions = this.dimensionsFunc(),
-			ambient = new THREE.AmbientLight( 0x999999 );
+			ambient = new THREE.AmbientLight( 0x666666 ),
+			dlight = new THREE.DirectionalLight( 0x999999 );
+
+		dlight.position.set( 0, 0, 1 );
+		dlight.castShadow = true;
 
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 1, 5000 );
@@ -41,9 +45,12 @@
 		this.camera.add( new THREE.PointLight( 0xffffff, 0.4 ) );
 
 		this.scene.add( ambient );
+		this.scene.add( dlight );
 		this.scene.add( this.camera );
 
 		this.renderer = new THREE.WebGLRenderer();
+
+		this.renderer.setClearColor( 0x222222 );
 
 		this.controls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
 		this.controls.addEventListener( 'change', $.proxy( function () { threed.render(); }, threed ) );
@@ -79,9 +86,12 @@
 	};
 
 	TD.geometryToObject = function ( geometry ) {
-		var material = new THREE.MeshPhongMaterial( { color: 0xaaaaff, shading: THREE.FlatShading } );
+		var materials = [
+			new THREE.MeshPhongMaterial( { color: 0xF8F9FA, shading: THREE.FlatShading } ),
+			new THREE.MeshBasicMaterial( { color: 0xC8CCD1, shading: THREE.FlatShading, wireframe: true, transparent: true } )
+		];
 
-		return new THREE.Mesh( geometry, material );
+		return THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
 	};
 
 	TD.loadFile = function ( extension, url ) {
@@ -100,6 +110,8 @@
 			if ( extension === 'stl' ) {
 				object = threed.geometryToObject( data );
 			}
+
+			object.castShadow = true;
 
 			threed.center( object );
 			threed.scene.add( object );
