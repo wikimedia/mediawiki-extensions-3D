@@ -50,7 +50,6 @@
 		this.controls.addEventListener( 'start', $.proxy( function () { threed.controlsStart(); }, threed ) );
 		this.controls.addEventListener( 'end', $.proxy( function () { threed.controlsEnd(); }, threed ) );
 		this.controls.enableKeys = false;
-		this.controls.enablePan = false;
 		this.controls.update();
 
 		$( window ).on( 'resize.3d', $.debounce( 100, $.proxy( function () { threed.onWindowResize(); }, threed ) ) );
