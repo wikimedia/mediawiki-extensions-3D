@@ -86,12 +86,9 @@
 	};
 
 	TD.geometryToObject = function ( geometry ) {
-		var materials = [
-			new THREE.MeshPhongMaterial( { color: 0xF8F9FA, shading: THREE.FlatShading } ),
-			new THREE.MeshBasicMaterial( { color: 0xC8CCD1, shading: THREE.FlatShading, wireframe: true, transparent: true } )
-		];
+		var material = new THREE.MeshPhongMaterial( { color: 0xF8F9FA, shading: THREE.FlatShading } );
 
-		return THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
+		return new THREE.Mesh( geometry, material );
 	};
 
 	TD.loadFile = function ( extension, url ) {
