@@ -67,7 +67,7 @@
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
-		"remoteExtPath": "3d/modules"
+		"remoteExtPath": "3D/modules"
 	},
 	"Hooks": {
 		"BeforePageDisplay": [
