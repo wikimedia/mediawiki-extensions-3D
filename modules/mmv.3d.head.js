@@ -19,6 +19,8 @@
 	'use strict';
 
 	mw.threed.mmv = {
+		mmvBootstrap: null,
+
 		/**
 		 * @param {jQuery} $image
 		 * @param {jQuery} $link
@@ -57,17 +59,20 @@
 		 */
 		open: function ( $image, $link ) {
 			mw.loader.using( [ 'mmv.bootstrap' ], function () {
-				var bootstrap, title;
+				var title;
 
 				if ( !mw.mmv.isBrowserSupported() ) {
 					return;
 				}
 
-				title = mw.Title.newFromImg( $image );
+				if ( this.mmvBootstrap === null ) {
+					this.mmvBootstrap = new mw.mmv.MultimediaViewerBootstrap();
+					this.mmvBootstrap.setupEventHandlers();
+				}
 
-				bootstrap = new mw.mmv.MultimediaViewerBootstrap();
-				bootstrap.openImage( $link, title );
-			} );
+				title = mw.Title.newFromImg( $image );
+				this.mmvBootstrap.openImage( $link, title );
+			}.bind( this ) );
 		},
 
 		/**
