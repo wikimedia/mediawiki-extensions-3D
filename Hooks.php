@@ -21,8 +21,8 @@ namespace MediaWiki\Extensions\ThreeD;
 
 class Hooks {
 	/**
-	 * @param \OutputPage $out
-	 * @param \Skin $skin
+	 * @param \OutputPage &$out
+	 * @param \Skin &$skin
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( &$out, &$skin ) {

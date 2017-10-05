@@ -22,20 +22,24 @@ namespace MediaWiki\Extensions\ThreeD;
 
 class ThreeDHandler extends \ImageHandler {
 	/**
-	 * @param $file
+	 * @param \File $file
 	 * @return bool
 	 */
 	public function mustRender( $file ) {
 		return true;
 	}
 
+	/**
+	 * @param \File $file
+	 * @return bool
+	 */
 	public function isVectorized( $file ) {
 		return true;
 	}
 
 	/**
 	 * @param \File $image
-	 * @param array $params
+	 * @param array &$params
 	 * @return bool
 	 */
 	public function normaliseParams( $image, &$params ) {
@@ -129,6 +133,12 @@ class ThreeDHandler extends \ImageHandler {
 		return [ 5120, 2880 ];
 	}
 
+	/**
+	 * @param string $ext
+	 * @param string $mime
+	 * @param array|null $params
+	 * @return array
+	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
