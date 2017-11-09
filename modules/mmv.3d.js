@@ -65,23 +65,27 @@
 	};
 
 	TD.center = function ( object ) {
-		var bbox, bboxWidth, bboxHeight, bboxDepth,
-			camerax, cameray, cameraz;
+		var radius;
+
 		if ( object.type === 'Group' ) {
 			this.center( object.children[ 0 ] );
 		} else if ( object.type === 'Mesh' ) {
 			object.geometry.center();
-			object.geometry.computeBoundingBox();
+			object.geometry.computeBoundingSphere();
 
-			bbox = object.geometry.boundingBox;
-			bboxWidth = bbox.max.x - bbox.min.x;
-			bboxHeight = bbox.max.z - bbox.min.z;
-			bboxDepth = bbox.max.y - bbox.min.y;
-			camerax = -bboxWidth;
-			cameray = -bboxDepth;
-			cameraz = bboxHeight;
+			radius = object.geometry.boundingSphere.radius;
 
-			this.camera.position.set( camerax, cameray, cameraz );
+			// `radius` is the edge of the object's sphere
+			// We want to position our camera outside of that sphere.
+			// We'll move `radius` (or more) in all directions (x, y, z), so that we're
+			// looking at the object somewhat diagonally, which should always show something
+			// useful (instead of possibly an uninteresting side or top...)
+			// The exact position of the camera was arbitrarily decided by what looked
+			// alright-ish for a few files I was testing with.
+			// sketchfab.com has this at ( 0, -distance, 0 )
+			// viewstl.com has this at ( 0, 0 distance )
+			// openjscad.org has this at ( 0, -distance, distance )
+			this.camera.position.set( radius * 1.5, -radius * 1.5, radius );
 		}
 	};
 
