@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gilles Dubuc"
+			"Gilles Dubuc",
+			"Raymond",
+			"Umherirrender"
 		]
 	},
-	"3d": "The name of the extension",
-	"3d-desc": "{{desc|name=3d|url=https://www.mediawiki.org/wiki/Extension:3d}}",
-	"3d-badge-text": "Text for the badge shown in the top left corner of images to identify 3D files"
+	"3d": "{{name}}",
+	"3d-desc": "{{desc|name=3d|url=https://www.mediawiki.org/wiki/Extension:3d}}\n\n[[wikipedia:3D computer graphics|Read more about 3D]]",
+	"3d-badge-text": "{{optional}}\nText for the badge shown in the top left corner of images to identify 3D files"
 }
