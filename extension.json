@@ -61,7 +61,8 @@
 			],
 			"dependencies": [
 				"ext.3d",
-				"oojs-ui"
+				"oojs-ui",
+				"oojs-ui.styles.icons-accessibility"
 			]
 		}
 	},
