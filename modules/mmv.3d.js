@@ -30,19 +30,20 @@
 
 	TD.init = function () {
 		var dimensions = this.getDimensions(),
-			directionalLight;
+			light;
 
 		this.renderer = new THREE.WebGLRenderer();
 		this.renderer.setClearColor( 0x222222 );
 		this.renderer.setPixelRatio( window.devicePixelRatio );
 		this.renderer.setSize( dimensions.width, dimensions.height );
+		this.renderer.shadowMap.enabled = true;
 		this.$container.html( this.renderer.domElement );
 
 		this.manager = new THREE.LoadingManager();
 
 		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 1, 5000 );
 		this.camera.up.set( 0, 0, 1 );
-		this.camera.add( new THREE.PointLight( 0xffffff, 0.4 ) );
+		this.camera.add( new THREE.PointLight( 0xffffff, 0.3 ) );
 
 		this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 		this.controls.rotateSpeed = 4;
@@ -55,12 +56,14 @@
 		this.scene = new THREE.Scene();
 		this.scene.add( this.camera );
 
-		this.scene.add( new THREE.AmbientLight( 0x666666 ) );
+		this.scene.add( new THREE.AmbientLight( 0x666666, 0.5 ) );
 
-		directionalLight = new THREE.DirectionalLight( 0x999999 );
-		directionalLight.position.set( 0, 0, 1 );
-		directionalLight.castShadow = true;
-		this.scene.add( directionalLight );
+		light = new THREE.SpotLight( 0x999999, 1 );
+		light.position.set( -100, 50, 25 );
+		light.castShadow = true;
+		light.shadow.mapSize.width = 4096;
+		light.shadow.mapSize.height = 4096;
+		this.camera.add( light );
 
 		$( window ).on( 'resize.3d', $.debounce( 100, this.onWindowResize.bind( this ) ) );
 
@@ -89,8 +92,7 @@
 	};
 
 	TD.geometryToObject = function ( geometry ) {
-		var material = new THREE.MeshPhongMaterial( { color: 0xF8F9FA, shading: THREE.FlatShading } );
-
+		var material = new THREE.MeshPhongMaterial( { color: 0xc3bdae, shininess: 10, flatShading: true } );
 		return new THREE.Mesh( geometry, material );
 	};
 
@@ -135,6 +137,7 @@
 			threed.progressBar.hide();
 
 			object.castShadow = true;
+			object.receiveShadow = true;
 
 			threed.center( object );
 			threed.scene.add( object );
