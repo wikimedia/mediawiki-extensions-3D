@@ -38,7 +38,7 @@
 				"mmv.3d.js",
 				"three/three.js",
 				"three/STLLoader.js",
-				"three/OrbitControls.js"
+				"three/TrackballControls.js"
 			],
 			"styles": [
 				"mmv.3d.less"

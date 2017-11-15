@@ -28,40 +28,43 @@
 
 	TD = ThreeD.prototype;
 
-	TD.createScene = function () {
-		var threed = this,
-			dimensions = this.dimensionsFunc(),
-			ambient = new THREE.AmbientLight( 0x666666 ),
-			dlight = new THREE.DirectionalLight( 0x999999 );
+	TD.init = function () {
+		var dimensions = this.getDimensions(),
+			directionalLight;
 
-		dlight.position.set( 0, 0, 1 );
-		dlight.castShadow = true;
+		this.renderer = new THREE.WebGLRenderer();
+		this.renderer.setClearColor( 0x222222 );
+		this.renderer.setPixelRatio( window.devicePixelRatio );
+		this.renderer.setSize( dimensions.width, dimensions.height );
+		this.$container.html( this.renderer.domElement );
 
-		this.scene = new THREE.Scene();
-		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 1, 5000 );
 		this.manager = new THREE.LoadingManager();
 
+		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 1, 5000 );
 		this.camera.up.set( 0, 0, 1 );
 		this.camera.add( new THREE.PointLight( 0xffffff, 0.4 ) );
 
-		this.scene.add( ambient );
-		this.scene.add( dlight );
+		this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
+		this.controls.rotateSpeed = 4;
+		this.controls.zoomSpeed = 4;
+		this.controls.panSpeed = 4;
+		this.controls.addEventListener( 'change', this.render.bind( this ) );
+		this.controls.addEventListener( 'start', this.controlsStart.bind( this ) );
+		this.controls.addEventListener( 'end', this.controlsEnd.bind( this ) );
+
+		this.scene = new THREE.Scene();
 		this.scene.add( this.camera );
 
-		this.renderer = new THREE.WebGLRenderer();
+		this.scene.add( new THREE.AmbientLight( 0x666666 ) );
 
-		this.renderer.setClearColor( 0x222222 );
+		directionalLight = new THREE.DirectionalLight( 0x999999 );
+		directionalLight.position.set( 0, 0, 1 );
+		directionalLight.castShadow = true;
+		this.scene.add( directionalLight );
 
-		this.controls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
-		this.controls.addEventListener( 'change', $.proxy( function () { threed.render(); }, threed ) );
-		this.controls.addEventListener( 'start', $.proxy( function () { threed.controlsStart(); }, threed ) );
-		this.controls.addEventListener( 'end', $.proxy( function () { threed.controlsEnd(); }, threed ) );
-		this.controls.enableKeys = false;
-		this.controls.update();
+		$( window ).on( 'resize.3d', $.debounce( 100, this.onWindowResize.bind( this ) ) );
 
-		$( window ).on( 'resize.3d', $.debounce( 100, $.proxy( function () { threed.onWindowResize(); }, threed ) ) );
-
-		this.animate();
+		this.render();
 	};
 
 	TD.center = function ( object ) {
@@ -91,6 +94,63 @@
 		return new THREE.Mesh( geometry, material );
 	};
 
+	TD.render = function () {
+		this.renderer.render( this.scene, this.camera );
+	};
+
+	TD.animate = function () {
+		requestAnimationFrame( this.animate.bind( this ) );
+		this.controls.update();
+	};
+
+	TD.onWindowResize = function () {
+		var dimensions = this.getDimensions();
+
+		this.camera.aspect = dimensions.width / dimensions.height;
+		this.camera.updateProjectionMatrix();
+
+		this.renderer.setSize( dimensions.width, dimensions.height );
+
+		this.controls.handleResize();
+
+		this.render( this.renderer, this.scene, this.camera );
+	};
+
+	TD.load = function ( extension, url ) {
+		var threed = this;
+
+		// Abort any loading that might still be happening
+		if ( this.promise ) {
+			this.promise.reject();
+		}
+
+		this.promise = this.loadFile( extension, url );
+
+		this.progressBar.jumpTo( 0 );
+		this.progressBar.animateTo( 5 );
+
+		this.promise.then( function ( object ) {
+			delete threed.promise;
+
+			threed.progressBar.hide();
+
+			object.castShadow = true;
+
+			threed.center( object );
+			threed.scene.add( object );
+
+			threed.camera.lookAt( threed.scene.position );
+			threed.render( threed.renderer, threed.scene, threed.camera );
+
+			mw.threed.attachBadge( threed.$container );
+		} ).progress( function ( progress ) {
+			threed.progressBar.animateTo( progress );
+		} ).fail( function ( /* error */ ) {
+			threed.progressBar.hide();
+			delete threed.promise;
+		} );
+	};
+
 	TD.loadFile = function ( extension, url ) {
 		var threed = this,
 			deferred = $.Deferred(),
@@ -108,12 +168,7 @@
 				object = threed.geometryToObject( data );
 			}
 
-			object.castShadow = true;
-
-			threed.center( object );
-			threed.scene.add( object );
-
-			deferred.resolve();
+			deferred.resolve( object );
 		}, function ( progress ) {
 			deferred.notify( ( progress.loaded / progress.total ) * 100 );
 		}, function ( error ) {
@@ -126,64 +181,7 @@
 			}
 		} );
 
-		return deferred;
-	};
-
-	TD.render = function () {
-		this.renderer.render( this.scene, this.camera );
-	};
-
-	TD.animate = function () {
-		if ( this.renderer && this.scene && this.camera ) {
-			this.render( this.renderer, this.scene, this.camera );
-		}
-
-		requestAnimationFrame( $.proxy( function () { this.animate(); }, this ) );
-	};
-
-	TD.onWindowResize = function () {
-		var dimensions = this.dimensionsFunc();
-
-		if ( !this.camera || !this.renderer || !this.scene ) {
-			return;
-		}
-
-		this.camera.aspect = dimensions.width / dimensions.height;
-		this.camera.updateProjectionMatrix();
-		this.renderer.setSize( dimensions.width, dimensions.height );
-		this.render( this.renderer, this.scene, this.camera );
-	};
-
-	TD.load = function ( extension, url ) {
-		var threed = this;
-
-		// Abort any loading that might still be happening
-		if ( this.promise ) {
-			this.promise.reject();
-		}
-
-		this.promise = this.loadFile( extension, url );
-
-		this.progressBar.jumpTo( 0 );
-		this.progressBar.animateTo( 5 );
-
-		this.promise.then( function () {
-			var dimensions = threed.dimensionsFunc();
-			delete threed.promise;
-
-			threed.progressBar.hide();
-			threed.renderer.setSize( dimensions.width, dimensions.height );
-			threed.$container.html( threed.renderer.domElement );
-			threed.camera.lookAt( threed.scene.position );
-			threed.render( threed.renderer, threed.scene, threed.camera );
-
-			mw.threed.attachBadge( threed.$container );
-		} ).progress( function ( progress ) {
-			threed.progressBar.animateTo( progress );
-		} ).fail( function ( /* error */ ) {
-			threed.progressBar.hide();
-			delete threed.promise;
-		} );
+		return deferred.promise();
 	};
 
 	TD.controlsStart = function () {
@@ -194,7 +192,7 @@
 		$( this.renderer.domElement ).removeClass( 'mousedown' );
 	};
 
-	TD.dimensionsFunc = function () {
+	TD.getDimensions = function () {
 		var width = $( window ).width(),
 			height = this.viewer.ui.canvas.$imageWrapper.height();
 
@@ -213,10 +211,8 @@
 			singleton = new ThreeD( e.viewer );
 		}
 
-		// Clear any state, create objects for render.
-		singleton.createScene();
-
-		// Complete load.
+		singleton.init();
+		singleton.animate();
 		singleton.load( extension, e.imageInfo.url );
 	} );
 
