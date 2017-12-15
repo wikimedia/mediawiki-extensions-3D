@@ -9,7 +9,7 @@
 	"descriptionmsg": "3d-desc",
 	"license-name": "GPL-2.0+",
 	"requires": {
-		"MediaWiki": ">= 1.29.0",
+		"MediaWiki": ">= 1.31.0",
 		"extensions": {
 			"MultimediaViewer": "*"
 		}
@@ -75,9 +75,8 @@
 			"MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay"
 		]
 	},
-	"AutoloadClasses": {
-		"MediaWiki\\Extensions\\ThreeD\\Hooks": "Hooks.php",
-		"MediaWiki\\Extensions\\ThreeD\\ThreeDHandler": "ThreeDHandler.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extensions\\ThreeD\\": "src/"
 	},
 	"MediaHandlers": {
 		"application/sla": "MediaWiki\\Extensions\\ThreeD\\ThreeDHandler"
