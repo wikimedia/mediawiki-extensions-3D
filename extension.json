@@ -64,6 +64,14 @@
 				"oojs-ui",
 				"oojs-ui.styles.icons-accessibility"
 			]
+		},
+		"ext.3d.special.upload": {
+			"scripts": [
+				"ext.3d.special.upload.js"
+			],
+			"dependencies": [
+				"mediawiki.special.upload"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -73,6 +81,12 @@
 	"Hooks": {
 		"BeforePageDisplay": [
 			"MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay"
+		],
+		"UploadFormInitDescriptor": [
+			"MediaWiki\\Extensions\\ThreeD\\Hooks::onUploadFormInitDescriptor"
+		],
+		"UploadForm:getInitialPageText": [
+			"MediaWiki\\Extensions\\ThreeD\\Hooks::onGetInitialPageText"
 		]
 	},
 	"AutoloadNamespaces": {
@@ -82,6 +96,7 @@
 		"application/sla": "MediaWiki\\Extensions\\ThreeD\\ThreeDHandler"
 	},
 	"config": {
-		"Max3d2pngMemory": "10000000"
+		"Max3d2pngMemory": "10000000",
+		"AjaxPatentPreview": true
 	}
 }

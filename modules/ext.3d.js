@@ -18,7 +18,9 @@
 ( function ( mw, $ ) {
 	'use strict';
 
-	mw.threed = {
+	mw.threed = mw.threed || {};
+
+	mw.threed.base = {
 		wrap: function ( $element ) {
 			if ( !$element.parent().hasClass( 'mw-3d-wrapper' ) ) {
 				$element.wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ) );
@@ -40,5 +42,5 @@
 		}
 	};
 
-	mw.threed.attachBadge( $( 'img[src$=".stl.png"]' ) );
+	mw.threed.base.attachBadge( $( 'img[src$=".stl.png"]' ) );
 }( mediaWiki, jQuery ) );

@@ -26,7 +26,7 @@
 		 * @param {jQuery} $link
 		 */
 		attachControls: function ( $image, $link ) {
-			var $wrap = mw.threed.wrap( $image ),
+			var $wrap = mw.threed.base.wrap( $image ),
 				view = new OO.ui.ButtonWidget( {
 					icon: 'eye',
 					flags: [ 'progressive' ],

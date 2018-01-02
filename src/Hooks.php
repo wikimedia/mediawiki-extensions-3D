@@ -39,4 +39,75 @@ class Hooks {
 
 		return true;
 	}
+
+	/**
+	 * @param array &$descriptor
+	 * @return bool
+	 */
+	public static function onUploadFormInitDescriptor( array &$descriptor ) {
+		global $wgOut;
+
+		if ( !array_key_exists( 'License', $descriptor ) ) {
+			return true;
+		}
+
+		$patentField = new PatentFormField( [ 'fieldname' => 'Patent' ] );
+		if ( empty( $patentField->getLines() ) ) {
+			return true;
+		}
+
+		$patentDescriptor = [
+			'Patent' => [
+				'type' => 'select',
+				'class' => PatentFormField::class,
+				'section' => 'description',
+				'id' => 'wpPatent',
+				'label-message' => 'patent',
+			]
+		];
+
+		// $descriptor is an associative array, but the order of the items matters for where in
+		// the form they will appear; we want it right before 'License'
+		$position = array_search( 'License', array_keys( $descriptor ), true );
+		$descriptor = array_slice( $descriptor, 0, $position, true ) +
+			$patentDescriptor +
+			array_slice( $descriptor, $position, null, true );
+
+		$context = \RequestContext::getMain();
+		$config = $context->getConfig();
+		$useAjaxPatentPreview = $config->get( 'UseAjax' ) &&
+			$config->get( 'AjaxPatentPreview' ) && $config->get( 'EnableAPI' );
+
+		$wgOut->addModules( [ 'ext.3d.special.upload' ] );
+		$wgOut->addJsConfigVars( [ 'wgAjaxPatentPreview' => $useAjaxPatentPreview ] );
+
+		return true;
+	}
+
+	/**
+	 * @param string &$pageText
+	 * @param array $msg
+	 * @param \Config $config
+	 * @return bool
+	 */
+	public static function onGetInitialPageText( &$pageText, array $msg, \Config $config ) {
+		global $wgRequest;
+		$patent = $wgRequest->getText( 'wpPatent' );
+		if ( $patent === '' ) {
+			// no patent text to be added
+			return true;
+		}
+
+		$licenseHeader = '== ' . $msg['license-header'] . " ==\n";
+		$patentText = '{{' . $patent . "}}\n";
+		if ( strpos( $pageText, $licenseHeader ) >= 0 ) {
+			// license header already exists; add it right there
+			$pageText = str_replace( $licenseHeader, $licenseHeader . $patentText, $pageText );
+		} else {
+			// license header does not already exist; create it & add patent info
+			$pageText .= $licenseHeader . $patentText;
+		}
+
+		return true;
+	}
 }
