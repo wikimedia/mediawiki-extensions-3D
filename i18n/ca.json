@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ssola"
+			"Ssola",
+			"Fitoschido"
 		]
 	},
-	"3d-desc": "Proveeix suport pels formats de fitxer 3D"
+	"3d-desc": "Proveeix compatibilitat amb formats de fitxer 3D"
 }

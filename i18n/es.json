@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Fitoschido"
 		]
 	},
-	"3d-desc": "Proporciona soporte para formatos de archivo tipo 3d"
+	"3d-desc": "Brinda compatibilidad con formatos de archivo 3D"
 }
