@@ -44,7 +44,9 @@
 			view.on( 'click', this.open.bind( this, $image, $link ) );
 			download.on( 'click', this.download.bind( this, $link ) );
 
-			$wrap.append( $buttonWrap );
+			$image.each( function ( i, element ) {
+				mw.threed.base.thumbnailLoadComplete( element ).then( function () { $wrap.append( $buttonWrap ); } );
+			} );
 
 			// clicking file should open it in MMV instead of prompting download
 			$link.on( 'click', function ( e ) {

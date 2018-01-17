@@ -18,29 +18,98 @@
 ( function ( mw, $ ) {
 	'use strict';
 
+	var $thumbs = $( 'img[src$=".stl.png"]' );
+
 	mw.threed = mw.threed || {};
 
 	mw.threed.base = {
-		wrap: function ( $element ) {
-			if ( !$element.parent().hasClass( 'mw-3d-wrapper' ) ) {
-				$element.wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ) );
-			}
+		/**
+		 * @type {object}
+		 */
+		thumbnailPromises: {},
 
-			return $element.parent();
+		/**
+		 * @param {jQuery} $elements
+		 * @return {jQuery}
+		 */
+		wrap: function ( $elements ) {
+			$elements.each( function ( i, element ) {
+				if ( !$( element ).parent().hasClass( 'mw-3d-wrapper' ) ) {
+					$( element ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ) );
+				}
+			} );
+
+			return $elements.parent();
 		},
 
 		/**
-		 * @param {jQuery} $element
+		 * @param {jQuery} $elements
 		 */
-		attachBadge: function ( $element ) {
-			var $wrap = this.wrap( $element ),
+		attachBadge: function ( $elements ) {
+			var $wrap = this.wrap( $elements ),
 				$badge = $( '<span>' )
 					.addClass( 'mw-3d-badge' )
 					.text( mw.message( '3d-badge-text' ).text() );
 
-			$wrap.append( $badge );
+			$elements.each( function ( i, element ) {
+				this.thumbnailLoadComplete( element ).then( function () { $wrap.append( $badge ); } );
+			}.bind( this ) );
+		},
+
+		/**
+		 * @param {jQuery} $elements
+		 */
+		addThumbnailPlaceholder: function ( $elements ) {
+			var $spinner = $.createSpinner( { size: 'small', type: 'inline' } ),
+				$placeholder = $( '<p>' )
+					.addClass( 'mw-3d-thumb-placeholder' )
+					.text( ' ' + mw.message( '3d-thumb-placeholder' ).text() + ' ' )
+					.prepend( $spinner );
+
+			// hide the image and put a placeholder there instead
+			$elements.hide().after( $placeholder );
+
+			$elements.each( function ( i, element ) {
+				this.thumbnailLoadComplete( element )
+					.then( function ( element ) {
+						// image confirmed to have loaded: show it & remove placeholder
+						$( element ).siblings( '.mw-3d-thumb-placeholder' ).remove();
+						$( element ).show();
+					} );
+			}.bind( this ) );
+		},
+
+		/**
+		 * Figure out when the thumbnail has completed loading.
+		 *
+		 * @param {HTMLImageElement} img
+		 * @return {$.Promise} Promise that resolves with the thumbnail HTMLImageElement
+		 */
+		thumbnailLoadComplete: function ( img ) {
+			var deferred = $.Deferred(),
+				src = img.src,
+				reload = function () { img.src = src; };
+
+			// safeguard to prevent the thumbnail node cloning below from being executed
+			// more than once...
+			if ( src in this.thumbnailPromises ) {
+				return this.thumbnailPromises[ src ];
+			}
+			this.thumbnailPromises[ src ] = deferred.promise();
+
+			// resolve the promise as soon as this image has loaded
+			img.onload = deferred.resolve.bind( deferred, img );
+
+			// if we fail to load the image (e.g. timeout), wait 5 seconds
+			// and try again by writing to .src
+			img.onerror = setTimeout.bind( null, reload, 5000 );
+
+			reload();
+
+			return this.thumbnailPromises[ src ];
 		}
 	};
 
-	mw.threed.base.attachBadge( $( 'img[src$=".stl.png"]' ) );
+	mw.threed.base.attachBadge( $thumbs );
+	mw.threed.base.addThumbnailPlaceholder( $thumbs );
 }( mediaWiki, jQuery ) );
