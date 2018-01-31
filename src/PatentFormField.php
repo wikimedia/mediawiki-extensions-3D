@@ -28,7 +28,7 @@ class PatentFormField extends Licenses {
 	 */
 	protected static function getMessageFromParams( $params ) {
 		return empty( $params['patents'] )
-			? wfMessage( 'patents' )->inContentLanguage()->plain()
+			? wfMessage( '3d-patents' )->inContentLanguage()->plain()
 			: $params['patents'];
 	}
 
@@ -44,7 +44,7 @@ class PatentFormField extends Licenses {
 	 * @inheritDoc
 	 */
 	public function getInputHTML( $value ) {
-		$options[$this->msg( 'nopatent' )->text()] = '';
+		$options[$this->msg( '3d-nopatent' )->text()] = '';
 		$options += $this->getOptionsArray();
 
 		$field = new HTMLRadioField( [

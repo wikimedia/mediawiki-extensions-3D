@@ -9,7 +9,7 @@
 	"3d": "{{name}}",
 	"3d-desc": "{{desc|name=3d|url=https://www.mediawiki.org/wiki/Extension:3d}}\n\n[[wikipedia:3D computer graphics|Read more about 3D]]",
 	"3d-badge-text": "{{optional}}\nText for the badge shown in the top left corner of images to identify 3D files",
-	"patent": "This appears in the upload form for the patent radio inputs.",
-	"nopatent": "{{Identical|None selected}}",
-	"patents": "{{notranslate}}"
+	"3d-patent": "This appears in the upload form for the patent radio inputs.",
+	"3d-nopatent": "{{Identical|None selected}}",
+	"3d-patents": "{{notranslate}}"
 }

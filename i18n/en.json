@@ -7,7 +7,7 @@
 	"3d": "3d",
 	"3d-desc": "Provides support for 3d file formats",
 	"3d-badge-text": "3D",
-	"patent": "Patent permissions:",
-	"nopatent": "None selected",
-	"patents": "-"
+	"3d-patent": "Patent permissions:",
+	"3d-nopatent": "None selected",
+	"3d-patents": "-"
 }

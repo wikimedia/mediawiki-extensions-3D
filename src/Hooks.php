@@ -62,7 +62,7 @@ class Hooks {
 				'class' => PatentFormField::class,
 				'section' => 'description',
 				'id' => 'wpPatent',
-				'label-message' => 'patent',
+				'label-message' => '3d-patent',
 			]
 		];
 
