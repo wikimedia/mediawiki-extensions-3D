@@ -6,5 +6,8 @@
 	},
 	"3d": "3d",
 	"3d-desc": "Provides support for 3d file formats",
-	"3d-badge-text": "3D"
+	"3d-badge-text": "3D",
+	"patent": "Patent permissions:",
+	"nopatent": "None selected",
+	"patents": "-"
 }
