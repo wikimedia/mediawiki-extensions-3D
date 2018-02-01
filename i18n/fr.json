@@ -4,5 +4,7 @@
 			"Gomoko"
 		]
 	},
-	"3d-desc": "Fournit le support pour les formats de fichier 3D"
+	"3d-desc": "Fournit le support pour les formats de fichier 3D",
+	"3d-patent": "Droits de licence :",
+	"3d-nopatent": "Aucun sélectionné"
 }

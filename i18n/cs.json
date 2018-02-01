@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Walter Klosse"
+			"Walter Klosse",
+			"Ilimanaq29"
 		]
 	},
-	"3d-desc": "Poskytuje podporu pro 3D soubory"
+	"3d-desc": "Poskytuje podporu pro 3D soubory",
+	"3d-nopatent": "Nic nezvoleno"
 }
