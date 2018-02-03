@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"InternerowyGołąb"
+			"InternerowyGołąb",
+			"Chrumps"
 		]
 	},
-	"3d-desc": "Zapewnia wsparcie dla plików w formacie 3D."
+	"3d-desc": "Zapewnia wsparcie dla plików w formacie 3D.",
+	"3d-nopatent": "Nic nie zaznaczono"
 }
