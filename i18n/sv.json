@@ -4,5 +4,7 @@
 			"WikiPhoenix"
 		]
 	},
-	"3d-desc": "Tillhandahåller stöd för 3D-filformat"
+	"3d-desc": "Tillhandahåller stöd för 3D-filformat",
+	"3d-patent": "Patentbehörigheter:",
+	"3d-nopatent": "Inga valda"
 }

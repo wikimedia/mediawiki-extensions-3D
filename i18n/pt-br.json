@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Eduardo Addad de Oliveira"
 		]
 	},
-	"3d-desc": "Fornece suporte para formatos de arquivo 3d"
+	"3d-desc": "Fornece suporte para formatos de arquivo 3d",
+	"3d-patent": "Permissões de patente:",
+	"3d-nopatent": "Nenhuma selecionada"
 }
