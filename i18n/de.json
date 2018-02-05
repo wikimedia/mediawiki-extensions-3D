@@ -7,5 +7,6 @@
 	"3d": "3d",
 	"3d-desc": "Bietet Unterstützung für 3d-Dateiformate",
 	"3d-patent": "Patentberechtigungen:",
-	"3d-nopatent": "Nichts ausgewählt"
+	"3d-nopatent": "Nichts ausgewählt",
+	"3d-thumb-placeholder": "Lade Vorschaubild …"
 }
