@@ -30,7 +30,11 @@
 				"ext.3d.less"
 			],
 			"messages": [
-				"3d-badge-text"
+				"3d-badge-text",
+				"3d-thumb-placeholder"
+			],
+			"dependencies": [
+				"jquery.spinner"
 			]
 		},
 		"mmv.3d": {

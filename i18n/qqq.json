@@ -11,5 +11,6 @@
 	"3d-badge-text": "{{optional}}\nText for the badge shown in the top left corner of images to identify 3D files",
 	"3d-patent": "This appears in the upload form for the patent radio inputs.",
 	"3d-nopatent": "{{Identical|None selected}}",
-	"3d-patents": "{{notranslate}}"
+	"3d-patents": "{{notranslate}}",
+	"3d-thumb-placeholder": "Placeholder text to display while the thumbnail is still loading"
 }
