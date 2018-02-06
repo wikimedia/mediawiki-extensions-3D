@@ -7,5 +7,6 @@
 	},
 	"3d-desc": "Poskytuje podporu pro 3D soubory",
 	"3d-patent": "Patentová práva:",
-	"3d-nopatent": "Nic nezvoleno"
+	"3d-nopatent": "Nic nezvoleno",
+	"3d-thumb-placeholder": "Načítání náhledu..."
 }

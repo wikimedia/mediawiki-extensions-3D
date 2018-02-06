@@ -6,5 +6,6 @@
 		]
 	},
 	"3d-desc": "Brinda compatibilidad con formatos de archivo 3D",
-	"3d-patent": "Permisos de patentes:"
+	"3d-patent": "Permisos de patentes:",
+	"3d-thumb-placeholder": "Cargando la miniatura…"
 }
