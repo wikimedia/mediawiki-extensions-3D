@@ -4,5 +4,8 @@
 			"Xuacu"
 		]
 	},
-	"3d-desc": "Ufre encontu pa los formatos de ficheru 3d"
+	"3d-desc": "Ufre encontu pa los formatos de ficheru 3d",
+	"3d-patent": "Permisos de patente:",
+	"3d-nopatent": "Nenguna selección",
+	"3d-thumb-placeholder": "Cargando la miniatura…"
 }

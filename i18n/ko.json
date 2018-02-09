@@ -6,5 +6,6 @@
 		]
 	},
 	"3d-desc": "3d 파일 형식의 지원을 제공합니다",
-	"3d-nopatent": "선택하지 않음"
+	"3d-nopatent": "선택하지 않음",
+	"3d-thumb-placeholder": "섬네일을 불러오는 중..."
 }
