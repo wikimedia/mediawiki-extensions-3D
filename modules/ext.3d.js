@@ -46,13 +46,15 @@
 		 * @param {jQuery} $elements
 		 */
 		attachBadge: function ( $elements ) {
-			var $wrap = this.wrap( $elements ),
-				$badge = $( '<span>' )
-					.addClass( 'mw-3d-badge' )
-					.text( mw.message( '3d-badge-text' ).text() );
+			var $badge = $( '<span>' )
+				.addClass( 'mw-3d-badge' )
+				.text( mw.message( '3d-badge-text' ).text() );
 
 			$elements.each( function ( i, element ) {
-				this.thumbnailLoadComplete( element ).then( function () { $wrap.append( $badge ); } );
+				this.thumbnailLoadComplete( element ).then( function ( element ) {
+					var $wrap = this.wrap( $( element ) );
+					$wrap.append( $badge );
+				}.bind( this ) );
 			}.bind( this ) );
 		},
 
@@ -60,22 +62,24 @@
 		 * @param {jQuery} $elements
 		 */
 		addThumbnailPlaceholder: function ( $elements ) {
-			var $spinner = $.createSpinner( { size: 'small', type: 'inline' } ),
+			var $wrap = this.wrap( $elements ),
+				$spinner = $.createSpinner( { size: 'small', type: 'inline' } ),
 				$placeholder = $( '<p>' )
 					.addClass( 'mw-3d-thumb-placeholder' )
 					.text( ' ' + mw.message( '3d-thumb-placeholder' ).text() + ' ' )
 					.prepend( $spinner );
 
 			// hide the image and put a placeholder there instead
-			$elements.hide().after( $placeholder );
+			$wrap.hide().after( $placeholder );
 
 			$elements.each( function ( i, element ) {
 				this.thumbnailLoadComplete( element )
 					.then( function ( element ) {
+						var $wrap = this.wrap( $( element ) );
 						// image confirmed to have loaded: show it & remove placeholder
-						$( element ).siblings( '.mw-3d-thumb-placeholder' ).remove();
-						$( element ).show();
-					} );
+						$wrap.siblings( '.mw-3d-thumb-placeholder' ).remove();
+						$wrap.show();
+					}.bind( this ) );
 			}.bind( this ) );
 		},
 
