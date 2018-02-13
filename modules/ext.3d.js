@@ -46,15 +46,16 @@
 		 * @param {jQuery} $elements
 		 */
 		attachBadge: function ( $elements ) {
-			var $badge = $( '<span>' )
-				.addClass( 'mw-3d-badge' )
-				.text( mw.message( '3d-badge-text' ).text() );
-
 			$elements.each( function ( i, element ) {
-				this.thumbnailLoadComplete( element ).then( function ( element ) {
-					var $wrap = this.wrap( $( element ) );
-					$wrap.append( $badge );
-				}.bind( this ) );
+				this.thumbnailLoadComplete( element )
+					.then( function ( element ) {
+						var $wrap = this.wrap( $( element ) ),
+							$badge = $( '<span>' )
+								.addClass( 'mw-3d-badge' )
+								.text( mw.message( '3d-badge-text' ).text() );
+
+						$wrap.append( $badge );
+					}.bind( this ) );
 			}.bind( this ) );
 		},
 

@@ -26,27 +26,30 @@
 		 * @param {jQuery} $link
 		 */
 		attachControls: function ( $image, $link ) {
-			var $wrap = mw.threed.base.wrap( $image ),
-				view = new OO.ui.ButtonWidget( {
-					icon: 'eye',
-					flags: [ 'progressive' ],
-					title: mw.message( 'view' ).text()
-				} ),
-				download = new OO.ui.ButtonWidget( {
-					icon: 'download',
-					flags: [ 'progressive' ],
-					title: mw.message( 'download' ).text()
-				} ),
-				$buttonWrap = $( '<span>' )
-					.addClass( 'mw-3d-control-wrapper' )
-					.append( view.$element, download.$element );
-
-			view.on( 'click', this.open.bind( this, $image, $link ) );
-			download.on( 'click', this.download.bind( this, $link ) );
-
 			$image.each( function ( i, element ) {
-				mw.threed.base.thumbnailLoadComplete( element ).then( function () { $wrap.append( $buttonWrap ); } );
-			} );
+				mw.threed.base.thumbnailLoadComplete( element )
+					.then( function ( element ) {
+						var $wrap = mw.threed.base.wrap( $( element ) ),
+							view = new OO.ui.ButtonWidget( {
+								icon: 'eye',
+								flags: [ 'progressive' ],
+								title: mw.message( 'view' ).text()
+							} ),
+							download = new OO.ui.ButtonWidget( {
+								icon: 'download',
+								flags: [ 'progressive' ],
+								title: mw.message( 'download' ).text()
+							} ),
+							$buttonWrap = $( '<span>' )
+								.addClass( 'mw-3d-control-wrapper' )
+								.append( view.$element, download.$element );
+
+						view.on( 'click', this.open.bind( this, $image, $link ) );
+						download.on( 'click', this.download.bind( this, $link ) );
+
+						$wrap.append( $buttonWrap );
+					}.bind( this ) );
+			}.bind( this ) );
 
 			// clicking file should open it in MMV instead of prompting download
 			$link.on( 'click', function ( e ) {
