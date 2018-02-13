@@ -105,13 +105,11 @@ class ThreeDHandler extends \ImageHandler {
 			$dstPath
 		] ) );
 
-		wfProfileIn( 'ThreeDHandler' );
 		wfDebug( __METHOD__ . ": $cmd\n" );
 		$retval = '';
 		$err = wfShellExecWithStderr(
 			$cmd, $retval, $wg3dProcessEnviron, [ 'memory' => $wgMax3d2pngMemory ]
 		);
-		wfProfileOut( 'ThreeDHandler' );
 
 		if ( $retval != 0 ) {
 			wfDebugLog( 'thumbnail',
