@@ -85,6 +85,22 @@
 		},
 
 		/**
+		 * @param {string} src
+		 * @return {$.Promise}
+		 */
+		loadSrc: function ( src ) {
+			var deferred = new $.Deferred(),
+				img = new Image();
+
+			img.onload = deferred.resolve;
+			img.onerror = deferred.reject;
+
+			img.src = src;
+
+			return deferred.promise();
+		},
+
+		/**
 		 * Figure out when the thumbnail has completed loading.
 		 *
 		 * @param {HTMLImageElement} img
@@ -93,7 +109,24 @@
 		thumbnailLoadComplete: function ( img ) {
 			var deferred = $.Deferred(),
 				src = img.src,
-				reload = function () { img.src = src; };
+				reload = function () {
+					this.loadSrc( src ).then(
+						function () {
+							// in case this img timed out earlier, reset it so the browser
+							// will load it anew...
+							img.src = src;
+
+							// I could nest this.imageLoadComplete's returned promises, but
+							// if it takes forever to load the image, we'd keep filling up
+							// the call stack to the point that it could crash. Instead, I'll
+							// create a new deferred object that'll resolve once we've found
+							// the thumbnail loading to be complete.
+							deferred.resolve( img );
+						},
+						// wait 5 seconds before attempting to load the image again
+						setTimeout.bind( null, reload, 5000 )
+					);
+				}.bind( this );
 
 			// safeguard to prevent the thumbnail node cloning below from being executed
 			// more than once...
@@ -101,13 +134,6 @@
 				return this.thumbnailPromises[ src ];
 			}
 			this.thumbnailPromises[ src ] = deferred.promise();
-
-			// resolve the promise as soon as this image has loaded
-			img.onload = deferred.resolve.bind( deferred, img );
-
-			// if we fail to load the image (e.g. timeout), wait 5 seconds
-			// and try again by writing to .src
-			img.onerror = setTimeout.bind( null, reload, 5000 );
 
 			reload();
 
