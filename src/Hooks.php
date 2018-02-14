@@ -34,7 +34,10 @@ class Hooks {
 			$out->getTitle()->inNamespace( NS_FILE ) &&
 			$article->getFile()->getExtension() === 'stl'
 		) {
-			$out->addModules( [ 'mmv.3d.head' ] );
+			$extensions = $out->getConfig()->get( 'MediaViewerExtensions' );
+			if ( isset( $extensions[ 'stl' ] ) && $extensions[ 'stl' ] === 'mmv.3d' ) {
+				$out->addModules( [ 'mmv.3d.head' ] );
+			}
 		}
 
 		return true;
