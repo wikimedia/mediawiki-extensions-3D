@@ -63,7 +63,7 @@
 			var self = this;
 			$thumbs.each( function () {
 				var $image = $( this );
-				self.thumbnailLoadComplete( $image[ 0 ] )
+				( $image[ 0 ].nodeName === 'IMG' ? self.thumbnailLoadComplete( $image[ 0 ] ) : $.Deferred().resolve().promise() )
 					.then( function () {
 						var $wrap = self.wrap( $image ),
 							$badge = $( '<span>' )
