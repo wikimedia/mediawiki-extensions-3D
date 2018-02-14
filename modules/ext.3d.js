@@ -18,8 +18,6 @@
 ( function ( mw, $ ) {
 	'use strict';
 
-	var $thumbs = $( 'img[src$=".stl.png"]' );
-
 	mw.threed = mw.threed || {};
 
 	mw.threed.base = {
@@ -37,43 +35,53 @@
 			.prepend( $.createSpinner( { size: 'small', type: 'inline' } ) ),
 
 		/**
-		 * @param {jQuery} $elements
+		 * @param {jQuery} $thumbs
 		 * @return {jQuery}
 		 */
-		wrap: function ( $elements ) {
-			$elements.each( function ( i, element ) {
-				if ( !$( element ).parent().hasClass( 'mw-3d-wrapper' ) ) {
-					$( element ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ) );
+		wrap: function ( $thumbs ) {
+			$thumbs.each( function () {
+				if ( !$( this ).parent().hasClass( 'mw-3d-wrapper' ) ) {
+					$( this ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ) );
 				}
 			} );
 
-			return $elements.parent();
+			return $thumbs.parent();
 		},
 
 		/**
-		 * @param {jQuery} $elements
+		 * @param {jQuery} $thumbs
 		 */
-		attachBadge: function ( $elements ) {
-			$elements.each( function ( i, element ) {
-				this.thumbnailLoadComplete( element )
-					.then( function ( element ) {
-						var $wrap = this.wrap( $( element ) ),
+		init: function ( $thumbs ) {
+			mw.threed.base.attachBadge( $thumbs );
+			mw.threed.base.addThumbnailPlaceholder( $thumbs );
+		},
+
+		/**
+		 * @param {jQuery} $thumbs
+		 */
+		attachBadge: function ( $thumbs ) {
+			var self = this;
+			$thumbs.each( function () {
+				var $image = $( this );
+				self.thumbnailLoadComplete( $image[ 0 ] )
+					.then( function () {
+						var $wrap = self.wrap( $image ),
 							$badge = $( '<span>' )
 								.addClass( 'mw-3d-badge' )
 								.text( mw.message( '3d-badge-text' ).text() );
 
 						$wrap.append( $badge );
-					}.bind( this ) );
-			}.bind( this ) );
+					} );
+			} );
 		},
 
 		/**
-		 * @param {jQuery} $elements
+		 * @param {jQuery} $thumbs
 		 */
-		addThumbnailPlaceholder: function ( $elements ) {
+		addThumbnailPlaceholder: function ( $thumbs ) {
 			var self = this;
 
-			$elements.each( function () {
+			$thumbs.each( function () {
 				var $image = $( this ),
 					$wrap = self.wrap( $image ),
 					loadingComplete = false,
@@ -109,8 +117,8 @@
 		 * @return {$.Promise}
 		 */
 		loadSrc: function ( src ) {
-			var deferred = new $.Deferred(),
-				img = new Image();
+			var deferred = $.Deferred(),
+				img = document.createElement( 'img' );
 
 			img.onload = deferred.resolve;
 			img.onerror = deferred.reject;
@@ -124,13 +132,20 @@
 		 * Figure out when the thumbnail has completed loading.
 		 *
 		 * @param {HTMLImageElement} img
-		 * @return {$.Promise} Promise that resolves with the thumbnail HTMLImageElement
+		 * @return {$.Promise} Promise that resolves when the thumbnail has completed loading
 		 */
 		thumbnailLoadComplete: function ( img ) {
-			var deferred = $.Deferred(),
-				src = img.src,
+			var deferred, reload,
+				self = this,
+				src = img.src;
+
+			// Check promise cache to avoid duplicate requests
+			if ( !this.thumbnailPromises[ src ] ) {
+				deferred = $.Deferred();
+				this.thumbnailPromises[ src ] = deferred.promise();
+
 				reload = function () {
-					this.loadSrc( src ).then(
+					self.loadSrc( src ).then(
 						function () {
 							// in case this img timed out earlier, reset it so the browser
 							// will load it anew...
@@ -141,26 +156,18 @@
 							// the call stack to the point that it could crash. Instead, I'll
 							// create a new deferred object that'll resolve once we've found
 							// the thumbnail loading to be complete.
-							deferred.resolve( img );
+							deferred.resolve();
 						},
 						// wait 5 seconds before attempting to load the image again
 						setTimeout.bind( null, reload, 5000 )
 					);
-				}.bind( this );
-
-			// safeguard to prevent the thumbnail node cloning below from being executed
-			// more than once...
-			if ( src in this.thumbnailPromises ) {
-				return this.thumbnailPromises[ src ];
+				};
+				reload();
 			}
-			this.thumbnailPromises[ src ] = deferred.promise();
-
-			reload();
 
 			return this.thumbnailPromises[ src ];
 		}
 	};
 
-	mw.threed.base.attachBadge( $thumbs );
-	mw.threed.base.addThumbnailPlaceholder( $thumbs );
+	mw.threed.base.init( $( 'img[src$=".stl.png"]' ) );
 }( mediaWiki, jQuery ) );

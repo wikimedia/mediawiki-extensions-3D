@@ -22,14 +22,17 @@
 		mmvBootstrap: null,
 
 		/**
-		 * @param {jQuery} $image
-		 * @param {jQuery} $link
+		 * @param {jQuery} $images
 		 */
-		attachControls: function ( $image, $link ) {
-			$image.each( function ( i, element ) {
-				mw.threed.base.thumbnailLoadComplete( element )
-					.then( function ( element ) {
-						var $wrap = mw.threed.base.wrap( $( element ) ),
+		attachControls: function ( $images ) {
+			var self = this;
+			$images.each( function () {
+				var $image = $( this ),
+					$link = $image.closest( 'a' );
+
+				mw.threed.base.thumbnailLoadComplete( $image[ 0 ] )
+					.then( function () {
+						var $wrap = mw.threed.base.wrap( $image ),
 							view = new OO.ui.ButtonWidget( {
 								icon: 'eye',
 								flags: [ 'progressive' ],
@@ -44,18 +47,18 @@
 								.addClass( 'mw-3d-control-wrapper' )
 								.append( view.$element, download.$element );
 
-						view.on( 'click', this.open.bind( this, $image, $link ) );
-						download.on( 'click', this.download.bind( this, $link ) );
+						view.on( 'click', self.open.bind( self, $image, $link ) );
+						download.on( 'click', self.download.bind( self, $link ) );
 
 						$wrap.append( $buttonWrap );
-					}.bind( this ) );
-			}.bind( this ) );
+					} );
 
-			// clicking file should open it in MMV instead of prompting download
-			$link.on( 'click', function ( e ) {
-				e.preventDefault();
-				this.open( $image, $link );
-			}.bind( this ) );
+				// Clicking the file should open it in MMV instead of prompting download
+				$link.on( 'click', function ( e ) {
+					e.preventDefault();
+					self.open( $image, $link );
+				} );
+			} );
 		},
 
 		/**
@@ -76,7 +79,7 @@
 				}
 
 				title = mw.Title.newFromImg( $image );
-				this.mmvBootstrap.openImage( $link, title );
+				this.mmvBootstrap.openImage( $link[ 0 ], title );
 			}.bind( this ) );
 		},
 
@@ -88,5 +91,5 @@
 		}
 	};
 
-	mw.threed.mmv.attachControls( $( '.fullImageLink img[src$=".stl.png"]' ), $( '.fullImageLink a' ) );
+	mw.threed.mmv.attachControls( $( '.fullImageLink img[src$=".stl.png"]' ) );
 }( mediaWiki, jQuery, OO ) );
