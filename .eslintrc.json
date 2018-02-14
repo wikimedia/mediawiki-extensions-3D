@@ -8,7 +8,6 @@
 	"globals": {
 		"mediaWiki": false,
 		"OO": false,
-		"TD": true,
 		"THREE": false
 	}
 }

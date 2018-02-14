@@ -16,7 +16,8 @@
  */
 
 ( function ( mw, $ ) {
-	var singleton = false;
+	var TD,
+		singleton = false;
 
 	function ThreeD( viewer ) {
 		THREE.Cache.enabled = true;
