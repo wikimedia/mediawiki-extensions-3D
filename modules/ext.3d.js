@@ -86,7 +86,7 @@
 					$wrap = self.wrap( $image ),
 					loadingComplete = false,
 					$placeholder = self.$placeholderTemplate.clone()
-						.css( 'min-height', parseInt( $image.attr( 'height' ) || 0 ) );
+						.css( 'min-height', +$image.attr( 'height' ) || 0 );
 
 				/*
 				 * Wait 50ms before hiding the image: if it is already present, we won't
