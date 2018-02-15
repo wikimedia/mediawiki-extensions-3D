@@ -29,6 +29,14 @@
 		thumbnailPromises: {},
 
 		/**
+		 * @type {jQuery}
+		 */
+		$placeholderTemplate: $( '<span>' )
+			.addClass( 'mw-3d-thumb-placeholder' )
+			.text( ' ' + mw.message( '3d-thumb-placeholder' ).text() )
+			.prepend( $.createSpinner( { size: 'small', type: 'inline' } ) ),
+
+		/**
 		 * @param {jQuery} $elements
 		 * @return {jQuery}
 		 */
@@ -63,25 +71,37 @@
 		 * @param {jQuery} $elements
 		 */
 		addThumbnailPlaceholder: function ( $elements ) {
-			var $wrap = this.wrap( $elements ),
-				$spinner = $.createSpinner( { size: 'small', type: 'inline' } ),
-				$placeholder = $( '<p>' )
-					.addClass( 'mw-3d-thumb-placeholder' )
-					.text( ' ' + mw.message( '3d-thumb-placeholder' ).text() + ' ' )
-					.prepend( $spinner );
+			var self = this;
 
-			// hide the image and put a placeholder there instead
-			$wrap.hide().after( $placeholder );
+			$elements.each( function () {
+				var $image = $( this ),
+					$wrap = self.wrap( $image ),
+					loadingComplete = false,
+					$placeholder = self.$placeholderTemplate.clone()
+						.css( 'min-height', parseInt( $image.attr( 'height' ) || 0 ) );
 
-			$elements.each( function ( i, element ) {
-				this.thumbnailLoadComplete( element )
-					.then( function ( element ) {
-						var $wrap = this.wrap( $( element ) );
-						// image confirmed to have loaded: show it & remove placeholder
-						$wrap.siblings( '.mw-3d-thumb-placeholder' ).remove();
-						$wrap.show();
-					}.bind( this ) );
-			}.bind( this ) );
+				/*
+				 * Wait 50ms before hiding the image: if it is already present, we won't
+				 * know about it until the below `thumbnailLoadComplete` promise resolves
+				 * and there'd be a small FOUC between hiding & showing the image again.
+				 * This small delay ensures that is the image is already present, it won't
+				 * flash off/on, while still replacing a slowly loading image fast enough
+				 * with a placeholder to inform the user it's processing.
+				 */
+				setTimeout( function () {
+					if ( !loadingComplete ) {
+						$image.hide();
+						$wrap.append( $placeholder );
+					}
+				}, 50 );
+
+				self.thumbnailLoadComplete( $image[ 0 ] )
+					.then( function () {
+						loadingComplete = true;
+						$placeholder.remove();
+						$image.show();
+					} );
+			} );
 		},
 
 		/**
