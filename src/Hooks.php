@@ -28,14 +28,17 @@ class Hooks {
 	public static function onBeforePageDisplay( &$out, &$skin ) {
 		$out->addModules( [ 'ext.3d' ] );
 
-		$article = new \ImagePage( $out->getTitle() );
+		$title = $out->getTitle();
 		if (
-			class_exists( 'MultimediaViewerHooks' ) &&
-			$out->getTitle()->inNamespace( NS_FILE ) &&
-			$article->getFile()->getExtension() === 'stl'
+			$title->getNamespace() === NS_FILE &&
+			\ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' )
 		) {
+			$file = wfFindFile( $title );
 			$extensions = $out->getConfig()->get( 'MediaViewerExtensions' );
-			if ( isset( $extensions[ 'stl' ] ) && $extensions[ 'stl' ] === 'mmv.3d' ) {
+			if (
+				$file && $file->getExtension() === 'stl' &&
+				isset( $extensions[ 'stl' ] ) && $extensions[ 'stl' ] === 'mmv.3d'
+			) {
 				$out->addModules( [ 'mmv.3d.head' ] );
 			}
 		}
