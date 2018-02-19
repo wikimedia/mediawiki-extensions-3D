@@ -49,6 +49,13 @@
 		},
 
 		/**
+		 * @param {jQuery} $content
+		 */
+		onWikipageContent: function ( $content ) {
+			this.init( $content.find( $( 'img[src$=".stl.png"]' ) ) );
+		},
+
+		/**
 		 * @param {jQuery} $thumbs
 		 */
 		init: function ( $thumbs ) {
@@ -169,5 +176,5 @@
 		}
 	};
 
-	mw.threed.base.init( $( 'img[src$=".stl.png"]' ) );
+	mw.hook( 'wikipage.content' ).add( mw.threed.base.onWikipageContent.bind( mw.threed.base ) );
 }( mediaWiki, jQuery ) );
