@@ -103,6 +103,7 @@
 	},
 	"config": {
 		"Max3d2pngMemory": "10000000",
-		"AjaxPatentPreview": true
+		"AjaxPatentPreview": true,
+		"3dProcessEnviron": {}
 	}
 }
