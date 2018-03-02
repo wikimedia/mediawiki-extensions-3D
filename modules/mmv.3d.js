@@ -33,7 +33,7 @@
 		var dimensions = this.getDimensions(),
 			light;
 
-		this.renderer = new THREE.WebGLRenderer();
+		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.setClearColor( 0x222222 );
 		this.renderer.setPixelRatio( window.devicePixelRatio );
 		this.renderer.setSize( dimensions.width, dimensions.height );
