@@ -27,9 +27,20 @@ class PatentFormField extends Licenses {
 	 * @inheritDoc
 	 */
 	protected static function getMessageFromParams( $params ) {
-		return empty( $params['patents'] )
-			? wfMessage( '3d-patents' )->inContentLanguage()->plain()
-			: $params['patents'];
+		global $wgLanguageCode;
+
+		if ( !empty( $params['patents'] ) ) {
+			return $params['patents'];
+		}
+
+		// The 3d-patents page is in $wgForceUIMsgAsContentMsg (its translations will
+		// be in subpages). If such translation can't be found, fall back to default.
+		$defaultMsg = wfMessage( '3d-patents' )->inContentLanguage();
+		if ( !$defaultMsg->exists() || $defaultMsg->plain() === '-' ) {
+			$defaultMsg = wfMessage( '3d-patents' )->inLanguage( $wgLanguageCode );
+		}
+
+		return $defaultMsg->plain();
 	}
 
 	/**
