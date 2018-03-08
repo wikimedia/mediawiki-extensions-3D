@@ -42,7 +42,7 @@
 
 		this.manager = new THREE.LoadingManager();
 
-		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 1, 500000 );
+		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 0.001, 500000 );
 		this.camera.up.set( 0, 0, 1 );
 		this.camera.add( new THREE.PointLight( 0xffffff, 0.3 ) );
 
