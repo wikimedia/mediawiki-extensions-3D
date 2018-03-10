@@ -4,5 +4,8 @@
 			"Strainu"
 		]
 	},
-	"3d-desc": "Oferă suport pentru formate de fișiere 3D"
+	"3d-desc": "Oferă suport pentru formate de fișiere 3D",
+	"3d-patent": "Permisiuni referitoare la brevete:",
+	"3d-nopatent": "Niciuna selectată",
+	"3d-thumb-placeholder": "Se încarcă miniatura..."
 }
