@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Obsuser",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"BadDog"
 		]
 	},
 	"3d-desc": "Омогућава подршку за 3d формате датотека",
+	"3d-patent": "Дозвола патента:",
 	"3d-nopatent": "Ништа није изабрано",
 	"3d-thumb-placeholder": "Учитавам минијатуру..."
 }
