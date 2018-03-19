@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Otokoume"
+			"Otokoume",
+			"Yusuke1109"
 		]
 	},
-	"3d-desc": "3D ファイル形式を取り扱えるようにする"
+	"3d-desc": "3D ファイル形式を取り扱えるようにする",
+	"3d-nopatent": "選択なし",
+	"3d-thumb-placeholder": "サムネイルを読み込み中..."
 }
