@@ -98,7 +98,7 @@
 	};
 
 	TD.geometryToObject = function ( geometry ) {
-		var material = new THREE.MeshPhongMaterial( { color: 0xf0ebe8, shininess: 5, flatShading: true } );
+		var material = new THREE.MeshPhongMaterial( { color: 0xf0ebe8, shininess: 5, flatShading: true, side: THREE.DoubleSide } );
 		return new THREE.Mesh( geometry, material );
 	};
 
