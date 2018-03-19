@@ -47,7 +47,7 @@
 		togglePatentSelector: function ( show ) {
 			// select default value & show/hide the options
 			this.$patent.eq( 0 ).prop( 'checked', true );
-			this.$patent.closest( 'tr' ).toggle( show );
+			this.$patent.closest( 'tr.mw-htmlform-field-3D-Patents' ).toggle( show );
 			this.$patentPreview.closest( 'tr' ).toggle( show );
 		},
 

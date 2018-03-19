@@ -76,7 +76,13 @@
 				"ext.3d.special.upload.js"
 			],
 			"dependencies": [
+				"ext.3d.special.upload.styles",
 				"mediawiki.special.upload"
+			]
+		},
+		"ext.3d.special.upload.styles": {
+			"styles": [
+				"ext.3d.special.upload.less"
 			]
 		}
 	},

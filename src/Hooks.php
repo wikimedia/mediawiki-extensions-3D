@@ -72,6 +72,7 @@ class Hooks {
 			'Patent' => [
 				'type' => 'select',
 				'class' => PatentFormField::class,
+				'cssclass' => 'mw-htmlform-field-3D-Patents',
 				'section' => 'description',
 				'id' => 'wpPatent',
 				'label-message' => '3d-patent',
@@ -91,7 +92,9 @@ class Hooks {
 			$useAjaxPatentPreview = $config->get( 'UseAjax' ) &&
 				$config->get( 'AjaxPatentPreview' ) && $config->get( 'EnableAPI' );
 
-			$wgOut->addModules( [ 'ext.3d.special.upload' ] );
+			// scripts & styles added separately to ensure CSS also loads without JS
+			$wgOut->addModuleScripts( [ 'ext.3d.special.upload' ] );
+			$wgOut->addModuleStyles( [ 'ext.3d.special.upload.styles' ] );
 			$wgOut->addJsConfigVars( [ 'wgAjaxPatentPreview' => $useAjaxPatentPreview ] );
 		}
 
