@@ -89,7 +89,7 @@ class Hooks {
 			$context = \RequestContext::getMain();
 			$config = $context->getConfig();
 			$useAjaxPatentPreview = $config->get( 'UseAjax' ) &&
-				$config->get( 'AjaxPatentPreview' ) && $config->get( 'EnableAPI' );
+				$config->get( 'AjaxPatentPreview' );
 
 			$wgOut->addModules( [ 'ext.3d.special.upload' ] );
 			$wgOut->addJsConfigVars( [ 'wgAjaxPatentPreview' => $useAjaxPatentPreview ] );
