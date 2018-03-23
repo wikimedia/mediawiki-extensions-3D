@@ -4,5 +4,8 @@
 			"Jon Harald Søby"
 		]
 	},
-	"3d-desc": "Gir støtte for 3D-filformater"
+	"3d-desc": "Gir støtte for 3D-filformater",
+	"3d-patent": "Patenttillatelser:",
+	"3d-nopatent": "Ingen valgt",
+	"3d-thumb-placeholder": "Laster miniatyrbilde …"
 }
