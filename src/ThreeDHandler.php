@@ -77,9 +77,7 @@ class ThreeDHandler extends \ImageHandler {
 	 * @return \MediaTransformError|\MediaTransformOutput|\ThumbnailImage|\TransformParameterError
 	 */
 	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-		// @codingStandardsIgnoreStart
 		global $wg3dProcessor, $wg3dProcessEnviron, $wgMax3d2pngMemory;
-		// @codingStandardsIgnoreEnd
 
 		// Impose an aspect ratio
 		$params['height'] = round( $params['width'] / ( 640 / 480 ) );
