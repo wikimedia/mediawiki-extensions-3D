@@ -90,7 +90,12 @@ class ThreeDHandler extends \ImageHandler {
 		$height = $params['height'];
 
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
-			return $this->doThumbError( $width, $height, 'thumbnail_dest_directory' );
+			return new \MediaTransformError(
+				'thumbnail_error',
+				$width,
+				$height,
+				wfMessage( 'thumbnail_dest_directory' )
+			);
 		}
 
 		$srcPath = $image->getLocalRefPath();
