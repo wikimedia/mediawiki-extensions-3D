@@ -55,6 +55,7 @@ class PatentFormField extends Licenses {
 	 * @inheritDoc
 	 */
 	public function getInputHTML( $value ) {
+		$options = [];
 		$options[$this->msg( '3d-nopatent' )->text()] = '';
 		$options += $this->getOptionsArray();
 
