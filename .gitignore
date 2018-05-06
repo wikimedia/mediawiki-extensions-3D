@@ -1,4 +1,4 @@
 /node_modules/
-
+/tests/phan/issues
 /vendor/
 composer.lock
