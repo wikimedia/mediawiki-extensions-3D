@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mikel Ibaiba"
+			"Mikel Ibaiba",
+			"Theklan"
 		]
 	},
-	"3d-desc": "3D Formatu artxiboetarako laguntza ematen du"
+	"3d-desc": "3D Formatu artxiboetarako laguntza ematen du",
+	"3d-patent": "Patente baimenak:",
+	"3d-nopatent": "Bat ere ez da aukeratu",
+	"3d-thumb-placeholder": "Iruditxoa kargatzen..."
 }
