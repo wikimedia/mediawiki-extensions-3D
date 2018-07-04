@@ -124,6 +124,14 @@
 		this.render( this.renderer, this.scene, this.camera );
 	};
 
+	TD.unload = function () {
+		// 3D files are wrapped inside a new parent class, where the '3D' badge
+		// is also attached to
+		// we don't want to keep that wrapper class around (could cause unexpected
+		// results), and definitely want that '3D' badge gone...
+		$( '.mw-3d-wrapper' ).replaceWith( $( '.mw-mmv-image' ) );
+	};
+
 	TD.load = function ( extension, url ) {
 		var threed = this;
 
@@ -223,6 +231,13 @@
 		singleton.init();
 		singleton.animate();
 		singleton.load( extension, e.imageInfo.url );
+	} );
+
+	// unload when switching images or cleaning up MMV altogether
+	$( document ).on( 'mmv-hash mmv-cleanup-overlay', function () {
+		if ( singleton ) {
+			singleton.unload();
+		}
 	} );
 
 	mw.mmv.ThreeD = ThreeD;
