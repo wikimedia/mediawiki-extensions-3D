@@ -4,5 +4,8 @@
 			"Joetaras"
 		]
 	},
-	"3d-desc": "Deje supporte pe le formate de file 3d"
+	"3d-desc": "Deje supporte pe le formate de file 3d",
+	"3d-patent": "Permesse de brevette:",
+	"3d-nopatent": "Nisciuna selezione",
+	"3d-thumb-placeholder": "Stoche e careche le miniature..."
 }
