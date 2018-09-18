@@ -129,7 +129,8 @@
 		// is also attached to
 		// we don't want to keep that wrapper class around (could cause unexpected
 		// results), and definitely want that '3D' badge gone...
-		$( '.mw-3d-wrapper' ).replaceWith( $( '.mw-mmv-image' ) );
+		var $threedParent = this.$container.parent( '.mw-3d-wrapper' );
+		$threedParent.replaceWith( this.$container );
 	};
 
 	TD.load = function ( extension, url ) {
