@@ -27,12 +27,17 @@
 		thumbnailPromises: {},
 
 		/**
-		 * @type {jQuery}
+		 * @return {jQuery}
 		 */
-		$placeholderTemplate: $( '<span>' )
-			.addClass( 'mw-3d-thumb-placeholder' )
-			.text( ' ' + mw.message( '3d-thumb-placeholder' ).text() )
-			.prepend( $.createSpinner( { size: 'small', type: 'inline' } ) ),
+		createPlaceholderTemplate: function () {
+			if ( !this.$placeholderTemplate ) {
+				this.$placeholderTemplate = $( '<span>' )
+					.addClass( 'mw-3d-thumb-placeholder' )
+					.text( ' ' + mw.message( '3d-thumb-placeholder' ).text() )
+					.prepend( $.createSpinner( { size: 'small', type: 'inline' } ) );
+			}
+			return this.$placeholderTemplate.clone();
+		},
 
 		/**
 		 * @param {jQuery} $thumbs
@@ -92,7 +97,7 @@
 				var $image = $( this ),
 					$wrap = self.wrap( $image ),
 					loadingComplete = false,
-					$placeholder = self.$placeholderTemplate.clone()
+					$placeholder = self.createPlaceholderTemplate()
 						.css( 'min-height', +$image.attr( 'height' ) || 0 );
 
 				/*
