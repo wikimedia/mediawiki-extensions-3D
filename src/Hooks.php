@@ -26,21 +26,21 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( &$out, &$skin ) {
-		$out->addModules( [ 'ext.3d' ] );
 		$out->addModuleStyles( [ 'ext.3d.styles' ] );
 
 		$title = $out->getTitle();
-		if (
-			$title->getNamespace() === NS_FILE &&
-			\ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' )
-		) {
-			$file = wfFindFile( $title );
-			$extensions = $out->getConfig()->get( 'MediaViewerExtensions' );
-			if (
-				$file && $file->getExtension() === 'stl' &&
-				isset( $extensions[ 'stl' ] ) && $extensions[ 'stl' ] === 'mmv.3d'
-			) {
-				$out->addModules( [ 'mmv.3d.head' ] );
+		if ( $title->getNamespace() === NS_FILE ) {
+			// Load JS on file pages for placeholder functionality
+			$out->addModules( [ 'ext.3d' ] );
+			if ( \ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' ) ) {
+				$file = wfFindFile( $title );
+				$extensions = $out->getConfig()->get( 'MediaViewerExtensions' );
+				if (
+					$file && $file->getExtension() === 'stl' &&
+					isset( $extensions[ 'stl' ] ) && $extensions[ 'stl' ] === 'mmv.3d'
+				) {
+					$out->addModules( [ 'mmv.3d.head' ] );
+				}
 			}
 		}
 
