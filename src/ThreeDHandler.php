@@ -83,7 +83,7 @@ class ThreeDHandler extends \ImageHandler {
 		$params['height'] = round( $params['width'] / ( 640 / 480 ) );
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new \ThumbnailImage( $image, $dstUrl, $dstPath, $params );
+			return new ThreeDThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 
 		$width = $params['width'];
@@ -120,7 +120,7 @@ class ThreeDHandler extends \ImageHandler {
 				wfHostname(), $retval, trim( $err ), $cmd ) );
 			return new \MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
-			return new \ThumbnailImage( $image, $dstUrl, $dstPath, $params );
+			return new ThreeDThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 	}
 

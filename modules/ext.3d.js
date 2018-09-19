@@ -46,7 +46,7 @@
 		wrap: function ( $thumbs ) {
 			$thumbs.each( function () {
 				if ( !$( this ).parent().hasClass( 'mw-3d-wrapper' ) ) {
-					$( this ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ) );
+					$( this ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ).attr( 'data-label', mw.message( '3d-badge-text' ) ) );
 				}
 			} );
 
@@ -57,14 +57,13 @@
 		 * @param {jQuery} $content
 		 */
 		onWikipageContent: function ( $content ) {
-			this.init( $content.find( $( 'img[src$=".stl.png"]' ) ) );
+			this.init( $content.find( $( '.mw-3d-thumb' ) ) );
 		},
 
 		/**
 		 * @param {jQuery} $thumbs
 		 */
 		init: function ( $thumbs ) {
-			mw.threed.base.attachBadge( $thumbs );
 			mw.threed.base.addThumbnailPlaceholder( $thumbs );
 		},
 
@@ -77,12 +76,7 @@
 				var $image = $( this );
 				( $image[ 0 ].nodeName === 'IMG' ? self.thumbnailLoadComplete( $image[ 0 ] ) : $.Deferred().resolve().promise() )
 					.then( function () {
-						var $wrap = self.wrap( $image ),
-							$badge = $( '<span>' )
-								.addClass( 'mw-3d-badge' )
-								.text( mw.message( '3d-badge-text' ).text() );
-
-						$wrap.append( $badge );
+						self.wrap( $image );
 					} );
 			} );
 		},

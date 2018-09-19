@@ -27,6 +27,7 @@ class Hooks {
 	 */
 	public static function onBeforePageDisplay( &$out, &$skin ) {
 		$out->addModules( [ 'ext.3d' ] );
+		$out->addModuleStyles( [ 'ext.3d.styles' ] );
 
 		$title = $out->getTitle();
 		if (

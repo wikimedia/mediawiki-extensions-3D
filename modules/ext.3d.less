@@ -5,8 +5,10 @@
 	vertical-align: top;
 }
 
-.mw-3d-badge {
+.mw-3d-wrapper:after {
+	content: attr( data-label );
 	position: absolute;
+	pointer-events: none;
 	top: 11px;
 	left: 11px;
 

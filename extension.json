@@ -41,6 +41,11 @@
 				"jquery.spinner"
 			]
 		},
+		"ext.3d.styles": {
+			"styles": [
+				"ext.3d.less"
+			]
+		},
 		"mmv.3d": {
 			"scripts": [
 				"mmv.3d.js"
