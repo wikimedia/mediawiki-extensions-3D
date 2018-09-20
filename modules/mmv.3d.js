@@ -162,7 +162,7 @@
 			threed.camera.lookAt( threed.scene.position );
 			threed.render( threed.renderer, threed.scene, threed.camera );
 
-			mw.threed.base.attachBadge( threed.$container );
+			mw.threed.base.wrap( threed.$container );
 		} ).progress( function ( progress ) {
 			threed.progressBar.animateTo( progress );
 		} ).fail( function ( /* error */ ) {

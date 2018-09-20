@@ -70,20 +70,6 @@
 		/**
 		 * @param {jQuery} $thumbs
 		 */
-		attachBadge: function ( $thumbs ) {
-			var self = this;
-			$thumbs.each( function () {
-				var $image = $( this );
-				( $image[ 0 ].nodeName === 'IMG' ? self.thumbnailLoadComplete( $image[ 0 ] ) : $.Deferred().resolve().promise() )
-					.then( function () {
-						self.wrap( $image );
-					} );
-			} );
-		},
-
-		/**
-		 * @param {jQuery} $thumbs
-		 */
 		addThumbnailPlaceholder: function ( $thumbs ) {
 			var self = this;
 
