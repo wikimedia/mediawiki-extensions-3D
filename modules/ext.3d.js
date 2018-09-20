@@ -45,7 +45,7 @@
 		 */
 		wrap: function ( $thumbs ) {
 			$thumbs.each( function () {
-				if ( !$( this ).parent().hasClass( 'mw-3d-wrapper' ) ) {
+				if ( !$( this ).closest( '.mw-3d-wrapper' ).length ) {
 					$( this ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ).attr( 'data-label', mw.message( '3d-badge-text' ) ) );
 				}
 			} );
