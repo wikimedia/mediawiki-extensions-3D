@@ -25,7 +25,7 @@ class ThreeDThumbnailImage extends \ThumbnailImage {
 	 * @inheritDoc
 	 */
 	public function toHtml( $options = [] ) {
-		return \HTML::rawElement(
+		return \Html::rawElement(
 			'span',
 			[
 				'class' => 'mw-3d-wrapper',
