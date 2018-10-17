@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Incelemeelemani"
+			"Incelemeelemani",
+			"TmY e12"
 		]
 	},
-	"3d-desc": "3d dosya formatları için destek sağlar"
+	"3d-desc": "3d dosya formatları için destek sağlar",
+	"3d-patent": "Patent izinleri:",
+	"3d-nopatent": "Hiçbir şey seçilmedi",
+	"3d-thumb-placeholder": "Küçük resim yükleniyor..."
 }
