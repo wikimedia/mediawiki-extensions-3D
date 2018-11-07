@@ -15,7 +15,7 @@
  * along with The 3D extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	mw.threed = mw.threed || {};
@@ -176,4 +176,4 @@
 	};
 
 	mw.hook( 'wikipage.content' ).add( mw.threed.base.onWikipageContent.bind( mw.threed.base ) );
-}( mediaWiki, jQuery ) );
+}() );

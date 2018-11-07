@@ -15,7 +15,7 @@
  * along with The 3D extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
-( function ( mw, $ ) {
+( function () {
 	var TD,
 		singleton = false;
 
@@ -242,4 +242,4 @@
 	} );
 
 	mw.mmv.ThreeD = ThreeD;
-}( mediaWiki, jQuery ) );
+}() );

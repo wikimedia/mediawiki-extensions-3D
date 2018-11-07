@@ -15,7 +15,7 @@
  * along with The 3D extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	mw.threed = mw.threed || {};
@@ -82,4 +82,4 @@
 	};
 
 	mw.threed.specialUpload.init();
-}( mediaWiki, jQuery ) );
+}() );

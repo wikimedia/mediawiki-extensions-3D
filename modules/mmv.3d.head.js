@@ -15,7 +15,7 @@
  * along with The 3D extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
-( function ( mw, $, OO ) {
+( function () {
 	'use strict';
 
 	mw.threed.mmv = {
@@ -92,4 +92,4 @@
 	};
 
 	mw.threed.mmv.attachControls( $( '.fullImageLink img[src$=".stl.png"]' ) );
-}( mediaWiki, jQuery, OO ) );
+}() );
