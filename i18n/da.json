@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Joedalton"
+			"Joedalton",
+			"Saederup92"
 		]
 	},
-	"3d-desc": "Tilbyder understøttelse for 3d-filformater"
+	"3d-desc": "Tilbyder understøttelse for 3d-filformater",
+	"3d-nopatent": "Ingen valgt"
 }
