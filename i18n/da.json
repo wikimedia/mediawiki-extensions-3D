@@ -5,6 +5,8 @@
 			"Saederup92"
 		]
 	},
-	"3d-desc": "Tilbyder understøttelse for 3d-filformater",
-	"3d-nopatent": "Ingen valgt"
+	"3d-desc": "Tilbyder understøttelse af 3d-filformater",
+	"3d-patent": "Patenttilladelser:",
+	"3d-nopatent": "Ingen valgt",
+	"3d-thumb-placeholder": "Indlæser miniaturebillede …"
 }
