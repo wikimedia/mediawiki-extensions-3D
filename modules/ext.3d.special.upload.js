@@ -59,10 +59,8 @@
 				return;
 			}
 
-			$.each( files, function ( i, file ) {
-				if ( file.name.split( '.' ).pop().toLowerCase() === 'stl' ) {
-					stlFiles.push( file );
-				}
+			Array.prototype.filter.call( files, function ( file ) {
+				return file.name.split( '.' ).pop().toLowerCase() === 'stl';
 			} );
 
 			// only show patent selector when the upload is an STL file
