@@ -91,5 +91,6 @@
 		}
 	};
 
+	// eslint-disable-next-line jquery/no-global-selector
 	mw.threed.mmv.attachControls( $( '.fullImageLink img[src$=".stl.png"]' ) );
 }() );

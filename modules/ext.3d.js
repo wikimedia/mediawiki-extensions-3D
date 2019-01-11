@@ -57,7 +57,7 @@
 		 * @param {jQuery} $content
 		 */
 		onWikipageContent: function ( $content ) {
-			this.init( $content.find( $( '.mw-3d-thumb' ) ) );
+			this.init( $content.find( '.mw-3d-thumb' ) );
 		},
 
 		/**
