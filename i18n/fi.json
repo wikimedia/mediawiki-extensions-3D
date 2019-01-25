@@ -4,5 +4,6 @@
 			"Pyscowicz"
 		]
 	},
-	"3d-desc": "Tukee 3d-tiedostomuotoja"
+	"3d-desc": "Tukee 3d-tiedostomuotoja",
+	"3d-thumb-placeholder": "Ladataan pienoiskuvaa..."
 }
