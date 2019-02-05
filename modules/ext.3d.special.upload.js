@@ -36,7 +36,7 @@
 			);
 
 			// Patent selector check
-			this.$patent.change( function ( e ) {
+			this.$patent.on( 'change', function ( e ) {
 				// We might show a preview
 				this.uploadTemplatePreview.getPreview( $( e.currentTarget ), this.$patentPreview );
 			}.bind( this ) );
