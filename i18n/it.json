@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Albe Albe 460"
 		]
 	},
-	"3d-desc": "Fornisce il supporto per i formati di file 3d"
+	"3d-desc": "Fornisce il supporto per i formati di file 3d",
+	"3d-patent": "Permessi di brevetto:",
+	"3d-nopatent": "Nessuno selezionato",
+	"3d-thumb-placeholder": "Caricamento miniatura..."
 }
