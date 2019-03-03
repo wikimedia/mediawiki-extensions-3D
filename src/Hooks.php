@@ -94,7 +94,7 @@ class Hooks {
 				$config->get( 'AjaxPatentPreview' );
 
 			// scripts & styles added separately to ensure CSS also loads without JS
-			$wgOut->addModuleScripts( [ 'ext.3d.special.upload' ] );
+			$wgOut->addModules( [ 'ext.3d.special.upload' ] );
 			$wgOut->addModuleStyles( [ 'ext.3d.special.upload.styles' ] );
 			$wgOut->addJsConfigVars( [ 'wgAjaxPatentPreview' => $useAjaxPatentPreview ] );
 		}
