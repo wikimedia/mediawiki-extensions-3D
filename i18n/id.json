@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"J Nia30"
+			"J Nia30",
+			"Pebaryan"
 		]
 	},
-	"3d-nopatent": "Tidak ada yang dipilih"
+	"3d-patent": "Izin patent:",
+	"3d-nopatent": "Tidak ada yang dipilih",
+	"3d-thumb-placeholder": "Memuat gambar mini..."
 }
