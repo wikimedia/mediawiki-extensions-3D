@@ -21,7 +21,7 @@
 	mw.threed = mw.threed || {};
 
 	mw.threed.specialUpload = {
-		// eslint-disable-next-line jquery/no-global-selector
+		// eslint-disable-next-line no-jquery/no-global-selector
 		$patent: $( 'input[name=wpPatent]' ),
 		$patentPreview: $( '<td>' ).attr( 'id', 'mw-patent-preview' ),
 		uploadTemplatePreview: window.wgUploadTemplatePreviewObj,
@@ -53,7 +53,7 @@
 		},
 
 		onChangeFile: function () {
-			// eslint-disable-next-line jquery/no-global-selector
+			// eslint-disable-next-line no-jquery/no-global-selector
 			var files = $( '#wpUploadFile' )[ 0 ].files,
 				stlFiles = [];
 
@@ -77,7 +77,7 @@
 			// hide patent selection until a relevant file has been uploaded
 			this.togglePatentSelector( false );
 
-			// eslint-disable-next-line jquery/no-global-selector
+			// eslint-disable-next-line no-jquery/no-global-selector
 			$( '#wpUploadFile' ).on( 'change', this.onChangeFile.bind( this ) );
 		}
 	};

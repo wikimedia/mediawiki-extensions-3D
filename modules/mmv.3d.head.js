@@ -91,6 +91,6 @@
 		}
 	};
 
-	// eslint-disable-next-line jquery/no-global-selector
+	// eslint-disable-next-line no-jquery/no-global-selector
 	mw.threed.mmv.attachControls( $( '.fullImageLink .mw-3d-wrapper img' ) );
 }() );
