@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Ssola",
-			"Fitoschido"
+			"Fitoschido",
+			"Toniher"
 		]
 	},
 	"3d-desc": "Proveeix compatibilitat amb formats de fitxer 3D",
+	"3d-patent": "Permisos de patents:",
 	"3d-nopatent": "No se n’ha seleccionat cap",
 	"3d-thumb-placeholder": "S’està carregant la miniatura…"
 }
