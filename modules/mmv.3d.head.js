@@ -69,10 +69,6 @@
 			mw.loader.using( [ 'mmv.bootstrap' ], function () {
 				var title;
 
-				if ( !mw.mmv.isBrowserSupported() ) {
-					return;
-				}
-
 				if ( this.mmvBootstrap === null ) {
 					this.mmvBootstrap = new mw.mmv.MultimediaViewerBootstrap();
 					this.mmvBootstrap.setupEventHandlers();
