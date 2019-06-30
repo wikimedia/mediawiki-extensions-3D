@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aefgh39622"
+			"Aefgh39622",
+			"Geonuch"
 		]
 	},
+	"3d": "3d",
 	"3d-desc": "จัดหาการสนับสนุนสำหรับรูปแบบไฟล์ 3d",
 	"3d-nopatent": "ไม่ได้เลือก",
 	"3d-thumb-placeholder": "กำลังโหลดรูปขนาดย่อ..."
