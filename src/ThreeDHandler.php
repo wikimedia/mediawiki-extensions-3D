@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\ThreeD;
 
+use MediaWiki\Shell\Shell;
+
 /**
  *
  * This program is free software; you can redistribute it and/or modify
@@ -102,22 +104,25 @@ class ThreeDHandler extends \ImageHandler {
 
 		// $wg3dProcessor can be string (e.g. '/path/to/3d2png.js') or array
 		// (e.g. ['xvfb-run', '-a', '-s', '-ac -screen 0 1280x1024x24', '/path/to/3d2png.js'])
-		$cmd = wfEscapeShellArg( array_merge( (array)$wg3dProcessor, [
-			$srcPath,
-			sprintf( '%dx%d', $width, $height ),
-			$dstPath
-		] ) );
+		$cmd = Shell::command( array_merge( (array)$wg3dProcessor,
+			[
+				$srcPath,
+				sprintf( '%dx%d', $width, $height ),
+				$dstPath,
+			] )
+		)
+			->limits( [ 'memory' => $wgMax3d2pngMemory ] )
+			->environment( $wg3dProcessEnviron )
+			->profileMethod( __METHOD__ );
 
-		wfDebug( __METHOD__ . ": $cmd\n" );
-		$retval = '';
-		$err = wfShellExecWithStderr(
-			$cmd, $retval, $wg3dProcessEnviron, [ 'memory' => $wgMax3d2pngMemory ]
-		);
+		$result = $cmd->execute();
 
-		if ( $retval != 0 ) {
+		if ( $result->getExitCode() !== 0 ) {
+			$err = trim( $result->getStdout() );
 			wfDebugLog( 'thumbnail',
 				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-				wfHostname(), $retval, trim( $err ), $cmd ) );
+				wfHostname(), $result->getExitCode(), $err, $cmd )
+			);
 			return new \MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
 			return new ThreeDThumbnailImage( $image, $dstUrl, $dstPath, $params );
