@@ -220,7 +220,7 @@
 	};
 
 	$( document ).on( 'mmv-metadata.3d', function ( e ) {
-		var extension = e.image.filePageTitle.ext;
+		var extension = e.image.filePageTitle.getExtension();
 
 		// Ignore events from formats that we don't care about
 		if ( extension !== 'stl' ) {
