@@ -12,7 +12,7 @@
 		"MediaWiki": ">= 1.31.0"
 	},
 	"type": "media",
-	"manifest_version": 1,
+	"manifest_version": 2,
 	"MessagesDirs": {
 		"3d": [
 			"i18n"
@@ -113,8 +113,14 @@
 		"application/sla": "MediaWiki\\Extensions\\ThreeD\\ThreeDHandler"
 	},
 	"config": {
-		"Max3d2pngMemory": "10000000",
-		"AjaxPatentPreview": true,
-		"3dProcessEnviron": {}
+		"Max3d2pngMemory": {
+			"value": "10000000"
+		},
+		"AjaxPatentPreview": {
+			"value": true
+		},
+		"3dProcessEnviron": {
+			"value": []
+		}
 	}
 }
