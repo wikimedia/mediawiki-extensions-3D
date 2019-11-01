@@ -28,11 +28,11 @@ class Hooks {
 	public static function onBeforePageDisplay( \OutputPage &$out, \Skin &$skin ) {
 		$title = $out->getTitle();
 		if ( $title->getNamespace() === NS_FILE ) {
-			// Load JS on file pages for placeholder functionality
-			$out->addModules( [ 'ext.3d' ] );
-			if ( \ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' ) ) {
-				$file = wfFindFile( $title );
-				if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
+			$file = wfFindFile( $title );
+			if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
+				// Load JS on file pages for placeholder functionality
+				$out->addModules( [ 'ext.3d' ] );
+				if ( \ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' ) ) {
 					$out->addModules( [ 'mmv.3d.head' ] );
 				}
 			}
