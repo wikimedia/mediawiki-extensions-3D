@@ -99,6 +99,9 @@
 		"BeforePageDisplay": [
 			"MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay"
 		],
+		"ImageBeforeProduceHTML": [
+			"MediaWiki\\Extensions\\ThreeD\\Hooks::onImageBeforeProduceHTML"
+		],
 		"UploadFormInitDescriptor": [
 			"MediaWiki\\Extensions\\ThreeD\\Hooks::onUploadFormInitDescriptor"
 		],
