@@ -34,11 +34,7 @@ class Hooks {
 			$out->addModules( [ 'ext.3d' ] );
 			if ( \ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' ) ) {
 				$file = wfFindFile( $title );
-				$extensions = $out->getConfig()->get( 'MediaViewerExtensions' );
-				if (
-					$file && $file->getExtension() === 'stl' &&
-					isset( $extensions[ 'stl' ] ) && $extensions[ 'stl' ] === 'mmv.3d'
-				) {
+				if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
 					$out->addModules( [ 'mmv.3d.head' ] );
 				}
 			}
