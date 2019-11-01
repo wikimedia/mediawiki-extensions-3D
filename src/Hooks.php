@@ -25,9 +25,7 @@ class Hooks {
 	 * @param \Skin &$skin
 	 * @return bool
 	 */
-	public static function onBeforePageDisplay( &$out, &$skin ) {
-		$out->addModuleStyles( [ 'ext.3d.styles' ] );
-
+	public static function onBeforePageDisplay( \OutputPage &$out, \Skin &$skin ) {
 		$title = $out->getTitle();
 		if ( $title->getNamespace() === NS_FILE ) {
 			// Load JS on file pages for placeholder functionality
@@ -41,6 +39,27 @@ class Hooks {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @param \DummyLinker &$dummy
+	 * @param \Title &$title
+	 * @param \File|bool &$file
+	 * @param array &$frameParams
+	 * @param array &$handlerParams
+	 * @param string|bool &$time
+	 * @param string|null &$result
+	 * @param \Parser $parser
+	 * @param string &$query
+	 * @param int|null &$widthOption
+	 */
+	public static function onImageBeforeProduceHTML(
+		&$dummy, \Title &$title, &$file, array &$frameParams,
+		array &$handlerParams, &$time, &$result, \Parser $parser, string &$query, &$widthOption
+	) {
+		if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
+			$parser->getOutput()->addModuleStyles( [ 'ext.3d.styles' ] );
+		}
 	}
 
 	/**
