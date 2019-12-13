@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Verdy p"
+			"Verdy p",
+			"Thibaut120094"
 		]
 	},
 	"3d-desc": "Fournit le support pour les formats de fichier 3D",
-	"3d-patent": "Droits de brevets :",
+	"3d-patent": "Droits de brevets :",
 	"3d-nopatent": "Aucun sélectionné",
 	"3d-thumb-placeholder": "Chargement de la vignette..."
 }
