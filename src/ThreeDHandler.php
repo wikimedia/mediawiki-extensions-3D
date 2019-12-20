@@ -49,6 +49,8 @@ class ThreeDHandler extends \ImageHandler {
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
 		}
+		// Note: the annotation below is incomplete to save up space, expand if necessary
+		'@phan-var array{physicalWidth:int,physicalHeight:int} $params';
 
 		// Don't make an image bigger than wgMaxSVGSize on the smaller side
 		if ( $params['physicalWidth'] <= $params['physicalHeight'] ) {
