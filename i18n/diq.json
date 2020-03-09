@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mirzali"
+			"Mirzali",
+			"Orbot707"
 		]
 	},
-	"3d-nopatent": "Theba nêweçineya"
+	"3d-desc": "Formatê Dosya 3d rê desteg dano.",
+	"3d-patent": "Mısadey patenti:",
+	"3d-nopatent": "Theba nêweçineya",
+	"3d-thumb-placeholder": "Resmoqıckeko beno bar..."
 }

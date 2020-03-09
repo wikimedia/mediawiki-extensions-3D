@@ -3,10 +3,11 @@
 		"authors": [
 			"Gomoko",
 			"Verdy p",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Urhixidur"
 		]
 	},
-	"3d-desc": "Fournit le support pour les formats de fichier 3D",
+	"3d-desc": "Prend en charge les formats de fichier 3D",
 	"3d-patent": "Droits de brevets :",
 	"3d-nopatent": "Aucun sélectionné",
 	"3d-thumb-placeholder": "Chargement de la vignette..."
