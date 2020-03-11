@@ -97,18 +97,10 @@
 		"remoteExtPath": "3D/modules"
 	},
 	"Hooks": {
-		"BeforePageDisplay": [
-			"MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay"
-		],
-		"ImageBeforeProduceHTML": [
-			"MediaWiki\\Extensions\\ThreeD\\Hooks::onImageBeforeProduceHTML"
-		],
-		"UploadFormInitDescriptor": [
-			"MediaWiki\\Extensions\\ThreeD\\Hooks::onUploadFormInitDescriptor"
-		],
-		"UploadForm:getInitialPageText": [
-			"MediaWiki\\Extensions\\ThreeD\\Hooks::onGetInitialPageText"
-		]
+		"BeforePageDisplay": "MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay",
+		"ImageBeforeProduceHTML": "MediaWiki\\Extensions\\ThreeD\\Hooks::onImageBeforeProduceHTML",
+		"UploadFormInitDescriptor": "MediaWiki\\Extensions\\ThreeD\\Hooks::onUploadFormInitDescriptor",
+		"UploadForm:getInitialPageText": "MediaWiki\\Extensions\\ThreeD\\Hooks::onGetInitialPageText"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extensions\\ThreeD\\": "src/"
