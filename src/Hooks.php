@@ -19,6 +19,8 @@
 
 namespace MediaWiki\Extensions\ThreeD;
 
+use MediaWiki\MediaWikiServices;
+
 class Hooks {
 	/**
 	 * @param \OutputPage &$out
@@ -28,7 +30,7 @@ class Hooks {
 	public static function onBeforePageDisplay( \OutputPage &$out, \Skin &$skin ) {
 		$title = $out->getTitle();
 		if ( $title->getNamespace() === NS_FILE ) {
-			$file = wfFindFile( $title );
+			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
 			if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
 				// Load JS on file pages for placeholder functionality
 				$out->addModules( [ 'ext.3d' ] );
