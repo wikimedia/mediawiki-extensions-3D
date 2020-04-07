@@ -1,5 +1,7 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": []
+	},
 	"3d": "3D",
 	"3d-desc": "Pruža podršku za 3D formate datoteka",
 	"3d-badge-text": "3D",

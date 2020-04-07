@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aefgh39622",
 			"Otokoume",
-			"Yusuke1109",
-			"Aefgh39622"
+			"Yusuke1109"
 		]
 	},
 	"3d-desc": "3D ファイル形式を取り扱えるようにする",

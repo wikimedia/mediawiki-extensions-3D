@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Athena in Wonderland",
 			"Fúlvio",
-			"Hamilton Abreu",
-			"Athena in Wonderland"
+			"Hamilton Abreu"
 		]
 	},
 	"3d-desc": "Fornece suporte para formatos de ficheiros 3D",
