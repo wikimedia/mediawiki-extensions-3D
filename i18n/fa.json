@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amirsara",
+			"FarsiNevis",
 			"Reza1615"
 		]
 	},
@@ -10,5 +11,5 @@
 	"3d-badge-text": "3D",
 	"3d-patent": "مجوزهای ثبت اختراع:",
 	"3d-nopatent": "هیچ کدام انتخاب نشده‌است",
-	"3d-thumb-placeholder": "درحال بارگذاری تصویر بند انگشتی…"
+	"3d-thumb-placeholder": "در حال بارگذاری تصویر بند انگشتی…"
 }
