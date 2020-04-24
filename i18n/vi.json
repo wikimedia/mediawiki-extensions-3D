@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Minh Nguyen"
+			"Minh Nguyen",
+			"Phjtieudoc"
 		]
 	},
 	"3d": "3D",
-	"3d-desc": "Hỗ trợ các định dạng tập tin 3D"
+	"3d-desc": "Hỗ trợ các định dạng tập tin 3D",
+	"3d-nopatent": "Chưa chọn",
+	"3d-thumb-placeholder": "Đang tải hình thu nhỏ..."
 }
