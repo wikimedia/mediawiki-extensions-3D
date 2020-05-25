@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kghbln",
 			"Metalhead64",
 			"Perhelion"
 		]
 	},
 	"3d": "3d",
-	"3d-desc": "Bietet Unterstützung für 3D-Dateiformate",
+	"3d-desc": "Ermöglicht die Nutzung von 3D-Dateiformaten",
 	"3d-patent": "Patentberechtigungen:",
 	"3d-nopatent": "Nichts ausgewählt",
 	"3d-thumb-placeholder": "Lade Vorschaubild …"
