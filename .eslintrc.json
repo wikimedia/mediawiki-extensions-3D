@@ -6,7 +6,6 @@
 		"wikimedia/mediawiki"
 	],
 	"globals": {
-		"OO": "readonly",
 		"THREE": "readonly"
 	}
 }

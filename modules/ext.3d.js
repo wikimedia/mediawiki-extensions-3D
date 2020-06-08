@@ -22,7 +22,7 @@
 
 	mw.threed.base = {
 		/**
-		 * @type {object}
+		 * @type {Object}
 		 */
 		thumbnailPromises: {},
 
@@ -106,7 +106,7 @@
 
 		/**
 		 * @param {string} src
-		 * @return {$.Promise}
+		 * @return {jQuery.Promise}
 		 */
 		loadSrc: function ( src ) {
 			var deferred = $.Deferred(),
@@ -124,7 +124,7 @@
 		 * Figure out when the thumbnail has completed loading.
 		 *
 		 * @param {HTMLImageElement} img
-		 * @return {$.Promise} Promise that resolves when the thumbnail has completed loading
+		 * @return {jQuery.Promise} Promise that resolves when the thumbnail has completed loading
 		 */
 		thumbnailLoadComplete: function ( img ) {
 			var deferred, reload,
