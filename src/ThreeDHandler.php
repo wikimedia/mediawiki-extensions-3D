@@ -84,7 +84,7 @@ class ThreeDHandler extends \ImageHandler {
 		global $wg3dProcessor, $wg3dProcessEnviron, $wgMax3d2pngMemory;
 
 		// Impose an aspect ratio
-		$params['height'] = round( $params['width'] / ( 640 / 480 ) );
+		$params['height'] = (int)round( $params['width'] / ( 640 / 480 ) );
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			return new ThreeDThumbnailImage( $image, $dstUrl, $dstPath, $params );
