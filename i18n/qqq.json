@@ -8,10 +8,10 @@
 		]
 	},
 	"3d": "{{name}}",
-	"3d-desc": "{{desc|name=3D|url=https://www.mediawiki.org/wiki/Extension:3D}}\n\n{{#switch:{{UILANGCODE}}\n|en = [[wikipedia:3D computer graphics|Read more about 3D]]\n|tr = [[wikipedia:tr:3 boyutlu bilgisayar grafikleri|3D hakkında daha fazla okuyun]]\n}}",
+	"3d-desc": "{{desc|name=3D|url=https://www.mediawiki.org/wiki/Extension:3D}}\n\n[[wikipedia:3D computer graphics|Read more about 3D]]",
 	"3d-badge-text": "{{optional}}\nText for the badge shown in the top left corner of images to identify 3D files",
-	"3d-patent": "{{#switch:{{UILANGCODE}}\n|en = This appears in the upload form for the patent radio inputs.\n|tr = Bu, patent radyo girişleri için yükleme formunda görünür.\n}}",
-	"3d-nopatent": "",
+	"3d-patent": "This appears in the upload form for the patent radio inputs.",
+	"3d-nopatent": "{{Identical|None selected}}",
 	"3d-patents": "{{notranslate}}",
-	"3d-thumb-placeholder": "{{#switch:{{UILANGCODE}}\n|en = Placeholder text to display while the thumbnail is still loading.\n|tr = Küçük resim yüklenirken görüntülenecek yer tutucu metin.\n}}"
+	"3d-thumb-placeholder": "Placeholder text to display while the thumbnail is still loading"
 }
