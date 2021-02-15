@@ -7,7 +7,9 @@
 			"Verdy p"
 		]
 	},
+	"3d": "3D",
 	"3d-desc": "Prend en charge les formats de fichier 3D",
+	"3d-badge-text": "3D",
 	"3d-patent": "Droits de brevets :",
 	"3d-nopatent": "Aucun sélectionné",
 	"3d-thumb-placeholder": "Chargement de la vignette..."
