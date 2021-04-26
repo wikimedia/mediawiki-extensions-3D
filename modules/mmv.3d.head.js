@@ -67,14 +67,12 @@
 		 */
 		open: function ( $image, $link ) {
 			mw.loader.using( [ 'mmv.bootstrap' ], function () {
-				var title;
-
 				if ( this.mmvBootstrap === null ) {
 					this.mmvBootstrap = new mw.mmv.MultimediaViewerBootstrap();
 					this.mmvBootstrap.setupEventHandlers();
 				}
 
-				title = mw.Title.newFromImg( $image );
+				var title = mw.Title.newFromImg( $image );
 				this.mmvBootstrap.openImage( $link[ 0 ], title );
 			}.bind( this ) );
 		},

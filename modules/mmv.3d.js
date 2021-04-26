@@ -16,8 +16,7 @@
  */
 
 ( function () {
-	var TD,
-		singleton = false;
+	var singleton = false;
 
 	function ThreeD( viewer ) {
 		THREE.Cache.enabled = true;
@@ -27,11 +26,10 @@
 		this.$container = viewer.ui.canvas.$imageDiv;
 	}
 
-	TD = ThreeD.prototype;
+	var TD = ThreeD.prototype;
 
 	TD.init = function () {
-		var dimensions = this.getDimensions(),
-			light;
+		var dimensions = this.getDimensions();
 
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.setClearColor( 0x222222 );
@@ -59,7 +57,7 @@
 
 		this.scene.add( new THREE.AmbientLight( 0x666666, 0.5 ) );
 
-		light = new THREE.SpotLight( 0x999999, 1 );
+		var light = new THREE.SpotLight( 0x999999, 1 );
 		light.position.set( -100, 50, 25 );
 		light.castShadow = true;
 		light.shadow.mapSize.width = 4096;
@@ -72,15 +70,13 @@
 	};
 
 	TD.center = function ( object ) {
-		var radius;
-
 		if ( object.type === 'Group' ) {
 			this.center( object.children[ 0 ] );
 		} else if ( object.type === 'Mesh' ) {
 			object.geometry.center();
 			object.geometry.computeBoundingSphere();
 
-			radius = object.geometry.boundingSphere.radius;
+			var radius = object.geometry.boundingSphere.radius;
 
 			// `radius` is the edge of the object's sphere
 			// We want to position our camera outside of that sphere.
@@ -173,15 +169,17 @@
 
 	TD.loadFile = function ( extension, url ) {
 		var threed = this,
-			deferred = $.Deferred(),
-			request,
-			loader;
+			deferred = $.Deferred();
 
-		if ( extension === 'stl' ) {
-			loader = new THREE.STLLoader( this.manager );
+		var loader;
+		switch ( extension ) {
+			case 'stl':
+			default:
+				loader = new THREE.STLLoader( this.manager );
+				break;
 		}
 
-		request = loader.load( url, function ( data ) {
+		var request = loader.load( url, function ( data ) {
 			var object = data;
 
 			if ( extension === 'stl' ) {

@@ -127,16 +127,15 @@
 		 * @return {jQuery.Promise} Promise that resolves when the thumbnail has completed loading
 		 */
 		thumbnailLoadComplete: function ( img ) {
-			var deferred, reload,
-				self = this,
+			var self = this,
 				src = img.src;
 
 			// Check promise cache to avoid duplicate requests
 			if ( !this.thumbnailPromises[ src ] ) {
-				deferred = $.Deferred();
+				var deferred = $.Deferred();
 				this.thumbnailPromises[ src ] = deferred.promise();
 
-				reload = function () {
+				var reload = function () {
 					self.loadSrc( src ).then(
 						function () {
 							// in case this img timed out earlier, reset it so the browser
