@@ -54,19 +54,18 @@
 
 		onChangeFile: function () {
 			// eslint-disable-next-line no-jquery/no-global-selector
-			var files = $( '#wpUploadFile' )[ 0 ].files,
-				stlFiles = [];
+			var files = $( '#wpUploadFile' )[ 0 ].files;
 
 			if ( !files ) {
 				return;
 			}
 
-			Array.prototype.filter.call( files, function ( file ) {
+			var hasStlFiles = Array.prototype.some.call( files, function ( file ) {
 				return file.name.split( '.' ).pop().toLowerCase() === 'stl';
 			} );
 
 			// only show patent selector when the upload is an STL file
-			this.togglePatentSelector( stlFiles.length > 0 );
+			this.togglePatentSelector( hasStlFiles );
 		},
 
 		init: function () {
