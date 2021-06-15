@@ -1,14 +1,18 @@
 .mw-mmv-image {
 	canvas {
 		cursor: move;
+		/* stylelint-disable plugin/no-unsupported-browser-features */
 		cursor: grab;
 		cursor: -moz-grab;
 		cursor: -webkit-grab;
+		/* stylelint-enable plugin/no-unsupported-browser-features */
 	}
 
 	canvas.mousedown {
+		/* stylelint-disable plugin/no-unsupported-browser-features */
 		cursor: grabbing;
 		cursor: -moz-grabbing;
 		cursor: -webkit-grabbing;
+		/* stylelint-enable plugin/no-unsupported-browser-features */
 	}
 }
