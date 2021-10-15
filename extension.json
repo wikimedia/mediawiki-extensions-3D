@@ -19,13 +19,6 @@
 		]
 	},
 	"ResourceModules": {
-		"three.js": {
-			"scripts": [
-				"three/three.js",
-				"three/STLLoader.js",
-				"three/TrackballControls.js"
-			]
-		},
 		"ext.3d": {
 			"scripts": [
 				"ext.3d.js"
@@ -48,6 +41,9 @@
 		},
 		"mmv.3d": {
 			"scripts": [
+				"three/three.js",
+				"three/STLLoader.js",
+				"three/TrackballControls.js",
 				"mmv.3d.js"
 			],
 			"styles": [
@@ -55,8 +51,7 @@
 			],
 			"dependencies": [
 				"mmv",
-				"ext.3d",
-				"three.js"
+				"ext.3d"
 			]
 		},
 		"mmv.3d.head": {
