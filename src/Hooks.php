@@ -44,21 +44,13 @@ class Hooks {
 	}
 
 	/**
-	 * @param \DummyLinker &$dummy
-	 * @param \Title &$title
-	 * @param \File|bool &$file
-	 * @param array &$frameParams
-	 * @param array &$handlerParams
-	 * @param string|bool &$time
-	 * @param string|null &$result
 	 * @param \Parser $parser
-	 * @param string &$query
-	 * @param int|null &$widthOption
+	 * @param \Title $nt
+	 * @param array &$options
+	 * @param string &$descQuery
 	 */
-	public static function onImageBeforeProduceHTML(
-		&$dummy, \Title &$title, &$file, array &$frameParams,
-		array &$handlerParams, &$time, &$result, \Parser $parser, string &$query, &$widthOption
-	) {
+	public static function onBeforeParserFetchFileAndTitle( $parser, $nt, &$options, &$descQuery ) {
+		list( $file, $title ) = $parser->fetchFileAndTitle( $nt, $options );
 		if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
 			$parser->getOutput()->addModuleStyles( [ 'ext.3d.styles' ] );
 		}
