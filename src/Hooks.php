@@ -99,8 +99,7 @@ class Hooks {
 		if ( $addJs ) {
 			$context = \RequestContext::getMain();
 			$config = $context->getConfig();
-			$useAjaxPatentPreview = $config->get( 'UseAjax' ) &&
-				$config->get( 'AjaxPatentPreview' );
+			$useAjaxPatentPreview = $config->get( 'AjaxPatentPreview' );
 
 			// scripts & styles added separately to ensure CSS also loads without JS
 			$wgOut->addModules( [ 'ext.3d.special.upload' ] );
