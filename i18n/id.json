@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"J Nia30",
-			"Pebaryan"
+			"Pebaryan",
+			"Daud I.F. Argana"
 		]
 	},
+	"3d-desc": "Menyediakan dukungan untuk format berkas 3D",
 	"3d-patent": "Izin patent:",
 	"3d-nopatent": "Tidak ada yang dipilih",
 	"3d-thumb-placeholder": "Memuat gambar mini..."

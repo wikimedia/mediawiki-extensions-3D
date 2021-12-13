@@ -3,11 +3,12 @@
 		"authors": [
 			"Gilles Dubuc",
 			"Raymond",
-			"Umherirrender"
+			"Umherirrender",
+			"MuratTheTurkish"
 		]
 	},
 	"3d": "{{name}}",
-	"3d-desc": "{{desc|name=3d|url=https://www.mediawiki.org/wiki/Extension:3d}}\n\n[[wikipedia:3D computer graphics|Read more about 3D]]",
+	"3d-desc": "{{desc|name=3D|url=https://www.mediawiki.org/wiki/Extension:3D}}\n\n[[wikipedia:3D computer graphics|Read more about 3D]]",
 	"3d-badge-text": "{{optional}}\nText for the badge shown in the top left corner of images to identify 3D files",
 	"3d-patent": "This appears in the upload form for the patent radio inputs.",
 	"3d-nopatent": "{{Identical|None selected}}",

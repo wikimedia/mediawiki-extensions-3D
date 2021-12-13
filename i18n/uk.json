@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Piramidion"
+			"Piramidion",
+			"DDPAT"
 		]
 	},
+	"3d": "3d",
 	"3d-desc": "Забезпечує підтримку для 3d-форматів файлів",
+	"3d-badge-text": "3D",
 	"3d-patent": "Патентні дозволи:",
 	"3d-nopatent": "Нічого не вибрано",
 	"3d-thumb-placeholder": "Завантаження мініатюри..."
