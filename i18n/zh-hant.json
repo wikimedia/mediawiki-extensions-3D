@@ -3,10 +3,11 @@
 		"authors": [
 			"Assoc",
 			"Kly",
-			"和平奮鬥救地球"
+			"和平奮鬥救地球",
+			"Winston Sung"
 		]
 	},
-	"3d-desc": "提供支援3d檔案格式",
+	"3d-desc": "提供 3d 檔案格式支援",
 	"3d-patent": "專利權限：",
 	"3d-nopatent": "未選擇",
 	"3d-thumb-placeholder": "縮圖載入中..."
