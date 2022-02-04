@@ -44,19 +44,6 @@ class Hooks {
 	}
 
 	/**
-	 * @param \Parser $parser
-	 * @param \Title $nt
-	 * @param array &$options
-	 * @param string &$descQuery
-	 */
-	public static function onBeforeParserFetchFileAndTitle( $parser, $nt, &$options, &$descQuery ) {
-		list( $file, $title ) = $parser->fetchFileAndTitle( $nt, $options );
-		if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
-			$parser->getOutput()->addModuleStyles( [ 'ext.3d.styles' ] );
-		}
-	}
-
-	/**
 	 * @param array &$descriptor
 	 * @return bool
 	 */
