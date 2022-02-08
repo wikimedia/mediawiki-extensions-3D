@@ -93,7 +93,6 @@
 	},
 	"Hooks": {
 		"BeforePageDisplay": "MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay",
-		"BeforeParserFetchFileAndTitle": "MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforeParserFetchFileAndTitle",
 		"UploadFormInitDescriptor": "MediaWiki\\Extensions\\ThreeD\\Hooks::onUploadFormInitDescriptor",
 		"UploadForm:getInitialPageText": "MediaWiki\\Extensions\\ThreeD\\Hooks::onGetInitialPageText"
 	},

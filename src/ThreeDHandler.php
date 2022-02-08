@@ -150,4 +150,13 @@ class ThreeDHandler extends \ImageHandler {
 	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
+
+	/**
+	 * @param \Parser $parser
+	 * @param \File $file
+	 */
+	public function parserTransformHook( $parser, $file ) {
+		$parser->getOutput()->addModuleStyles( [ 'ext.3d.styles' ] );
+	}
+
 }
