@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Veeven"
+			"Veeven",
+			"Chaduvari"
 		]
 	},
 	"3d-patent": "పేటెంటు అనుమతులు:",
-	"3d-nopatent": "ఏమీ ఎంచుకోలేదు"
+	"3d-nopatent": "ఏమీ ఎంచుకోలేదు",
+	"3d-thumb-placeholder": "థంబ్‌నెయిలును లోడుచేస్తున్నాం..."
 }
