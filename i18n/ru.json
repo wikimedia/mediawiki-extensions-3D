@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Mouse21",
+			"Pacha Tchernof",
 			"Redredsonia"
 		]
 	},
-	"3d-desc": "Поддерживает форматы файлов 3D",
+	"3d-desc": "Предоставляет поддержку форматов 3D-файлов",
 	"3d-patent": "Патентные разрешения:",
 	"3d-nopatent": "Ничего не выбрано",
-	"3d-thumb-placeholder": "Загрузка миниатюры..."
+	"3d-thumb-placeholder": "Загружается миниатюра…"
 }
