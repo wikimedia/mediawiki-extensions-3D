@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\ThreeD;
+namespace MediaWiki\Extension\ThreeD;
 
 /**
  *

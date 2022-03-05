@@ -92,15 +92,15 @@
 		"remoteExtPath": "3D/modules"
 	},
 	"Hooks": {
-		"BeforePageDisplay": "MediaWiki\\Extensions\\ThreeD\\Hooks::onBeforePageDisplay",
-		"UploadFormInitDescriptor": "MediaWiki\\Extensions\\ThreeD\\Hooks::onUploadFormInitDescriptor",
-		"UploadForm:getInitialPageText": "MediaWiki\\Extensions\\ThreeD\\Hooks::onGetInitialPageText"
+		"BeforePageDisplay": "MediaWiki\\Extension\\ThreeD\\Hooks::onBeforePageDisplay",
+		"UploadFormInitDescriptor": "MediaWiki\\Extension\\ThreeD\\Hooks::onUploadFormInitDescriptor",
+		"UploadForm:getInitialPageText": "MediaWiki\\Extension\\ThreeD\\Hooks::onGetInitialPageText"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extensions\\ThreeD\\": "src/"
+		"MediaWiki\\Extension\\ThreeD\\": "src/"
 	},
 	"MediaHandlers": {
-		"application/sla": "MediaWiki\\Extensions\\ThreeD\\ThreeDHandler"
+		"application/sla": "MediaWiki\\Extension\\ThreeD\\ThreeDHandler"
 	},
 	"config": {
 		"Max3d2pngMemory": {

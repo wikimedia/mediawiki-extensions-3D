@@ -17,7 +17,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-namespace MediaWiki\Extensions\ThreeD;
+namespace MediaWiki\Extension\ThreeD;
 
 use MediaWiki\MediaWikiServices;
 
