@@ -4,5 +4,8 @@
 			"Joao Xavier"
 		]
 	},
-	"3d-nopatent": "Nulo selektesis"
+	"3d-desc": "Furnisas suporto a formati '3D'",
+	"3d-patent": "Patento-permisi:",
+	"3d-nopatent": "Nulo selektesis",
+	"3d-thumb-placeholder": "Karganta miniaturo..."
 }
