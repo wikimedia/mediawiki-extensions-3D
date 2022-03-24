@@ -51,7 +51,8 @@
 			],
 			"dependencies": [
 				"mmv",
-				"ext.3d"
+				"ext.3d",
+				"mediawiki.util"
 			]
 		},
 		"mmv.3d.head": {

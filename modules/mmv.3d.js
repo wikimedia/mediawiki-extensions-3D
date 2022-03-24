@@ -64,7 +64,7 @@
 		light.shadow.mapSize.height = 4096;
 		this.camera.add( light );
 
-		$( window ).on( 'resize.3d', $.debounce( 100, this.onWindowResize.bind( this ) ) );
+		$( window ).on( 'resize.3d', mw.util.debounce( this.onWindowResize.bind( this ), 100 ) );
 
 		this.render();
 	};
