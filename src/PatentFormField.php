@@ -60,6 +60,7 @@ class PatentFormField extends Licenses {
 		$options += $this->getOptionsArray();
 
 		$field = new HTMLRadioField( [
+			'parent' => $this->mParent,
 			'fieldname' => 'Patent',
 			'id' => 'wpPatent',
 			'options' => $options,
