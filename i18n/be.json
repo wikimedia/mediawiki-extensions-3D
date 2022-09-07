@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mechanizatar"
+			"Mechanizatar",
+			"Tomato Cream"
 		]
 	},
-	"3d-desc": "Забяспечвае падтрымку для 3d-фарматаў файлаў"
+	"3d-desc": "Забяспечвае падтрымку для 3d-фарматаў файлаў",
+	"3d-patent": "Дазволы на патэнт:",
+	"3d-nopatent": "Нішто не выбрана",
+	"3d-thumb-placeholder": "Загрузка драбніцы..."
 }
