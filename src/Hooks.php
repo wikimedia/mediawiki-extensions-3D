@@ -54,8 +54,8 @@ class Hooks {
 			return true;
 		}
 
-		$patentField = new PatentFormField( [ 'fieldname' => 'Patent' ] );
-		if ( empty( $patentField->getLines() ) ) {
+		$patentMsg = PatentFormField::getMessageFromParams( [] );
+		if ( $patentMsg === '' || $patentMsg === '-' ) {
 			return true;
 		}
 
