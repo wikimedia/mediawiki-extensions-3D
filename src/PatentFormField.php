@@ -26,7 +26,7 @@ class PatentFormField extends Licenses {
 	/**
 	 * @inheritDoc
 	 */
-	protected static function getMessageFromParams( $params ) {
+	public static function getMessageFromParams( $params ) {
 		global $wgLanguageCode;
 
 		if ( !empty( $params['patents'] ) ) {
