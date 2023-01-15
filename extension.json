@@ -1,10 +1,10 @@
 {
-	"name": "3d",
+	"name": "3D",
 	"version": "0.0.1",
 	"author": [
 		"Gilles Dubuc"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:3d",
+	"url": "https://www.mediawiki.org/wiki/Extension:3D",
 	"namemsg": "3d",
 	"descriptionmsg": "3d-desc",
 	"license-name": "GPL-2.0-or-later",
@@ -14,7 +14,7 @@
 	"type": "media",
 	"manifest_version": 2,
 	"MessagesDirs": {
-		"3d": [
+		"3D": [
 			"i18n"
 		]
 	},

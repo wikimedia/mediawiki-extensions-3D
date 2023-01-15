@@ -4,8 +4,8 @@
 			"Gilles Dubuc"
 		]
 	},
-	"3d": "3d",
-	"3d-desc": "Provides support for 3d file formats",
+	"3d": "3D",
+	"3d-desc": "Provides support for 3D file formats",
 	"3d-badge-text": "3D",
 	"3d-patent": "Patent permissions:",
 	"3d-nopatent": "None selected",
