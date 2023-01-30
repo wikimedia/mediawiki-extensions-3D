@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Vodnokon4e",
-			"Vlad5250"
+			"Vlad5250",
+			"StanProg"
 		]
 	},
 	"3d-desc": "Осигуряване на поддръжка за 3D файлови формати",
 	"3d-patent": "Патентни разрешения:",
-	"3d-nopatent": "Нищо не е избрано"
+	"3d-nopatent": "Нищо не е избрано",
+	"3d-thumb-placeholder": "Зареждане на миниатюра..."
 }
