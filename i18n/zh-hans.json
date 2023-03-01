@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Liuxinyu970226",
+			"Shizhao",
 			"Stang"
 		]
 	},
-	"3d-desc": "提供3d文件格式的支持",
-	"3d-patent": "专利权限：",
+	"3d-desc": "提供3D文件格式的支持",
+	"3d-patent": "专利授权：",
 	"3d-nopatent": "未选择",
 	"3d-thumb-placeholder": "正在加载缩略图..."
 }
