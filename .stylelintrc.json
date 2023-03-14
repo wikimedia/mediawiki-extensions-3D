@@ -1,3 +1,6 @@
 {
-	"extends": "stylelint-config-wikimedia/support-modern"
+	"extends": "stylelint-config-wikimedia/support-modern",
+	"rules": {
+		"selector-pseudo-element-colon-notation": null
+	}
 }
