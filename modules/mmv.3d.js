@@ -203,11 +203,11 @@
 	};
 
 	TD.controlsStart = function () {
-		$( this.renderer.domElement ).addClass( 'mousedown' );
+		$( this.renderer.domElement ).addClass( 'mw-mmv-canvas-mousedown' );
 	};
 
 	TD.controlsEnd = function () {
-		$( this.renderer.domElement ).removeClass( 'mousedown' );
+		$( this.renderer.domElement ).removeClass( 'mw-mmv-canvas-mousedown' );
 	};
 
 	TD.getDimensions = function () {
