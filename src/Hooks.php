@@ -48,8 +48,6 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onUploadFormInitDescriptor( array &$descriptor ) {
-		global $wgOut;
-
 		if ( !array_key_exists( 'License', $descriptor ) ) {
 			return true;
 		}
@@ -61,7 +59,8 @@ class Hooks {
 
 		// no JS should be added on UploadWizard, which only inherits from Special:Upload as
 		// fallback when no JS is available...
-		$title = $wgOut->getTitle();
+		$context = \RequestContext::getMain();
+		$title = $context->getTitle();
 		$titleUW = \SpecialPage::getTitleFor( 'UploadWizard' );
 		$addJs = $title && !$title->equals( $titleUW ) && !$title->isSubpageOf( $titleUW );
 
@@ -84,14 +83,14 @@ class Hooks {
 			array_slice( $descriptor, $position, null, true );
 
 		if ( $addJs ) {
-			$context = \RequestContext::getMain();
 			$config = $context->getConfig();
 			$useAjaxPatentPreview = $config->get( 'AjaxPatentPreview' );
 
 			// scripts & styles added separately to ensure CSS also loads without JS
-			$wgOut->addModules( [ 'ext.3d.special.upload' ] );
-			$wgOut->addModuleStyles( [ 'ext.3d.special.upload.styles' ] );
-			$wgOut->addJsConfigVars( [ 'wgAjaxPatentPreview' => $useAjaxPatentPreview ] );
+			$out = $context->getOutput();
+			$out->addModules( [ 'ext.3d.special.upload' ] );
+			$out->addModuleStyles( [ 'ext.3d.special.upload.styles' ] );
+			$out->addJsConfigVars( [ 'wgAjaxPatentPreview' => $useAjaxPatentPreview ] );
 		}
 
 		return true;
