@@ -20,7 +20,7 @@
 namespace MediaWiki\Extension\ThreeD;
 
 use License;
-use RawMessage;
+use MediaWiki\Language\RawMessage;
 
 class PatentLine extends License {
 	/**
