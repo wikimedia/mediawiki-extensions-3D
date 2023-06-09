@@ -66,9 +66,10 @@
 		 * @param {jQuery} $link
 		 */
 		open: function ( $image, $link ) {
-			mw.loader.using( [ 'mmv.bootstrap' ], function () {
+			mw.loader.using( [ 'mmv.bootstrap' ] ).then( function ( req ) {
 				if ( this.mmvBootstrap === null ) {
-					this.mmvBootstrap = new mw.mmv.MultimediaViewerBootstrap();
+					var MultimediaViewerBootstrap = req( 'mmv.bootstrap' ).MultimediaViewerBootstrap;
+					this.mmvBootstrap = new MultimediaViewerBootstrap();
 					this.mmvBootstrap.setupEventHandlers();
 				}
 
