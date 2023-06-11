@@ -47,7 +47,7 @@
 								.addClass( 'mw-3d-control-wrapper' )
 								.append( view.$element, download.$element );
 
-						view.on( 'click', self.open.bind( self, $image, $link ) );
+						view.on( 'click', self.open.bind( self, $image ) );
 						download.on( 'click', self.download.bind( self, $link ) );
 
 						$wrap.append( $buttonWrap );
@@ -56,16 +56,15 @@
 				// Clicking the file should open it in MMV instead of prompting download
 				$link.on( 'click', function ( e ) {
 					e.preventDefault();
-					self.open( $image, $link );
+					self.open( $image );
 				} );
 			} );
 		},
 
 		/**
 		 * @param {jQuery} $image
-		 * @param {jQuery} $link
 		 */
-		open: function ( $image, $link ) {
+		open: function ( $image ) {
 			mw.loader.using( [ 'mmv.bootstrap' ] ).then( function ( req ) {
 				if ( this.mmvBootstrap === null ) {
 					var MultimediaViewerBootstrap = req( 'mmv.bootstrap' ).MultimediaViewerBootstrap;
@@ -74,7 +73,7 @@
 				}
 
 				var title = mw.Title.newFromImg( $image );
-				this.mmvBootstrap.openImage( $link[ 0 ], title );
+				this.mmvBootstrap.openImage( title );
 			}.bind( this ) );
 		},
 
