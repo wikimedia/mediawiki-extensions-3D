@@ -9,7 +9,7 @@
 	"descriptionmsg": "3d-desc",
 	"license-name": "GPL-2.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.40.0"
+		"MediaWiki": ">= 1.41"
 	},
 	"type": "media",
 	"manifest_version": 2,
