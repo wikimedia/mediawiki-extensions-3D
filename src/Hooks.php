@@ -21,19 +21,27 @@ namespace MediaWiki\Extension\ThreeD;
 
 use Config;
 use ExtensionRegistry;
+use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Hook\UploadForm_getInitialPageTextHook;
+use MediaWiki\Hook\UploadFormInitDescriptorHook;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
 use RequestContext;
 use Skin;
 use SpecialPage;
 
-class Hooks {
+// phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
+
+class Hooks implements
+	BeforePageDisplayHook,
+	UploadFormInitDescriptorHook,
+	UploadForm_getInitialPageTextHook
+{
 	/**
 	 * @param OutputPage $out
 	 * @param Skin $skin
-	 * @return bool
 	 */
-	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+	public function onBeforePageDisplay( $out, $skin ): void {
 		$title = $out->getTitle();
 		if ( $title->getNamespace() === NS_FILE ) {
 			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
@@ -45,22 +53,19 @@ class Hooks {
 				}
 			}
 		}
-
-		return true;
 	}
 
 	/**
 	 * @param array &$descriptor
-	 * @return bool
 	 */
-	public static function onUploadFormInitDescriptor( array &$descriptor ) {
+	public function onUploadFormInitDescriptor( &$descriptor ) {
 		if ( !array_key_exists( 'License', $descriptor ) ) {
-			return true;
+			return;
 		}
 
 		$patentMsg = PatentFormField::getMessageFromParams( [] );
 		if ( $patentMsg === '' || $patentMsg === '-' ) {
-			return true;
+			return;
 		}
 
 		// no JS should be added on UploadWizard, which only inherits from Special:Upload as
@@ -98,22 +103,19 @@ class Hooks {
 			$out->addModuleStyles( [ 'ext.3d.special.upload.styles' ] );
 			$out->addJsConfigVars( [ 'wgAjaxPatentPreview' => $useAjaxPatentPreview ] );
 		}
-
-		return true;
 	}
 
 	/**
 	 * @param string &$pageText
 	 * @param array $msg
 	 * @param Config $config
-	 * @return bool
 	 */
-	public static function onGetInitialPageText( &$pageText, array $msg, Config $config ) {
+	public function onUploadForm_getInitialPageText( &$pageText, $msg, $config ) {
 		global $wgRequest;
 		$patent = $wgRequest->getText( 'wpPatent' );
 		if ( $patent === '' ) {
 			// no patent text to be added
-			return true;
+			return;
 		}
 
 		$licenseHeader = '== ' . $msg['license-header'] . " ==\n";
@@ -125,7 +127,5 @@ class Hooks {
 			// as the license header does not exist; create it & add patent info
 			$pageText .= $licenseHeader . $patentText;
 		}
-
-		return true;
 	}
 }

@@ -92,10 +92,15 @@
 		"localBasePath": "modules",
 		"remoteExtPath": "3D/modules"
 	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\ThreeD\\Hooks"
+		}
+	},
 	"Hooks": {
-		"BeforePageDisplay": "MediaWiki\\Extension\\ThreeD\\Hooks::onBeforePageDisplay",
-		"UploadFormInitDescriptor": "MediaWiki\\Extension\\ThreeD\\Hooks::onUploadFormInitDescriptor",
-		"UploadForm:getInitialPageText": "MediaWiki\\Extension\\ThreeD\\Hooks::onGetInitialPageText"
+		"BeforePageDisplay": "main",
+		"UploadFormInitDescriptor": "main",
+		"UploadForm:getInitialPageText": "main"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\ThreeD\\": "src/"
