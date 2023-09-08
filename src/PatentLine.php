@@ -30,7 +30,6 @@ class PatentLine extends License {
 		// the split method is quite crude, so we'll first attempt to parse the text
 		// as a message, so some acceptable wikitext (e.g. [[link|]]) won't confuse
 		// our splitting
-		$msg = new RawMessage( $str );
-		return $msg->parse();
+		return ( new RawMessage( $str ) )->parse();
 	}
 }

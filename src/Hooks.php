@@ -19,22 +19,28 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
+use Config;
+use ExtensionRegistry;
 use MediaWiki\MediaWikiServices;
+use OutputPage;
+use RequestContext;
+use Skin;
+use SpecialPage;
 
 class Hooks {
 	/**
-	 * @param \OutputPage &$out
-	 * @param \Skin &$skin
+	 * @param OutputPage $out
+	 * @param Skin $skin
 	 * @return bool
 	 */
-	public static function onBeforePageDisplay( \OutputPage &$out, \Skin &$skin ) {
+	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$title = $out->getTitle();
 		if ( $title->getNamespace() === NS_FILE ) {
 			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
 			if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
 				// Load JS on file pages for placeholder functionality
 				$out->addModules( [ 'ext.3d' ] );
-				if ( \ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' ) ) {
+				if ( ExtensionRegistry::getInstance()->isLoaded( 'MultimediaViewer' ) ) {
 					$out->addModules( [ 'mmv.3d.head' ] );
 				}
 			}
@@ -59,9 +65,9 @@ class Hooks {
 
 		// no JS should be added on UploadWizard, which only inherits from Special:Upload as
 		// fallback when no JS is available...
-		$context = \RequestContext::getMain();
+		$context = RequestContext::getMain();
 		$title = $context->getTitle();
-		$titleUW = \SpecialPage::getTitleFor( 'UploadWizard' );
+		$titleUW = SpecialPage::getTitleFor( 'UploadWizard' );
 		$addJs = $title && !$title->equals( $titleUW ) && !$title->isSubpageOf( $titleUW );
 
 		$patentDescriptor = [
@@ -99,10 +105,10 @@ class Hooks {
 	/**
 	 * @param string &$pageText
 	 * @param array $msg
-	 * @param \Config $config
+	 * @param Config $config
 	 * @return bool
 	 */
-	public static function onGetInitialPageText( &$pageText, array $msg, \Config $config ) {
+	public static function onGetInitialPageText( &$pageText, array $msg, Config $config ) {
 		global $wgRequest;
 		$patent = $wgRequest->getText( 'wpPatent' );
 		if ( $patent === '' ) {
@@ -116,7 +122,7 @@ class Hooks {
 			// license header already exists; add it right there
 			$pageText = str_replace( $licenseHeader, $licenseHeader . $patentText, $pageText );
 		} else {
-			// license header does not already exist; create it & add patent info
+			// as the license header does not exist; create it & add patent info
 			$pageText .= $licenseHeader . $patentText;
 		}
 

@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
+use Html;
+use ThumbnailImage;
+
 /**
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,12 +23,12 @@ namespace MediaWiki\Extension\ThreeD;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-class ThreeDThumbnailImage extends \ThumbnailImage {
+class ThreeDThumbnailImage extends ThumbnailImage {
 	/**
 	 * @inheritDoc
 	 */
 	public function toHtml( $options = [] ) {
-		return \Html::rawElement(
+		return Html::rawElement(
 			'span',
 			[
 				'class' => 'mw-3d-wrapper',
