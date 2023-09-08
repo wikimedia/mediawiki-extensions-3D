@@ -14,7 +14,7 @@ module.exports = function ( grunt ) {
 			all: [
 				'*.{js,json}',
 				'modules/**/*.{js,json}',
-				'!modules/three/**'
+				'!modules/lib/**'
 			]
 		},
 		banana: {

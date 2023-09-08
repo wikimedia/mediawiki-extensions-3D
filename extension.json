@@ -41,9 +41,9 @@
 		},
 		"mmv.3d": {
 			"scripts": [
-				"three/three.js",
-				"three/STLLoader.js",
-				"three/TrackballControls.js",
+				"lib/three/three.js",
+				"lib/three/STLLoader.js",
+				"lib/three/TrackballControls.js",
 				"mmv.3d.js"
 			],
 			"styles": [
@@ -88,6 +88,7 @@
 			]
 		}
 	},
+	"ForeignResourcesDir": "modules/lib",
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
 		"remoteExtPath": "3D/modules"
