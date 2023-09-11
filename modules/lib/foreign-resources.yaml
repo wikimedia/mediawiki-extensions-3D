@@ -1,0 +1,15 @@
+three:
+  license: MIT
+  homepage: https://threejs.org/
+  version: r88
+  type: multi-file
+  files:
+    three.js:
+      src: https://raw.githubusercontent.com/mrdoob/three.js/r88/build/three.js
+      integrity: sha384-57190db7b79dda59b54b7bbe4b983a4eaf4ba73c3d37f7e3207c3e9d7b49780a21e43191324aad98cf2949a1655fb502
+    STLLoader.js:
+      src: https://raw.githubusercontent.com/mrdoob/three.js/r88/examples/js/loaders/STLLoader.js
+      integrity: sha384-d5b44999fdb8c23a42dc188b2b51439d592841ea1b5c10bbf41702b992cf6e6a08fdf97e0269e9f92e26d39966e5dadf
+    TrackballControls.js:
+      src: https://raw.githubusercontent.com/mrdoob/three.js/r88/examples/js/controls/TrackballControls.js
+      integrity: sha384-e064e4a31c32edf5c0008ccceaf878f6e0ac9545d1c02855fb32bbc556b120f8c15de788befdba96412842c5b72a3fdf
