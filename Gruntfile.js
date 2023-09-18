@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function ( grunt ) {
+	const conf = grunt.file.readJSON( 'extension.json' );
+
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
@@ -17,9 +19,7 @@ module.exports = function ( grunt ) {
 				'!modules/lib/**'
 			]
 		},
-		banana: {
-			all: 'i18n/'
-		},
+		banana: conf.MessagesDirs,
 		stylelint: {
 			all: [
 				'modules/**/*.{less,css}'
