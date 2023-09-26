@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Banjo",
-			"Elisardojm"
+			"Elisardojm",
+			"Toliño"
 		]
 	},
 	"3d-desc": "Proporciona soporte para formatos de ficheiro 3D",
 	"3d-patent": "Permisos de patente:",
 	"3d-nopatent": "Ningunha selección",
-	"3d-thumb-placeholder": "Cargando a miniatura…"
+	"3d-thumb-placeholder": "Cargando a miniatura..."
 }
