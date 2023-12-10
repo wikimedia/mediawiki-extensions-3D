@@ -19,16 +19,16 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
-use Config;
 use ExtensionRegistry;
+use MediaWiki\Config\Config;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\UploadForm_getInitialPageTextHook;
 use MediaWiki\Hook\UploadFormInitDescriptorHook;
 use MediaWiki\MediaWikiServices;
-use OutputPage;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use RequestContext;
 use Skin;
-use SpecialPage;
 
 // phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
 

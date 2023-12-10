@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
-use Html;
+use MediaWiki\Html\Html;
 use ThumbnailImage;
 
 /**
