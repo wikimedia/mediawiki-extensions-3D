@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fulup"
+			"Fulup",
+			"Adriendelucca"
 		]
 	},
-	"3d-desc": "Pourchas a ra skoazell evit furmadoù ar restroù 3d"
+	"3d-desc": "Pourchas a ra skoazell evit furmadoù ar restroù 3d",
+	"3d-nopatent": "Hini ebet diuzet",
+	"3d-thumb-placeholder": "O kargañ ar skeudennig..."
 }
