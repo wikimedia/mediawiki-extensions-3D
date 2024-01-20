@@ -26,7 +26,6 @@ use MediaWiki\Hook\UploadForm_getInitialPageTextHook;
 use MediaWiki\Hook\UploadFormInitDescriptorHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\SpecialPage\SpecialPage;
 use RequestContext;
 use Skin;
 
@@ -72,8 +71,7 @@ class Hooks implements
 		// fallback when no JS is available...
 		$context = RequestContext::getMain();
 		$title = $context->getTitle();
-		$titleUW = SpecialPage::getTitleFor( 'UploadWizard' );
-		$addJs = $title && !$title->equals( $titleUW ) && !$title->isSubpageOf( $titleUW );
+		$addJs = $title && !$title->isSpecial( 'UploadWizard' );
 
 		$patentDescriptor = [
 			'Patent' => [
