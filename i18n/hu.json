@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Csega",
+			"Dj",
 			"Wolf Rex"
 		]
 	},
-	"3d-desc": "3D formátumok támogatása.",
+	"3d-desc": "3D fájlformátumok támogatása.",
+	"3d-patent": "Szabadalmi engedélyek:",
 	"3d-nopatent": "Nincs kijelölés",
 	"3d-thumb-placeholder": "Bélyegkép betöltése…"
 }
