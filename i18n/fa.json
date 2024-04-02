@@ -3,13 +3,14 @@
 		"authors": [
 			"Amirsara",
 			"FarsiNevis",
-			"Reza1615"
+			"Reza1615",
+			"Ebraminio"
 		]
 	},
 	"3d": "3d",
 	"3d-desc": "پشتیبانی از پرونده‌های سه‌بعدی",
 	"3d-badge-text": "3D",
 	"3d-patent": "مجوزهای ثبت اختراع:",
-	"3d-nopatent": "هیچ کدام انتخاب نشده‌است",
+	"3d-nopatent": "هیچ کدام انتخاب نشده است",
 	"3d-thumb-placeholder": "در حال بارگذاری تصویر بند انگشتی…"
 }
