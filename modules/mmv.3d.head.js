@@ -25,9 +25,8 @@
 		 * @param {jQuery} $images
 		 */
 		attachControls: function ( $images ) {
-			const self = this;
-			$images.each( function () {
-				const $image = $( this ),
+			$images.each( ( i, image ) => {
+				const $image = $( image ),
 					$link = $image.closest( 'a' );
 
 				mw.threed.base.thumbnailLoadComplete( $image[ 0 ] )
@@ -47,8 +46,8 @@
 								.addClass( 'mw-3d-control-wrapper' )
 								.append( view.$element, download.$element );
 
-						view.on( 'click', self.open.bind( self, $image ) );
-						download.on( 'click', self.download.bind( self, $link ) );
+						view.on( 'click', this.open.bind( this, $image ) );
+						download.on( 'click', this.download.bind( this, $link ) );
 
 						$wrap.append( $buttonWrap );
 					} );
@@ -56,7 +55,7 @@
 				// Clicking the file should open it in MMV instead of prompting download
 				$link.on( 'click', ( e ) => {
 					e.preventDefault();
-					self.open( $image );
+					this.open( $image );
 				} );
 			} );
 		},

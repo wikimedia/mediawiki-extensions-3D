@@ -132,8 +132,6 @@
 	};
 
 	TD.load = function ( extension, url ) {
-		const threed = this;
-
 		// Abort any loading that might still be happening
 		if ( this.promise ) {
 			this.promise.reject();
@@ -145,31 +143,30 @@
 		this.progressBar.animateTo( 5 );
 
 		this.promise.then( ( object ) => {
-			delete threed.promise;
+			delete this.promise;
 
-			threed.progressBar.hide();
+			this.progressBar.hide();
 
 			object.castShadow = true;
 			object.receiveShadow = true;
 
-			threed.center( object );
-			threed.scene.add( object );
+			this.center( object );
+			this.scene.add( object );
 
-			threed.camera.lookAt( threed.scene.position );
-			threed.render( threed.renderer, threed.scene, threed.camera );
+			this.camera.lookAt( this.scene.position );
+			this.render( this.renderer, this.scene, this.camera );
 
-			mw.threed.base.wrap( threed.$container );
+			mw.threed.base.wrap( this.$container );
 		} ).progress( ( progress ) => {
-			threed.progressBar.animateTo( progress );
+			this.progressBar.animateTo( progress );
 		} ).fail( ( /* error */ ) => {
-			threed.progressBar.hide();
-			delete threed.promise;
+			this.progressBar.hide();
+			delete this.promise;
 		} );
 	};
 
 	TD.loadFile = function ( extension, url ) {
-		const threed = this,
-			deferred = $.Deferred();
+		const deferred = $.Deferred();
 
 		let loader;
 		switch ( extension ) {
@@ -183,7 +180,7 @@
 			let object = data;
 
 			if ( extension === 'stl' ) {
-				object = threed.geometryToObject( data );
+				object = this.geometryToObject( data );
 			}
 
 			deferred.resolve( object );

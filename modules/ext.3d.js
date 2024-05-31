@@ -44,9 +44,9 @@
 		 * @return {jQuery}
 		 */
 		wrap: function ( $thumbs ) {
-			$thumbs.each( function () {
-				if ( !$( this ).closest( '.mw-3d-wrapper' ).length ) {
-					$( this ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ).attr( 'data-label', mw.message( '3d-badge-text' ) ) );
+			$thumbs.each( ( i, image ) => {
+				if ( !$( image ).closest( '.mw-3d-wrapper' ).length ) {
+					$( image ).wrap( $( '<span>' ).addClass( 'mw-3d-wrapper' ).attr( 'data-label', mw.message( '3d-badge-text' ) ) );
 				}
 			} );
 
@@ -71,12 +71,10 @@
 		 * @param {jQuery} $thumbs
 		 */
 		addThumbnailPlaceholder: function ( $thumbs ) {
-			const self = this;
-
-			$thumbs.each( function () {
-				const $image = $( this ),
-					$wrap = self.wrap( $image ),
-					$placeholder = self.createPlaceholderTemplate()
+			$thumbs.each( ( i, image ) => {
+				const $image = $( image ),
+					$wrap = this.wrap( $image ),
+					$placeholder = this.createPlaceholderTemplate()
 						.css( 'min-height', +$image.attr( 'height' ) || 0 );
 
 				let loadingComplete = false;
@@ -95,7 +93,7 @@
 					}
 				}, 50 );
 
-				self.thumbnailLoadComplete( $image[ 0 ] )
+				this.thumbnailLoadComplete( $image[ 0 ] )
 					.then( () => {
 						loadingComplete = true;
 						$placeholder.remove();
@@ -127,16 +125,15 @@
 		 * @return {jQuery.Promise} Promise that resolves when the thumbnail has completed loading
 		 */
 		thumbnailLoadComplete: function ( img ) {
-			const self = this,
-				src = img.src;
+			const src = img.src;
 
 			// Check promise cache to avoid duplicate requests
 			if ( !this.thumbnailPromises[ src ] ) {
 				const deferred = $.Deferred();
 				this.thumbnailPromises[ src ] = deferred.promise();
 
-				const reload = function () {
-					self.loadSrc( src ).then(
+				const reload = () => {
+					this.loadSrc( src ).then(
 						() => {
 							// in case this img timed out earlier, reset it so the browser
 							// will load it anew...
@@ -150,7 +147,7 @@
 							deferred.resolve();
 						},
 						// wait 5 seconds before attempting to load the image again
-						setTimeout.bind( null, reload, 5000 )
+						setTimeout( reload, 5000 )
 					);
 				};
 				reload();
