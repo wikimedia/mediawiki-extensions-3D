@@ -71,15 +71,15 @@
 		 * @param {jQuery} $thumbs
 		 */
 		addThumbnailPlaceholder: function ( $thumbs ) {
-			var self = this;
+			const self = this;
 
 			$thumbs.each( function () {
-				var $image = $( this ),
+				const $image = $( this ),
 					$wrap = self.wrap( $image ),
-					loadingComplete = false,
 					$placeholder = self.createPlaceholderTemplate()
 						.css( 'min-height', +$image.attr( 'height' ) || 0 );
 
+				let loadingComplete = false;
 				/*
 				 * Wait 50ms before hiding the image: if it is already present, we won't
 				 * know about it until the below `thumbnailLoadComplete` promise resolves
@@ -109,7 +109,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		loadSrc: function ( src ) {
-			var deferred = $.Deferred(),
+			const deferred = $.Deferred(),
 				img = document.createElement( 'img' );
 
 			img.onload = deferred.resolve;
@@ -127,15 +127,15 @@
 		 * @return {jQuery.Promise} Promise that resolves when the thumbnail has completed loading
 		 */
 		thumbnailLoadComplete: function ( img ) {
-			var self = this,
+			const self = this,
 				src = img.src;
 
 			// Check promise cache to avoid duplicate requests
 			if ( !this.thumbnailPromises[ src ] ) {
-				var deferred = $.Deferred();
+				const deferred = $.Deferred();
 				this.thumbnailPromises[ src ] = deferred.promise();
 
-				var reload = function () {
+				const reload = function () {
 					self.loadSrc( src ).then(
 						() => {
 							// in case this img timed out earlier, reset it so the browser

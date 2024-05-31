@@ -54,13 +54,13 @@
 
 		onChangeFile: function () {
 			// eslint-disable-next-line no-jquery/no-global-selector
-			var files = $( '#wpUploadFile' )[ 0 ].files;
+			const files = $( '#wpUploadFile' )[ 0 ].files;
 
 			if ( !files ) {
 				return;
 			}
 
-			var hasStlFiles = Array.prototype.some.call( files, ( file ) => file.name.split( '.' ).pop().toLowerCase() === 'stl' );
+			const hasStlFiles = Array.prototype.some.call( files, ( file ) => file.name.split( '.' ).pop().toLowerCase() === 'stl' );
 
 			// only show patent selector when the upload is an STL file
 			this.togglePatentSelector( hasStlFiles );

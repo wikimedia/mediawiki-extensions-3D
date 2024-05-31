@@ -16,7 +16,7 @@
  */
 
 ( function () {
-	var singleton = false;
+	let singleton = false;
 
 	function ThreeD( viewer ) {
 		THREE.Cache.enabled = true;
@@ -26,10 +26,10 @@
 		this.$container = viewer.ui.canvas.$imageDiv;
 	}
 
-	var TD = ThreeD.prototype;
+	const TD = ThreeD.prototype;
 
 	TD.init = function () {
-		var dimensions = this.getDimensions();
+		const dimensions = this.getDimensions();
 
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.setClearColor( 0x222222 );
@@ -57,7 +57,7 @@
 
 		this.scene.add( new THREE.AmbientLight( 0x666666, 0.5 ) );
 
-		var light = new THREE.SpotLight( 0x999999, 1 );
+		const light = new THREE.SpotLight( 0x999999, 1 );
 		light.position.set( -100, 50, 25 );
 		light.castShadow = true;
 		light.shadow.mapSize.width = 4096;
@@ -76,7 +76,7 @@
 			object.geometry.center();
 			object.geometry.computeBoundingSphere();
 
-			var radius = object.geometry.boundingSphere.radius;
+			const radius = object.geometry.boundingSphere.radius;
 
 			// `radius` is the edge of the object's sphere
 			// We want to position our camera outside of that sphere.
@@ -94,7 +94,7 @@
 	};
 
 	TD.geometryToObject = function ( geometry ) {
-		var material = new THREE.MeshPhongMaterial(
+		const material = new THREE.MeshPhongMaterial(
 			{ color: 0xf0ebe8, shininess: 5, flatShading: true, side: THREE.DoubleSide }
 		);
 		return new THREE.Mesh( geometry, material );
@@ -110,7 +110,7 @@
 	};
 
 	TD.onWindowResize = function () {
-		var dimensions = this.getDimensions();
+		const dimensions = this.getDimensions();
 
 		this.camera.aspect = dimensions.width / dimensions.height;
 		this.camera.updateProjectionMatrix();
@@ -127,12 +127,12 @@
 		// is also attached to
 		// we don't want to keep that wrapper class around (could cause unexpected
 		// results), and definitely want that '3D' badge gone...
-		var $threedParent = this.$container.parent( '.mw-3d-wrapper' );
+		const $threedParent = this.$container.parent( '.mw-3d-wrapper' );
 		$threedParent.replaceWith( this.$container );
 	};
 
 	TD.load = function ( extension, url ) {
-		var threed = this;
+		const threed = this;
 
 		// Abort any loading that might still be happening
 		if ( this.promise ) {
@@ -168,10 +168,10 @@
 	};
 
 	TD.loadFile = function ( extension, url ) {
-		var threed = this,
+		const threed = this,
 			deferred = $.Deferred();
 
-		var loader;
+		let loader;
 		switch ( extension ) {
 			case 'stl':
 			default:
@@ -179,8 +179,8 @@
 				break;
 		}
 
-		var request = loader.load( url, ( data ) => {
-			var object = data;
+		const request = loader.load( url, ( data ) => {
+			let object = data;
 
 			if ( extension === 'stl' ) {
 				object = threed.geometryToObject( data );
@@ -211,14 +211,14 @@
 	};
 
 	TD.getDimensions = function () {
-		var width = $( window ).width(),
+		const width = $( window ).width(),
 			height = this.viewer.ui.canvas.$imageWrapper.height();
 
 		return { width: width, height: height, ratio: width / height };
 	};
 
 	$( document ).on( 'mmv-metadata.3d', ( e ) => {
-		var extension = e.image.filePageTitle.getExtension();
+		const extension = e.image.filePageTitle.getExtension();
 
 		// Ignore events from formats that we don't care about
 		if ( extension !== 'stl' ) {

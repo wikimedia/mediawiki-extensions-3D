@@ -25,14 +25,14 @@
 		 * @param {jQuery} $images
 		 */
 		attachControls: function ( $images ) {
-			var self = this;
+			const self = this;
 			$images.each( function () {
-				var $image = $( this ),
+				const $image = $( this ),
 					$link = $image.closest( 'a' );
 
 				mw.threed.base.thumbnailLoadComplete( $image[ 0 ] )
 					.then( () => {
-						var $wrap = mw.threed.base.wrap( $image ),
+						const $wrap = mw.threed.base.wrap( $image ),
 							view = new OO.ui.ButtonWidget( {
 								icon: 'eye',
 								flags: [ 'progressive' ],
@@ -67,12 +67,12 @@
 		open: function ( $image ) {
 			mw.loader.using( [ 'mmv.bootstrap' ] ).then( ( req ) => {
 				if ( this.mmvBootstrap === null ) {
-					var MultimediaViewerBootstrap = req( 'mmv.bootstrap' ).MultimediaViewerBootstrap;
+					const MultimediaViewerBootstrap = req( 'mmv.bootstrap' ).MultimediaViewerBootstrap;
 					this.mmvBootstrap = new MultimediaViewerBootstrap();
 					this.mmvBootstrap.setupEventHandlers();
 				}
 
-				var title = mw.Title.newFromImg( $image );
+				const title = mw.Title.newFromImg( $image );
 				this.mmvBootstrap.openImage( title );
 			} );
 		},
