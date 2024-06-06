@@ -36,10 +36,10 @@
 			);
 
 			// Patent selector check
-			this.$patent.on( 'change', function ( e ) {
+			this.$patent.on( 'change', ( e ) => {
 				// We might show a preview
 				this.uploadTemplatePreview.getPreview( $( e.currentTarget ), this.$patentPreview );
-			}.bind( this ) );
+			} );
 		},
 
 		/**
@@ -60,9 +60,7 @@
 				return;
 			}
 
-			var hasStlFiles = Array.prototype.some.call( files, function ( file ) {
-				return file.name.split( '.' ).pop().toLowerCase() === 'stl';
-			} );
+			var hasStlFiles = Array.prototype.some.call( files, ( file ) => file.name.split( '.' ).pop().toLowerCase() === 'stl' );
 
 			// only show patent selector when the upload is an STL file
 			this.togglePatentSelector( hasStlFiles );

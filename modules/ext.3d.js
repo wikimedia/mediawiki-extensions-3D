@@ -88,7 +88,7 @@
 				 * flash off/on, while still replacing a slowly loading image fast enough
 				 * with a placeholder to inform the user it's processing.
 				 */
-				setTimeout( function () {
+				setTimeout( () => {
 					if ( !loadingComplete ) {
 						$image.hide();
 						$wrap.append( $placeholder );
@@ -96,7 +96,7 @@
 				}, 50 );
 
 				self.thumbnailLoadComplete( $image[ 0 ] )
-					.then( function () {
+					.then( () => {
 						loadingComplete = true;
 						$placeholder.remove();
 						$image.show();
@@ -137,7 +137,7 @@
 
 				var reload = function () {
 					self.loadSrc( src ).then(
-						function () {
+						() => {
 							// in case this img timed out earlier, reset it so the browser
 							// will load it anew...
 							img.src = src;

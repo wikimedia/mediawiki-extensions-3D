@@ -144,7 +144,7 @@
 		this.progressBar.jumpTo( 0 );
 		this.progressBar.animateTo( 5 );
 
-		this.promise.then( function ( object ) {
+		this.promise.then( ( object ) => {
 			delete threed.promise;
 
 			threed.progressBar.hide();
@@ -159,9 +159,9 @@
 			threed.render( threed.renderer, threed.scene, threed.camera );
 
 			mw.threed.base.wrap( threed.$container );
-		} ).progress( function ( progress ) {
+		} ).progress( ( progress ) => {
 			threed.progressBar.animateTo( progress );
-		} ).fail( function ( /* error */ ) {
+		} ).fail( ( /* error */ ) => {
 			threed.progressBar.hide();
 			delete threed.promise;
 		} );
@@ -179,7 +179,7 @@
 				break;
 		}
 
-		var request = loader.load( url, function ( data ) {
+		var request = loader.load( url, ( data ) => {
 			var object = data;
 
 			if ( extension === 'stl' ) {
@@ -187,13 +187,13 @@
 			}
 
 			deferred.resolve( object );
-		}, function ( progress ) {
+		}, ( progress ) => {
 			deferred.notify( ( progress.loaded / progress.total ) * 100 );
-		}, function ( error ) {
+		}, ( error ) => {
 			deferred.reject( error );
 		} );
 
-		deferred.fail( function () {
+		deferred.fail( () => {
 			if ( request && request.readyState !== 4 ) {
 				request.abort();
 			}
@@ -217,7 +217,7 @@
 		return { width: width, height: height, ratio: width / height };
 	};
 
-	$( document ).on( 'mmv-metadata.3d', function ( e ) {
+	$( document ).on( 'mmv-metadata.3d', ( e ) => {
 		var extension = e.image.filePageTitle.getExtension();
 
 		// Ignore events from formats that we don't care about
@@ -235,7 +235,7 @@
 	} );
 
 	// unload when switching images or cleaning up MMV altogether
-	$( document ).on( 'mmv-hash mmv-cleanup-overlay', function () {
+	$( document ).on( 'mmv-hash mmv-cleanup-overlay', () => {
 		if ( singleton ) {
 			singleton.unload();
 		}

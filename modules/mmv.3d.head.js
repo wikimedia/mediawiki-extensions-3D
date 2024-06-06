@@ -31,7 +31,7 @@
 					$link = $image.closest( 'a' );
 
 				mw.threed.base.thumbnailLoadComplete( $image[ 0 ] )
-					.then( function () {
+					.then( () => {
 						var $wrap = mw.threed.base.wrap( $image ),
 							view = new OO.ui.ButtonWidget( {
 								icon: 'eye',
@@ -54,7 +54,7 @@
 					} );
 
 				// Clicking the file should open it in MMV instead of prompting download
-				$link.on( 'click', function ( e ) {
+				$link.on( 'click', ( e ) => {
 					e.preventDefault();
 					self.open( $image );
 				} );
@@ -65,7 +65,7 @@
 		 * @param {jQuery} $image
 		 */
 		open: function ( $image ) {
-			mw.loader.using( [ 'mmv.bootstrap' ] ).then( function ( req ) {
+			mw.loader.using( [ 'mmv.bootstrap' ] ).then( ( req ) => {
 				if ( this.mmvBootstrap === null ) {
 					var MultimediaViewerBootstrap = req( 'mmv.bootstrap' ).MultimediaViewerBootstrap;
 					this.mmvBootstrap = new MultimediaViewerBootstrap();
@@ -74,7 +74,7 @@
 
 				var title = mw.Title.newFromImg( $image );
 				this.mmvBootstrap.openImage( title );
-			}.bind( this ) );
+			} );
 		},
 
 		/**
