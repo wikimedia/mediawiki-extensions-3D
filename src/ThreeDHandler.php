@@ -6,8 +6,8 @@ use File;
 use ImageHandler;
 use MediaTransformError;
 use MediaTransformOutput;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Shell\Shell;
-use Parser;
 use ThumbnailImage;
 use TransformParameterError;
 

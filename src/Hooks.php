@@ -21,12 +21,12 @@ namespace MediaWiki\Extension\ThreeD;
 
 use ExtensionRegistry;
 use MediaWiki\Config\Config;
-use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Hook\UploadForm_getInitialPageTextHook;
 use MediaWiki\Hook\UploadFormInitDescriptorHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MediaWiki\Output\OutputPage;
-use RequestContext;
 use Skin;
 
 // phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
