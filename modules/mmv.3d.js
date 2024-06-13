@@ -15,6 +15,10 @@
  * along with The 3D extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
+window.THREE = require( './lib/three/three.js' );
+require( './lib/three/STLLoader.js' );
+require( './lib/three/TrackballControls.js' );
+
 ( function () {
 	let singleton = false;
 

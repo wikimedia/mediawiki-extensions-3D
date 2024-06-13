@@ -7,5 +7,8 @@
 	],
 	"globals": {
 		"THREE": "readonly"
+	},
+	"parserOptions": {
+		"sourceType": "commonjs"
 	}
 }

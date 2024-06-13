@@ -20,7 +20,7 @@
 	},
 	"ResourceModules": {
 		"ext.3d": {
-			"scripts": [
+			"packageFiles": [
 				"ext.3d.js"
 			],
 			"styles": [
@@ -40,11 +40,11 @@
 			]
 		},
 		"mmv.3d": {
-			"scripts": [
+			"packageFiles": [
+				"mmv.3d.js",
 				"lib/three/three.js",
 				"lib/three/STLLoader.js",
-				"lib/three/TrackballControls.js",
-				"mmv.3d.js"
+				"lib/three/TrackballControls.js"
 			],
 			"styles": [
 				"mmv.3d.less"
@@ -56,7 +56,7 @@
 			]
 		},
 		"mmv.3d.head": {
-			"scripts": [
+			"packageFiles": [
 				"mmv.3d.head.js"
 			],
 			"styles": [
@@ -74,7 +74,7 @@
 			]
 		},
 		"ext.3d.special.upload": {
-			"scripts": [
+			"packageFiles": [
 				"ext.3d.special.upload.js"
 			],
 			"dependencies": [
