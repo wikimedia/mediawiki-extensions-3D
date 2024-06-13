@@ -15,69 +15,67 @@
  * along with The 3D extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
-( function () {
-	'use strict';
+'use strict';
 
-	mw.threed = mw.threed || {};
+mw.threed = mw.threed || {};
 
-	mw.threed.specialUpload = {
+mw.threed.specialUpload = {
+	// eslint-disable-next-line no-jquery/no-global-selector
+	$patent: $( 'input[name=wpPatent]' ),
+	$patentPreview: $( '<td>' ).attr( 'id', 'mw-patent-preview' ),
+	uploadTemplatePreview: window.wgUploadTemplatePreviewObj,
+
+	addPatentPreview: function () {
+		// Patent selector table row
+		this.$patent.closest( 'tr' ).after(
+			$( '<tr>' ).append(
+				$( '<td>' ),
+				this.$patentPreview
+			)
+		);
+
+		// Patent selector check
+		this.$patent.on( 'change', ( e ) => {
+			// We might show a preview
+			this.uploadTemplatePreview.getPreview( $( e.currentTarget ), this.$patentPreview );
+		} );
+	},
+
+	/**
+	 * @param {boolean} show True to show, false to hide
+	 */
+	togglePatentSelector: function ( show ) {
+		// select default value & show/hide the options
+		this.$patent.eq( 0 ).prop( 'checked', true );
+		this.$patent.closest( 'tr.mw-htmlform-field-3D-Patents' ).toggle( show );
+		this.$patentPreview.closest( 'tr' ).toggle( show );
+	},
+
+	onChangeFile: function () {
 		// eslint-disable-next-line no-jquery/no-global-selector
-		$patent: $( 'input[name=wpPatent]' ),
-		$patentPreview: $( '<td>' ).attr( 'id', 'mw-patent-preview' ),
-		uploadTemplatePreview: window.wgUploadTemplatePreviewObj,
+		const files = $( '#wpUploadFile' )[ 0 ].files;
 
-		addPatentPreview: function () {
-			// Patent selector table row
-			this.$patent.closest( 'tr' ).after(
-				$( '<tr>' ).append(
-					$( '<td>' ),
-					this.$patentPreview
-				)
-			);
-
-			// Patent selector check
-			this.$patent.on( 'change', ( e ) => {
-				// We might show a preview
-				this.uploadTemplatePreview.getPreview( $( e.currentTarget ), this.$patentPreview );
-			} );
-		},
-
-		/**
-		 * @param {boolean} show True to show, false to hide
-		 */
-		togglePatentSelector: function ( show ) {
-			// select default value & show/hide the options
-			this.$patent.eq( 0 ).prop( 'checked', true );
-			this.$patent.closest( 'tr.mw-htmlform-field-3D-Patents' ).toggle( show );
-			this.$patentPreview.closest( 'tr' ).toggle( show );
-		},
-
-		onChangeFile: function () {
-			// eslint-disable-next-line no-jquery/no-global-selector
-			const files = $( '#wpUploadFile' )[ 0 ].files;
-
-			if ( !files ) {
-				return;
-			}
-
-			const hasStlFiles = Array.prototype.some.call( files, ( file ) => file.name.split( '.' ).pop().toLowerCase() === 'stl' );
-
-			// only show patent selector when the upload is an STL file
-			this.togglePatentSelector( hasStlFiles );
-		},
-
-		init: function () {
-			if ( mw.config.get( 'wgAjaxPatentPreview' ) && this.$patent.length ) {
-				this.addPatentPreview();
-			}
-
-			// hide patent selection until a relevant file has been uploaded
-			this.togglePatentSelector( false );
-
-			// eslint-disable-next-line no-jquery/no-global-selector
-			$( '#wpUploadFile' ).on( 'change', this.onChangeFile.bind( this ) );
+		if ( !files ) {
+			return;
 		}
-	};
 
-	mw.threed.specialUpload.init();
-}() );
+		const hasStlFiles = Array.prototype.some.call( files, ( file ) => file.name.split( '.' ).pop().toLowerCase() === 'stl' );
+
+		// only show patent selector when the upload is an STL file
+		this.togglePatentSelector( hasStlFiles );
+	},
+
+	init: function () {
+		if ( mw.config.get( 'wgAjaxPatentPreview' ) && this.$patent.length ) {
+			this.addPatentPreview();
+		}
+
+		// hide patent selection until a relevant file has been uploaded
+		this.togglePatentSelector( false );
+
+		// eslint-disable-next-line no-jquery/no-global-selector
+		$( '#wpUploadFile' ).on( 'change', this.onChangeFile.bind( this ) );
+	}
+};
+
+mw.threed.specialUpload.init();
