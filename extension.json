@@ -95,7 +95,10 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "MediaWiki\\Extension\\ThreeD\\Hooks"
+			"class": "MediaWiki\\Extension\\ThreeD\\Hooks",
+			"services": [
+				"RepoGroup"
+			]
 		}
 	},
 	"Hooks": {

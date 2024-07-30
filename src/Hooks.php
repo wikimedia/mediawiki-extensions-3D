@@ -24,9 +24,9 @@ use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Hook\UploadForm_getInitialPageTextHook;
 use MediaWiki\Hook\UploadFormInitDescriptorHook;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MediaWiki\Output\OutputPage;
+use RepoGroup;
 use Skin;
 
 // phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
@@ -36,6 +36,14 @@ class Hooks implements
 	UploadFormInitDescriptorHook,
 	UploadForm_getInitialPageTextHook
 {
+	private RepoGroup $repoGroup;
+
+	public function __construct(
+		RepoGroup $repoGroup
+	) {
+		$this->repoGroup = $repoGroup;
+	}
+
 	/**
 	 * @param OutputPage $out
 	 * @param Skin $skin
@@ -43,7 +51,7 @@ class Hooks implements
 	public function onBeforePageDisplay( $out, $skin ): void {
 		$title = $out->getTitle();
 		if ( $title->getNamespace() === NS_FILE ) {
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
+			$file = $this->repoGroup->findFile( $title );
 			if ( $file && $file->getMediaType() === MEDIATYPE_3D ) {
 				// Load JS on file pages for placeholder functionality
 				$out->addModules( [ 'ext.3d' ] );
