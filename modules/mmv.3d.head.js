@@ -69,7 +69,16 @@ mw.threed.mmv = {
 			}
 
 			const title = mw.Title.newFromImg( $image );
-			this.mmvBootstrap.openImage( title );
+			const LightboxImage = req( 'mmv.bootstrap' ).LightboxImage;
+			const image = new LightboxImage(
+				$image.prop( 'src' ),
+				title,
+				1,
+				1,
+				$image[ 0 ],
+				''
+			);
+			this.mmvBootstrap.openImage( image );
 		} );
 	},
 
