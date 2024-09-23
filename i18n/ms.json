@@ -4,5 +4,7 @@
 			"Tofeiku"
 		]
 	},
-	"3d-nopatent": "Tiada dipilih"
+	"3d-patent": "Kebenaran paten:",
+	"3d-nopatent": "Tiada dipilih",
+	"3d-thumb-placeholder": "Memuatkan gambar kenit..."
 }
