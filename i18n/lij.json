@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Giromin Cangiaxo"
+			"Giromin Cangiaxo",
+			"N. Longo"
 		]
 	},
-	"3d-desc": "O fornisce o suporto pe-i formati di file 3d"
+	"3d-desc": "O fornìsce o supòrto pe-i formâti di file 3D",
+	"3d-patent": "Permìssi de brevétto:",
+	"3d-nopatent": "Nisciùn indicòu",
+	"3d-thumb-placeholder": "Caregaménto da miniatûa..."
 }
