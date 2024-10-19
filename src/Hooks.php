@@ -19,13 +19,13 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
-use ExtensionRegistry;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Hook\UploadForm_getInitialPageTextHook;
 use MediaWiki\Hook\UploadFormInitDescriptorHook;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Registration\ExtensionRegistry;
 use RepoGroup;
 use Skin;
 
