@@ -12,6 +12,9 @@
 		"grunt-banana-checker": "0.13.0",
 		"grunt-eslint": "24.3.0",
 		"grunt-stylelint": "0.20.1",
-		"stylelint-config-wikimedia": "0.18.0"
+		"grunt-webpack": "^6.0.0",
+		"stylelint-config-wikimedia": "0.18.0",
+		"three": "^0.162.0",
+		"webpack": "^5.91.0"
 	}
 }

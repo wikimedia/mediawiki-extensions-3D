@@ -42,9 +42,7 @@
 		"mmv.3d": {
 			"packageFiles": [
 				"mmv.3d.js",
-				"lib/three/three.js",
-				"lib/three/STLLoader.js",
-				"lib/three/TrackballControls.js"
+				"lib/three/three.js"
 			],
 			"styles": [
 				"mmv.3d.less"
