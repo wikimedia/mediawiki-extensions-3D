@@ -16,8 +16,6 @@
  */
 
 window.THREE = require( './lib/three/three.js' );
-require( './lib/three/STLLoader.js' );
-require( './lib/three/TrackballControls.js' );
 
 let singleton = false;
 
@@ -45,7 +43,8 @@ TD.init = function () {
 
 	this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 0.001, 500000 );
 	this.camera.up.set( 0, 0, 1 );
-	this.camera.add( new THREE.PointLight( 0xffffff, 0.3 ) );
+	const headlight = new THREE.PointLight( 0xffffff, 150 );
+	this.camera.add( headlight );
 
 	this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 	this.controls.rotateSpeed = 4;
@@ -58,13 +57,14 @@ TD.init = function () {
 	this.scene = new THREE.Scene();
 	this.scene.add( this.camera );
 
-	this.scene.add( new THREE.AmbientLight( 0x666666, 0.5 ) );
+	this.scene.add( new THREE.AmbientLight( 0x666666, 2 ) );
 
-	const light = new THREE.SpotLight( 0x999999, 1 );
+	const light = new THREE.SpotLight( 0x999999, 100000 );
 	light.position.set( -100, 50, 25 );
 	light.castShadow = true;
 	light.shadow.mapSize.width = 4096;
 	light.shadow.mapSize.height = 4096;
+	light.shadow.bias = -0.000025;
 	this.camera.add( light );
 
 	$( window ).on( 'resize.3d', mw.util.debounce( this.onWindowResize.bind( this ), 100 ) );
@@ -97,9 +97,11 @@ TD.center = function ( object ) {
 };
 
 TD.geometryToObject = function ( geometry ) {
-	const material = new THREE.MeshPhongMaterial(
-		{ color: 0xf0ebe8, shininess: 5, flatShading: true, side: THREE.DoubleSide }
+	const vertexColors = geometry.hasAttribute( 'color' );
+	const material = new THREE.MeshStandardMaterial(
+		{ color: 0xf0ebe8, flatShading: true, side: THREE.DoubleSide, vertexColors }
 	);
+
 	return new THREE.Mesh( geometry, material );
 };
 
