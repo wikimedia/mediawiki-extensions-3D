@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
-use File;
 use ImageHandler;
 use MediaTransformError;
 use MediaTransformOutput;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Shell\Shell;
 use ThumbnailImage;
