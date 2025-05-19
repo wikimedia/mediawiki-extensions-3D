@@ -16,7 +16,9 @@
  */
 
 ( function () {
-	var singleton = false;
+	window.THREE = require( './lib/three/three.js' );
+
+	let singleton = false;
 
 	function ThreeD( viewer ) {
 		THREE.Cache.enabled = true;
@@ -26,10 +28,10 @@
 		this.$container = viewer.ui.canvas.$imageDiv;
 	}
 
-	var TD = ThreeD.prototype;
+	const TD = ThreeD.prototype;
 
 	TD.init = function () {
-		var dimensions = this.getDimensions();
+		const dimensions = this.getDimensions();
 
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.setClearColor( 0x222222 );
@@ -42,7 +44,8 @@
 
 		this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 0.001, 500000 );
 		this.camera.up.set( 0, 0, 1 );
-		this.camera.add( new THREE.PointLight( 0xffffff, 0.3 ) );
+		const headlight = new THREE.PointLight( 0xffffff, 150 );
+		this.camera.add( headlight );
 
 		this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 		this.controls.rotateSpeed = 4;
@@ -55,13 +58,14 @@
 		this.scene = new THREE.Scene();
 		this.scene.add( this.camera );
 
-		this.scene.add( new THREE.AmbientLight( 0x666666, 0.5 ) );
+		this.scene.add( new THREE.AmbientLight( 0x666666, 2 ) );
 
-		var light = new THREE.SpotLight( 0x999999, 1 );
+		const light = new THREE.SpotLight( 0x999999, 100000 );
 		light.position.set( -100, 50, 25 );
 		light.castShadow = true;
 		light.shadow.mapSize.width = 4096;
 		light.shadow.mapSize.height = 4096;
+		light.shadow.bias = -0.000025;
 		this.camera.add( light );
 
 		$( window ).on( 'resize.3d', mw.util.debounce( this.onWindowResize.bind( this ), 100 ) );
@@ -76,7 +80,7 @@
 			object.geometry.center();
 			object.geometry.computeBoundingSphere();
 
-			var radius = object.geometry.boundingSphere.radius;
+			const radius = object.geometry.boundingSphere.radius;
 
 			// `radius` is the edge of the object's sphere
 			// We want to position our camera outside of that sphere.
@@ -94,9 +98,11 @@
 	};
 
 	TD.geometryToObject = function ( geometry ) {
-		var material = new THREE.MeshPhongMaterial(
-			{ color: 0xf0ebe8, shininess: 5, flatShading: true, side: THREE.DoubleSide }
+		const vertexColors = geometry.hasAttribute( 'color' );
+		const material = new THREE.MeshStandardMaterial(
+			{ color: 0xf0ebe8, flatShading: true, side: THREE.DoubleSide, vertexColors }
 		);
+
 		return new THREE.Mesh( geometry, material );
 	};
 
@@ -110,7 +116,7 @@
 	};
 
 	TD.onWindowResize = function () {
-		var dimensions = this.getDimensions();
+		const dimensions = this.getDimensions();
 
 		this.camera.aspect = dimensions.width / dimensions.height;
 		this.camera.updateProjectionMatrix();
@@ -127,13 +133,11 @@
 		// is also attached to
 		// we don't want to keep that wrapper class around (could cause unexpected
 		// results), and definitely want that '3D' badge gone...
-		var $threedParent = this.$container.parent( '.mw-3d-wrapper' );
+		const $threedParent = this.$container.parent( '.mw-3d-wrapper' );
 		$threedParent.replaceWith( this.$container );
 	};
 
 	TD.load = function ( extension, url ) {
-		var threed = this;
-
 		// Abort any loading that might still be happening
 		if ( this.promise ) {
 			this.promise.reject();
@@ -144,34 +148,33 @@
 		this.progressBar.jumpTo( 0 );
 		this.progressBar.animateTo( 5 );
 
-		this.promise.then( function ( object ) {
-			delete threed.promise;
+		this.promise.then( ( object ) => {
+			delete this.promise;
 
-			threed.progressBar.hide();
+			this.progressBar.hide();
 
 			object.castShadow = true;
 			object.receiveShadow = true;
 
-			threed.center( object );
-			threed.scene.add( object );
+			this.center( object );
+			this.scene.add( object );
 
-			threed.camera.lookAt( threed.scene.position );
-			threed.render( threed.renderer, threed.scene, threed.camera );
+			this.camera.lookAt( this.scene.position );
+			this.render( this.renderer, this.scene, this.camera );
 
-			mw.threed.base.wrap( threed.$container );
-		} ).progress( function ( progress ) {
-			threed.progressBar.animateTo( progress );
-		} ).fail( function ( /* error */ ) {
-			threed.progressBar.hide();
-			delete threed.promise;
+			mw.threed.base.wrap( this.$container );
+		} ).progress( ( progress ) => {
+			this.progressBar.animateTo( progress );
+		} ).fail( ( /* error */ ) => {
+			this.progressBar.hide();
+			delete this.promise;
 		} );
 	};
 
 	TD.loadFile = function ( extension, url ) {
-		var threed = this,
-			deferred = $.Deferred();
+		const deferred = $.Deferred();
 
-		var loader;
+		let loader;
 		switch ( extension ) {
 			case 'stl':
 			default:
@@ -179,21 +182,21 @@
 				break;
 		}
 
-		var request = loader.load( url, function ( data ) {
-			var object = data;
+		const request = loader.load( url, ( data ) => {
+			let object = data;
 
 			if ( extension === 'stl' ) {
-				object = threed.geometryToObject( data );
+				object = this.geometryToObject( data );
 			}
 
 			deferred.resolve( object );
-		}, function ( progress ) {
+		}, ( progress ) => {
 			deferred.notify( ( progress.loaded / progress.total ) * 100 );
-		}, function ( error ) {
+		}, ( error ) => {
 			deferred.reject( error );
 		} );
 
-		deferred.fail( function () {
+		deferred.fail( () => {
 			if ( request && request.readyState !== 4 ) {
 				request.abort();
 			}
@@ -211,14 +214,14 @@
 	};
 
 	TD.getDimensions = function () {
-		var width = $( window ).width(),
+		const width = $( window ).width(),
 			height = this.viewer.ui.canvas.$imageWrapper.height();
 
 		return { width: width, height: height, ratio: width / height };
 	};
 
-	$( document ).on( 'mmv-metadata.3d', function ( e ) {
-		var extension = e.image.filePageTitle.getExtension();
+	$( document ).on( 'mmv-metadata.3d', ( e ) => {
+		const extension = e.image.filePageTitle.getExtension();
 
 		// Ignore events from formats that we don't care about
 		if ( extension !== 'stl' ) {
@@ -235,7 +238,7 @@
 	} );
 
 	// unload when switching images or cleaning up MMV altogether
-	$( document ).on( 'mmv-hash mmv-cleanup-overlay', function () {
+	$( document ).on( 'mmv-hash mmv-cleanup-overlay', () => {
 		if ( singleton ) {
 			singleton.unload();
 		}
