@@ -19,9 +19,10 @@ module.exports = function ( grunt ) {
 		},
 		banana: conf.MessagesDirs,
 		stylelint: {
-			all: [
-				'modules/**/*.{less,css}'
-			]
+			options: {
+				cache: true
+			},
+			all: [ 'modules/**/*.{less,css}' ]
 		},
 		webpack: {
 			build: {
