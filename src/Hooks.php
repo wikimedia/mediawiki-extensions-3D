@@ -36,12 +36,9 @@ class Hooks implements
 	UploadFormInitDescriptorHook,
 	UploadForm_getInitialPageTextHook
 {
-	private RepoGroup $repoGroup;
-
 	public function __construct(
-		RepoGroup $repoGroup
+		private readonly RepoGroup $repoGroup
 	) {
-		$this->repoGroup = $repoGroup;
 	}
 
 	/**
