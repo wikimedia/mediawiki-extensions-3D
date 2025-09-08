@@ -1,18 +1,5 @@
 <?php
-
-namespace MediaWiki\Extension\ThreeD;
-
-use ImageHandler;
-use MediaTransformError;
-use MediaTransformOutput;
-use MediaWiki\FileRepo\File\File;
-use MediaWiki\Parser\Parser;
-use MediaWiki\Shell\Shell;
-use ThumbnailImage;
-use TransformParameterError;
-
 /**
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,6 +15,17 @@ use TransformParameterError;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+
+namespace MediaWiki\Extension\ThreeD;
+
+use ImageHandler;
+use MediaTransformError;
+use MediaTransformOutput;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\Parser\Parser;
+use MediaWiki\Shell\Shell;
+use ThumbnailImage;
+use TransformParameterError;
 
 class ThreeDHandler extends ImageHandler {
 	/**

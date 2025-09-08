@@ -1,12 +1,5 @@
 <?php
-
-namespace MediaWiki\Extension\ThreeD;
-
-use MediaWiki\Html\Html;
-use ThumbnailImage;
-
 /**
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,6 +15,11 @@ use ThumbnailImage;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+
+namespace MediaWiki\Extension\ThreeD;
+
+use MediaWiki\Html\Html;
+use ThumbnailImage;
 
 class ThreeDThumbnailImage extends ThumbnailImage {
 	/**
