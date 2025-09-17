@@ -28,8 +28,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Skin\Skin;
 
-// phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
-
 class Hooks implements
 	BeforePageDisplayHook,
 	UploadFormInitDescriptorHook,
