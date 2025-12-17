@@ -32,12 +32,14 @@ mw.threed.mmv = {
 						view = new OO.ui.ButtonWidget( {
 							icon: 'eye',
 							flags: [ 'progressive' ],
-							title: mw.message( 'view' ).text()
+							invisibleLabel: true,
+							label: mw.msg( 'view' )
 						} ),
 						download = new OO.ui.ButtonWidget( {
 							icon: 'download',
 							flags: [ 'progressive' ],
-							title: mw.message( 'download' ).text()
+							invisibleLabel: true,
+							label: mw.msg( 'download' )
 						} ),
 						$buttonWrap = $( '<span>' )
 							.addClass( 'mw-3d-control-wrapper' )

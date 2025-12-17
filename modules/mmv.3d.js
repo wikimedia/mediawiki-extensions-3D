@@ -147,6 +147,8 @@ TD.load = function ( extension, url ) {
 	this.progressBar.jumpTo( 0 );
 	this.progressBar.animateTo( 5 );
 
+	// Using jQuery's Deferred#notify/progress
+	// eslint-disable-next-line no-jquery/no-done-fail
 	this.promise.then( ( object ) => {
 		delete this.promise;
 
@@ -195,6 +197,7 @@ TD.loadFile = function ( extension, url ) {
 		deferred.reject( error );
 	} );
 
+	// eslint-disable-next-line no-jquery/no-done-fail
 	deferred.fail( () => {
 		if ( request && request.readyState !== 4 ) {
 			request.abort();

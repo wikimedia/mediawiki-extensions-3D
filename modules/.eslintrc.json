@@ -8,8 +8,12 @@
 	"globals": {
 		"THREE": "readonly"
 	},
-	"rules": {
-		"no-jquery/no-done-fail": "warn",
-		"mediawiki/no-unlabeled-buttonwidget": "warn"
-	}
+	"overrides": [
+		{
+			"files": [ "lib/foreign-resources.*" ],
+			"rules": {
+				"max-len": "off"
+			}
+		}
+	]
 }
