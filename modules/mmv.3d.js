@@ -37,14 +37,14 @@ TD.init = function () {
 	this.renderer.setPixelRatio( window.devicePixelRatio );
 	this.renderer.setSize( dimensions.width, dimensions.height );
 	this.renderer.shadowMap.enabled = true;
+	this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	this.$container.html( this.renderer.domElement );
 
 	this.manager = new THREE.LoadingManager();
 
-	this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 0.001, 500000 );
+	// near/far values are based on the scale normalization done in TD.center()
+	this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 0.5, 500 );
 	this.camera.up.set( 0, 0, 1 );
-	const headlight = new THREE.PointLight( 0xffffff, 150 );
-	this.camera.add( headlight );
 
 	this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 	this.controls.rotateSpeed = 4;
@@ -57,15 +57,35 @@ TD.init = function () {
 	this.scene = new THREE.Scene();
 	this.scene.add( this.camera );
 
-	this.scene.add( new THREE.AmbientLight( 0x666666, 2 ) );
+	// lights setup
+	this.scene.add( new THREE.AmbientLight( 0xfff4e0, 0.3 ) );
 
-	const light = new THREE.SpotLight( 0x999999, 100000 );
-	light.position.set( -100, 50, 25 );
-	light.castShadow = true;
-	light.shadow.mapSize.width = 4096;
-	light.shadow.mapSize.height = 4096;
-	light.shadow.bias = -0.000025;
-	this.camera.add( light );
+	// main light, the only one casting shadows.
+	const keyLight = new THREE.DirectionalLight( 0xfff4e0, 1.8 );
+	keyLight.position.set( 15, 20, 15 );
+	keyLight.castShadow = true;
+	keyLight.shadow.mapSize.width = 2048;
+	keyLight.shadow.mapSize.height = 2048;
+	keyLight.shadow.bias = -0.0005;
+	keyLight.shadow.normalBias = 0.1;
+	keyLight.shadow.camera.near = 1;
+	keyLight.shadow.camera.far = 80;
+	// This values are based on model radius. See normalization at TD.center()
+	keyLight.shadow.camera.left = -20;
+	keyLight.shadow.camera.right = 20;
+	keyLight.shadow.camera.top = 20;
+	keyLight.shadow.camera.bottom = -20;
+	this.scene.add( keyLight );
+
+	// fill light
+	const fillLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
+	fillLight.position.set( -20, 5, 10 );
+	this.scene.add( fillLight );
+
+	// rim/back light
+	const rimLight = new THREE.DirectionalLight( 0xffffff, 1.2 );
+	rimLight.position.set( 5, -15, -20 );
+	this.scene.add( rimLight );
 
 	$( window ).on( 'resize.3d', mw.util.debounce( this.onWindowResize.bind( this ), 100 ) );
 
@@ -79,7 +99,10 @@ TD.center = function ( object ) {
 		object.geometry.center();
 		object.geometry.computeBoundingSphere();
 
-		const radius = object.geometry.boundingSphere.radius;
+		const normalizedScale = 10 / object.geometry.boundingSphere.radius;
+		object.scale.setScalar( normalizedScale );
+
+		const radius = object.geometry.boundingSphere.radius * normalizedScale;
 
 		// `radius` is the edge of the object's sphere
 		// We want to position our camera outside of that sphere.
