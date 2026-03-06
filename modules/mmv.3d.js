@@ -46,10 +46,9 @@ TD.init = function () {
 	this.camera = new THREE.PerspectiveCamera( 60, dimensions.ratio, 0.5, 500 );
 	this.camera.up.set( 0, 0, 1 );
 
-	this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
-	this.controls.rotateSpeed = 4;
-	this.controls.zoomSpeed = 4;
-	this.controls.panSpeed = 4;
+	this.controls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
+	this.controls.enableDamping = true;
+	this.controls.dampingFactor = 0.15;
 	this.controls.addEventListener( 'change', this.render.bind( this ) );
 	this.controls.addEventListener( 'start', this.controlsStart.bind( this ) );
 	this.controls.addEventListener( 'end', this.controlsEnd.bind( this ) );
@@ -144,8 +143,6 @@ TD.onWindowResize = function () {
 	this.camera.updateProjectionMatrix();
 
 	this.renderer.setSize( dimensions.width, dimensions.height );
-
-	this.controls.handleResize();
 
 	this.render( this.renderer, this.scene, this.camera );
 };
