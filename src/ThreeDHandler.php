@@ -74,6 +74,14 @@ class ThreeDHandler extends ImageHandler {
 			}
 		}
 
+		// Make it follow thumb steps
+		$srcWidth = $image->getWidth();
+		$srcHeight = $image->getHeight();
+		$params['physicalWidth'] = $this->getSteppedThumbWidth(
+			$image, $params['physicalWidth'], $srcWidth, $srcHeight
+		);
+		$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $params['physicalWidth'] );
+
 		return true;
 	}
 
