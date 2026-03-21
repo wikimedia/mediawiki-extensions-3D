@@ -111,8 +111,7 @@ class Hooks implements
 	 * @param Config $config
 	 */
 	public function onUploadForm_getInitialPageText( &$pageText, $msg, $config ) {
-		global $wgRequest;
-		$patent = $wgRequest->getText( 'wpPatent' );
+		$patent = RequestContext::getMain()->getRequest()->getText( 'wpPatent' );
 		if ( $patent === '' ) {
 			// no patent text to be added
 			return;
