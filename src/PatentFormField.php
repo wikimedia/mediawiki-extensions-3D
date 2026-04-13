@@ -18,8 +18,8 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
-use Licenses;
 use MediaWiki\HTMLForm\Field\HTMLRadioField;
+use MediaWiki\Specials\FormFields\Licenses;
 
 class PatentFormField extends Licenses {
 	/**

@@ -18,8 +18,8 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
-use License;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Specials\Helpers\License;
 
 class PatentLine extends License {
 	/**

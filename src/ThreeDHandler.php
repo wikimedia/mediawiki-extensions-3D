@@ -18,14 +18,14 @@
 
 namespace MediaWiki\Extension\ThreeD;
 
-use ImageHandler;
-use MediaTransformError;
-use MediaTransformOutput;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\Media\ImageHandler;
+use MediaWiki\Media\MediaTransformError;
+use MediaWiki\Media\MediaTransformOutput;
+use MediaWiki\Media\ThumbnailImage;
+use MediaWiki\Media\TransformParameterError;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Shell\Shell;
-use ThumbnailImage;
-use TransformParameterError;
 
 class ThreeDHandler extends ImageHandler {
 	/**

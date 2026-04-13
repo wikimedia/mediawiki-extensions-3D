@@ -19,7 +19,7 @@
 namespace MediaWiki\Extension\ThreeD;
 
 use MediaWiki\Html\Html;
-use ThumbnailImage;
+use MediaWiki\Media\ThumbnailImage;
 
 class ThreeDThumbnailImage extends ThumbnailImage {
 	/**
