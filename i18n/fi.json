@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"01miki10",
-			"Pyscowicz"
+			"Pyscowicz",
+			"Samoasambia"
 		]
 	},
-	"3d-desc": "Tukee 3d-tiedostomuotoja",
+	"3d-desc": "Tukee 3D-tiedostomuotoja",
 	"3d-patent": "Patenttiluvat:",
 	"3d-nopatent": "Ei yhtään valittu",
 	"3d-thumb-placeholder": "Ladataan pienoiskuvaa..."
