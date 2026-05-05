@@ -23,7 +23,6 @@ function ThreeD( viewer ) {
 	THREE.Cache.enabled = true;
 
 	this.viewer = viewer;
-	this.progressBar = viewer.ui.panel.progressBar;
 	this.$container = viewer.ui.canvas.$imageDiv;
 }
 
@@ -164,15 +163,10 @@ TD.load = function ( extension, url ) {
 
 	this.promise = this.loadFile( extension, url );
 
-	this.progressBar.jumpTo( 0 );
-	this.progressBar.animateTo( 5 );
-
 	// Using jQuery's Deferred#notify/progress
 	// eslint-disable-next-line no-jquery/no-done-fail
 	this.promise.then( ( object ) => {
 		delete this.promise;
-
-		this.progressBar.hide();
 
 		object.castShadow = true;
 		object.receiveShadow = true;
@@ -184,10 +178,7 @@ TD.load = function ( extension, url ) {
 		this.render( this.renderer, this.scene, this.camera );
 
 		mw.threed.base.wrap( this.$container );
-	} ).progress( ( progress ) => {
-		this.progressBar.animateTo( progress );
 	} ).fail( ( /* error */ ) => {
-		this.progressBar.hide();
 		delete this.promise;
 	} );
 };
