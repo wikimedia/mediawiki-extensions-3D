@@ -97,6 +97,10 @@ class ThreeDHandler extends ImageHandler {
 	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		global $wg3dProcessor, $wg3dProcessEnviron, $wgMax3d2pngMemory;
 
+		if ( !$this->normaliseParams( $image, $params ) ) {
+			return new TransformParameterError( $params );
+		}
+
 		// Impose an aspect ratio
 		$params['height'] = (int)round( $params['width'] / ( 640 / 480 ) );
 
