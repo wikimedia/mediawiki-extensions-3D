@@ -10,15 +10,20 @@ including:
 - Bug reports and bug fixes
 - Documentation improvements
 
-We do not currently accept feature requests because the extension's support status is undecided. However, please discuss significant new features with [maintainers][maintainers] before beginning implementation.
+We do not currently accept feature requests because the extension's support
+status is undecided. However, please discuss significant new features with
+[maintainers][maintainers] before beginning implementation. For more
+information about support levels, refer to the [Reader Growth team's
+maintenance levels and responsibilities][maintenance-levels].
 
 ### Overview
 
 3D is a MediaWiki extension that provides support for uploading and viewing
 3D models. It currently supports the STL file format.
 
-For more information, refer to the [Extension:3D][mw-extension] and
-[Help:Extension:3D][help-3d] pages on mediawiki.org.
+For more information, refer to the [README][readme]. See also the
+[Extension:3D][mw-extension] and [Help:Extension:3D][help-3d] pages on
+mediawiki.org.
 
 ### Community engagement
 
@@ -26,6 +31,7 @@ Refer to the following channels to connect with fellow contributors or to stay
 up-to-date with news about 3D:
 
 - Follow tasks and discussion on [Phabricator][phabricator-workboard].
+- Connect via the [Reader Growth][reader-growth] team page.
 - Participate in discussions in [Village Pump][village-pump].
 - Stay updated on the latest news and changes to the project by following
   [MediaWiki's version lifecycle page][version-lifecycle].
@@ -63,10 +69,10 @@ To share your new ideas for the project, perform the following actions:
 ### Code contribution
 
 3D uses [Gerrit][gerrit] for code review. For installation and configuration
-instructions, refer to the [Extension:3D][mw-extension] page. For Gerrit workflow
-and general MediaWiki contribution practices, refer to the
-[Gerrit/Tutorial][gerrit-tutorial] and [How to become a MediaWiki
-hacker][mw-hacker].
+instructions, refer to the [README][readme] and the
+[Extension:3D][mw-extension] page. For Gerrit workflow and general MediaWiki
+contribution practices, refer to the [Gerrit Tutorial][gerrit-tutorial] and
+[How to become a MediaWiki hacker][mw-hacker].
 
 Before submitting a patch, run:
 
@@ -75,9 +81,12 @@ composer test
 npm test
 ```
 
+[readme]: README.md
 [mw-extension]: https://www.mediawiki.org/wiki/Extension:3D
 [help-3d]: https://www.mediawiki.org/wiki/Help:Extension:3D
 [maintainers]: https://www.mediawiki.org/wiki/Developers/Maintainers
+[maintenance-levels]: https://www.mediawiki.org/wiki/Readers/Reader_Growth/Maintenance_Levels_and_Responsibilities
+[reader-growth]: https://www.mediawiki.org/wiki/Readers/Reader_Growth
 [village-pump]: https://en.wikipedia.org/wiki/Wikipedia:Village_pump
 [version-lifecycle]: https://www.mediawiki.org/wiki/Version_lifecycle
 [coc]: CODE_OF_CONDUCT.md
