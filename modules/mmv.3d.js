@@ -236,6 +236,12 @@ TD.getDimensions = function () {
 $( document ).on( 'mmv-metadata.3d', ( e ) => {
 	const extension = e.image.filePageTitle.getExtension();
 
+	// Unload any previously displayed 3D model before displaying the next file,
+	// whether it's another 3D model or a regular image.
+	if ( singleton ) {
+		singleton.unload();
+	}
+
 	// Ignore events from formats that we don't care about
 	if ( extension !== 'stl' ) {
 		return;
@@ -250,8 +256,8 @@ $( document ).on( 'mmv-metadata.3d', ( e ) => {
 	singleton.load( extension, e.imageInfo.url );
 } );
 
-// unload when switching images or cleaning up MMV altogether
-$( document ).on( 'mmv-hash mmv-cleanup-overlay', () => {
+// unload when cleaning up MMV altogether
+$( document ).on( 'mmv-cleanup-overlay', () => {
 	if ( singleton ) {
 		singleton.unload();
 	}
