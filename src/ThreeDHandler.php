@@ -149,14 +149,12 @@ class ThreeDHandler extends ImageHandler {
 		}
 	}
 
-	/**
-	 * @param File $file
-	 * @param string $path Unused
-	 * @param bool|array $metadata
-	 * @return array
-	 */
-	public function getImageSize( $file, $path, $metadata = false ) {
-		return [ 5120, 2880 ];
+	/** @inheritDoc */
+	public function getSizeAndMetadata( $state, $path ) {
+		return [
+			'width' => 5120,
+			'height' => 2880,
+		];
 	}
 
 	/**
