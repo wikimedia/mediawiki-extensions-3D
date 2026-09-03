@@ -111,14 +111,21 @@
 		"application/sla": "MediaWiki\\Extension\\ThreeD\\ThreeDHandler"
 	},
 	"config": {
+		"3dProcessor": {
+			"value": [],
+			"description": "Command (string or array) used to execute 3d2png to render thumbnails of 3D models, e.g. ['/usr/bin/xvfb-run', '-a', '-s', '-ac -screen 0 1280x1024x24', '/path/to/3d2png.js']."
+		},
 		"Max3d2pngMemory": {
-			"value": "10000000"
+			"value": 10000000,
+			"description": "Memory limit, in bytes, of the 3d2png process used to render thumbnails of 3D models."
 		},
 		"AjaxPatentPreview": {
-			"value": true
+			"value": true,
+			"description": "Whether to enable the AJAX-based patent field on Special:Upload for 3D file uploads."
 		},
 		"3dProcessEnviron": {
-			"value": []
+			"value": [],
+			"description": "Environment variables passed to the 3d2png process used to render thumbnails of 3D models."
 		}
 	}
 }
