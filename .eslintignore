@@ -1,9 +1,0 @@
-/modules/lib/*
-!/modules/lib/foreign-resources.*
-/vendor/
-/docs/
-
-# Language files written automatically by TranslateWiki
-/**/i18n/**/*.json
-!/**/i18n/**/en.json
-!/**/i18n/**/qqq.json
